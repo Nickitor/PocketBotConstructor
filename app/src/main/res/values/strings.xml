@@ -1,0 +1,16 @@
+<resources>
+    <integer name="com_vk_sdk_AppId">7793844</integer>
+    <string name="app_name">Pocket bot constructor</string>
+    <string name="enter">Войти</string>
+    <string name="enter_to_account">Войдите в аккаунт ВКонтакте</string>
+    <string name="account_login_error">Ошибка входа в аккаунт</string>
+    <string name="title_activity_main_screen">MainScreenActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+</resources>
