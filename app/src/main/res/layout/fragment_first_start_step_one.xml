@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_first_start_step_one"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="40sp"
+    android:paddingTop="40sp"
+    android:paddingRight="40sp"
+    android:paddingBottom="40sp"
+    tools:context=".FirstStartStepOneFragment">
+
+    <Button
+        android:id="@+id/button_next"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:text="@string/next_step"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/ic_pocket_bot"
+        android:layout_width="187dp"
+        android:layout_height="198dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.324"
+        app:srcCompat="@drawable/ic_pocket_bot"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/textView_Title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:fontFamily="sans-serif-light"
+        android:text="@string/welcome_title"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ic_pocket_bot" />
+
+    <TextView
+        android:id="@+id/textView_subtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="sans-serif-light"
+        android:text="@string/welcome_subtitle"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_Title" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:checkedButton="@id/radioButton_step_one"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/button_next"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <RadioButton
+            android:id="@+id/radioButton_step_one"
+            style="@style/Widget.AppCompat.CompoundButton.RadioButton"
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:checked="false" />
+
+        <RadioButton
+            android:id="@+id/radioButton_step_two"
+            android:layout_width="32dp"
+            android:layout_height="wrap_content" />
+    </RadioGroup>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

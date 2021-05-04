@@ -3,26 +3,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
-
+    app:startDestination="@id/firstStartStepOneFragment">
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.uneasypixel.pocketbotconstructor.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first" >
-
+        android:id="@+id/firstStartStepOneFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.FirstStartStepOneFragment"
+        android:label="fragment_first_start_step_one"
+        tools:layout="@layout/fragment_first_start_step_one" >
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_firstStartStepOneFragment_to_firstStartStepTwoFragment"
+            app:destination="@id/firstStartStepTwoFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.uneasypixel.pocketbotconstructor.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second" >
-
+        android:id="@+id/firstStartStepTwoFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.FirstStartStepTwoFragment"
+        android:label="fragment_first_start_step_two"
+        tools:layout="@layout/fragment_first_start_step_two" >
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_firstStartStepTwoFragment_to_firstStartStepOneFragment"
+            app:destination="@id/firstStartStepOneFragment" />
+        <action
+            android:id="@+id/action_firstStartStepTwoFragment_to_authorisationErrorFragment"
+            app:destination="@id/authorisationErrorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/authorisationErrorFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.AuthorisationErrorFragment"
+        android:label="fragment_authorisation_error"
+        tools:layout="@layout/fragment_authorisation_error" >
+        <action
+            android:id="@+id/action_authorisationErrorFragment_to_firstStartStepOneFragment"
+            app:destination="@id/firstStartStepOneFragment" />
     </fragment>
 </navigation>

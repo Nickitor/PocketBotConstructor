@@ -1,32 +1,29 @@
 package com.uneasypixel.pocketbotconstructor
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import com.uneasypixel.pocketbotconstructor.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private val ENTRY_ACTIVITY_KEY = 0
-    private val MAIN_SCREEN_ACTIVITY_KEY = 0
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val entryIntent = Intent(this@MainActivity, EntryActivity::class.java)
-        startActivityForResult(entryIntent, ENTRY_ACTIVITY_KEY)
+        val binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navController = navHostFragment.navController
+
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == ENTRY_ACTIVITY_KEY) {
-            if (resultCode == RESULT_OK) {
-                val mainScreenIntent = Intent(this@MainActivity, MainScreenActivity::class.java)
-                startActivityForResult(mainScreenIntent, MAIN_SCREEN_ACTIVITY_KEY)
-            } else {
-
-            }
-        }
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }
 

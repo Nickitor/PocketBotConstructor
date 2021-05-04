@@ -11,11 +11,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.PocketBotConstructor">
-        <activity
-            android:name=".MainScreenActivity"
-            android:label="@string/title_activity_main_screen"
-            android:theme="@style/Theme.PocketBotConstructor.NoActionBar"></activity>
+        android:theme="@style/Theme.PocketBotConstructor.NoActionBar">
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,11 +20,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".EntryActivity" />
-        <activity
-            android:name="com.vk.sdk.VKServiceActivity"
-            android:label="ServiceActivity"
-            android:theme="@style/VK.Transparent" />
     </application>
 
 </manifest>
