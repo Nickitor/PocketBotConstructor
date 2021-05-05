@@ -19,7 +19,7 @@
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
         android:text="@string/enter"
-        android:textSize="18sp"
+        android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -33,18 +33,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.324"
-        app:srcCompat="@drawable/ic_pocket_bot"
+        app:srcCompat="@drawable/ic_pocket_bot_fine"
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/textView_Title"
+        android:id="@+id/textView_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:fontFamily="sans-serif-light"
         android:text="@string/lets_start_title"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,10 +58,10 @@
         android:fontFamily="sans-serif-light"
         android:text="@string/lets_start_subtitle"
         android:textAlignment="center"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_Title" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_title" />
 
     <RadioGroup
         android:id="@+id/radioGroup"

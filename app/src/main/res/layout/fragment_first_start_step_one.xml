@@ -19,7 +19,7 @@
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
         android:text="@string/next_step"
-        android:textSize="18sp"
+        android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -37,14 +37,14 @@
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/textView_Title"
+        android:id="@+id/textView_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:fontFamily="sans-serif-light"
         android:text="@string/welcome_title"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,10 +58,10 @@
         android:fontFamily="sans-serif-light"
         android:text="@string/welcome_subtitle"
         android:textAlignment="center"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_Title" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_title" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
