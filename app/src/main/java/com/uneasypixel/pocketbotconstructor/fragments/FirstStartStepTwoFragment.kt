@@ -1,4 +1,4 @@
-package com.uneasypixel.pocketbotconstructor
+package com.uneasypixel.pocketbotconstructor.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,11 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.uneasypixel.pocketbotconstructor.databinding.FragmentFirstStartStepOneBinding
+import com.uneasypixel.pocketbotconstructor.R
+import com.uneasypixel.pocketbotconstructor.databinding.FragmentFirstStartStepTwoBinding
 
-class FirstStartStepOneFragment : Fragment() {
+class FirstStartStepTwoFragment : Fragment() {
 
-    private var _binding: FragmentFirstStartStepOneBinding? = null
+    private var _binding: FragmentFirstStartStepTwoBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,19 +22,19 @@ class FirstStartStepOneFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentFirstStartStepOneBinding.inflate(inflater, container, false)
+        _binding = FragmentFirstStartStepTwoBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        binding.buttonNext.setOnClickListener {
-            findNavController().navigate(R.id.action_firstStartStepOneFragment_to_firstStartStepTwoFragment)
+        binding.radioButtonStepOne.setOnClickListener {
+            findNavController().navigate(R.id.action_firstStartStepTwoFragment_to_firstStartStepOneFragment)
         }
 
-        binding.radioButtonStepTwo.setOnClickListener {
-            findNavController().navigate(R.id.action_firstStartStepOneFragment_to_firstStartStepTwoFragment)
+        binding.buttonEnterVk.setOnClickListener {
+            findNavController().navigate(R.id.action_firstStartStepTwoFragment_to_authorisationErrorFragment)
         }
     }
 

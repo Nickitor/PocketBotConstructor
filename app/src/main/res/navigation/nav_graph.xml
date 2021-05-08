@@ -6,7 +6,7 @@
     app:startDestination="@id/firstStartStepOneFragment">
     <fragment
         android:id="@+id/firstStartStepOneFragment"
-        android:name="com.uneasypixel.pocketbotconstructor.FirstStartStepOneFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.fragments.FirstStartStepOneFragment"
         android:label="fragment_first_start_step_one"
         tools:layout="@layout/fragment_first_start_step_one" >
         <action
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/firstStartStepTwoFragment"
-        android:name="com.uneasypixel.pocketbotconstructor.FirstStartStepTwoFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.fragments.FirstStartStepTwoFragment"
         android:label="fragment_first_start_step_two"
         tools:layout="@layout/fragment_first_start_step_two" >
         <action
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/authorisationErrorFragment"
-        android:name="com.uneasypixel.pocketbotconstructor.AuthorisationErrorFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.fragments.AuthorisationErrorFragment"
         android:label="fragment_authorisation_error"
         tools:layout="@layout/fragment_authorisation_error" >
         <action
