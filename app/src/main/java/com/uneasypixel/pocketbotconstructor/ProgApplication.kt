@@ -1,11 +1,17 @@
+/**
+ * Автор: Никита Юрьевич Замыслов
+ * Дата создания: 08.05.2021
+ */
+// *********************************************************************
+// ФАЙЛ СОДЕРЖИТ КЛАСС ПРИЛОЖЕНИЯ. ДАННЫЙ КЛАСС ЗАПУСКАЕТСЯ ДО СОЗДАНИЯ
+// КЛАССА ГЛАВНОЙ ACTIVITY И НЕ СОДЕРЖИТ ГРАФИЧЕСКОГО ПРЕДСТАВЛЕНИЯ.
+// *********************************************************************
 package com.uneasypixel.pocketbotconstructor
 
 import android.app.Application
-import com.vk.sdk.VKSdk
 
 class ProgApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        VKSdk.initialize(applicationContext)
     }
 }
