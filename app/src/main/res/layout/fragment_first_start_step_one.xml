@@ -9,7 +9,7 @@
     android:paddingTop="40sp"
     android:paddingRight="40sp"
     android:paddingBottom="40sp"
-    tools:context=".FirstStartStepOneFragment">
+    tools:context=".fragments.FirstStartStepOneFragment">
 
     <Button
         android:id="@+id/button_next"
