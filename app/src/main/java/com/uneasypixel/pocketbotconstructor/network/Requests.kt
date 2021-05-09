@@ -1,3 +1,11 @@
+/**
+ * Автор: Никита Юрьевич Замыслов
+ * Дата создания: 08.05.2021
+ */
+// *********************************************************************
+// ФАЙЛ СОДЕРЖИТ СИНГЛТОН, КОТОРЫЙ ВКЛЮЧАЕТ В СЕБЯ МЕТОДЫ ДЛЯ ФОРМИРОВАНИЯ
+// URL ЗАПРОСОВ ДЛЯ ОТПРАВКИ СЕРВЕРУ.
+// *********************************************************************
 package com.uneasypixel.pocketbotconstructor.network
 
 import android.net.Uri
@@ -106,9 +114,9 @@ object Requests {
             key: String,
             ts: String,
             wait: String
-    ): URL? = URL("${server}?act=a_check&key=${key}&ts=${ts}&wait=${wait}")
+    ): URL? = URL("$server?act=a_check&key=$key&ts=$ts&wait=$wait")
 
 
     // Получение случайного ID
-    fun getRandomID() = (0..Long.MAX_VALUE).random().toString()
+    private fun getRandomID() = (0..Long.MAX_VALUE).random().toString()
 }

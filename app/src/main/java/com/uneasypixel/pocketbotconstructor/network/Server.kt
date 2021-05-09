@@ -1,6 +1,15 @@
+/**
+ * Автор: Никита Юрьевич Замыслов
+ * Дата создания: 08.05.2021
+ */
+// *********************************************************************
+// ФАЙЛ СОДЕРЖИТ КЛАСС СЕРВЕРА. СЕРВЕР ОТПРАВЛЯЕТ ЗАПРОСЫ VK API И
+// ОБРАБАТЫВАЕТ ОТВЕТЫ. URL ЗАПРОСЫ ФОРМИРУЮТСЯ В КЛАССЕ Requests.
+// *********************************************************************
 package com.uneasypixel.pocketbotconstructor.network
 
 import android.util.Log
+import com.uneasypixel.pocketbotconstructor.BuildConfig
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.BufferedReader
@@ -18,15 +27,19 @@ import java.util.*
  * groupID - ID сообщества чат-бота
  * tokenUser - токен пользователя
  * tokenGroup - токен сообщества
+ * waitTimeResponse - время ожидания ответа
  */
 class Server(
-        val groupID: String,
-        val tokenUser: String,
-        var tokenGroup: String,
-        var waitTimeResponse: String) {
-    var server: String? = null
-    var key: String? = null
-    var ts: String? = null
+        private val groupID: String,
+        private val tokenUser: String,
+        private var tokenGroup: String,
+        private var waitTimeResponse: String) {
+
+    private val TAG = this.javaClass.simpleName
+
+    private var server: String? = null
+    private var key: String? = null
+    private var ts: String? = null
 
     // Инициализация сервера
     init {
@@ -35,6 +48,10 @@ class Server(
         server = response?.getString("server")
         key = response?.getString("key")
         ts = response?.getString("ts")
+
+        if (BuildConfig.DEBUG) {
+            Log.i(TAG, "Инициализация сервера. Ответ от Long Poll Server: ${response.toString()}")
+        }
     }
 
 
@@ -42,7 +59,7 @@ class Server(
      * Отправка запроса и возврат ответа от сервера по URL
      * url = URL запроса к серверу
      */
-    fun getResponse(url: URL): JSONObject? {
+    private fun getResponse(url: URL): JSONObject? {
         val urlConnection = url.openConnection() as? HttpURLConnection
 
         try {
@@ -65,6 +82,7 @@ class Server(
         } catch (e: NullPointerException) {
 
         } catch (e: IOException) {
+
         } finally {
             urlConnection?.disconnect()
         }
@@ -83,8 +101,6 @@ class Server(
         if (url != null)
             response = getResponse(url)
 
-        Log.d("MyApp", response.toString())
-
         return response
     }
 
@@ -92,7 +108,7 @@ class Server(
     /**
      * Отправка запроса Long Poll серверу
      */
-    fun getResponseLongPollServer(): String? {
+    private fun getResponseLongPollServer(): String? {
         try {
             val url = Requests.getURLLongPollServerRequest(
                     server!!,
@@ -104,7 +120,7 @@ class Server(
             var inputLine: String?
             var result: String? = ""
             val urlConnection: URLConnection = url!!.openConnection()
-            urlConnection.setDoOutput(true)
+            urlConnection.doOutput = true
 
             val reader = BufferedReader(InputStreamReader(urlConnection.getInputStream(), "UTF8"))
 
@@ -127,7 +143,10 @@ class Server(
         return null
     }
 
-
+    /**
+     * Функция непрерывного обращения к Long Poll серверу для
+     * получения обновлений о событиях бота
+     */
     fun start() {
         var json: JSONObject
         var rec: JSONObject
@@ -138,7 +157,7 @@ class Server(
             json = JSONObject(getResponseLongPollServer()!!)
 
             if (json.has("failed")) {
-                println("Ответ от сервера: " + json.toString())
+                println("Ответ от сервера: $json")
                 return
             }
 
@@ -181,14 +200,11 @@ class Server(
      * response - ответ Long Poll сервера
      * type
      */
-    fun responseToEvents(response: JSONObject, type: String?) {
+    private fun responseToEvents(response: JSONObject, type: String?) {
         when (type) {
             "message_typing_state" -> {
             }
             "message_new" -> {
-                println(response.toString())
-
-                sendMessageToID("Привет, твоё сообщение - " + response.getJSONObject("message").getString("text"), response.getJSONObject("message").getString("from_id"))
             }
             "message_reply" -> {
             }
