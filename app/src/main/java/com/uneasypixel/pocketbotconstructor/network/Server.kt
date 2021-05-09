@@ -202,83 +202,161 @@ class Server(
      */
     private fun responseToEvents(response: JSONObject, type: String?) {
         when (type) {
-            "message_typing_state" -> {
-            }
+            // Входящее сообщение
             "message_new" -> {
             }
+            // Новое исходящее сообщение
             "message_reply" -> {
             }
+            // Редактирование сообщения
             "message_edit" -> {
             }
+            // Подписка на сообщения от сообщества
             "message_allow" -> {
             }
+            // Новый запрет сообщений от сообщества
             "message_deny" -> {
             }
+            // Статус набора текста
+            "message_typing_state" -> {
+            }
+            // Действие с сообщением. Используется для работы с Callback-кнопками
+            "message_event" -> {
+            }
+            // Добавление фотографии
             "photo_new" -> {
             }
+            // Добавление комментария к фотографии
             "photo_comment_new" -> {
             }
+            // Редактирование комментария к фотографии
             "photo_comment_edit" -> {
             }
+            // Восстановление комментария к фотографии
             "photo_comment_restore" -> {
             }
+            // Удаление комментария к фотографии
             "photo_comment_delete" -> {
             }
+            // Добавление аудио
             "audio_new" -> {
             }
+            // Добавление видео
             "video_new" -> {
             }
+            // Комментарий к видео
             "video_comment_new" -> {
             }
+            // Редактирование комментария к видео
             "video_comment_edit" -> {
             }
+            // Восстановление комментария к видео
             "video_comment_restore" -> {
             }
+            // Удаление комментария к видео
             "video_comment_delete" -> {
             }
+            // Запись на стене
             "wall_post_new" -> {
             }
+            // Репост записи из сообщества
             "wall_repost" -> {
             }
+            // Добавление комментария на стене
             "wall_reply_new" -> {
             }
+            // Редактирование комментария на стене
             "wall_reply_edit" -> {
             }
+            // Восстановление комментария на стене
             "wall_reply_restore" -> {
             }
+            // Удаление комментария на стене
             "wall_reply_delete" -> {
             }
+            // Событие о новой отметке "Мне нравится"
+            "like_add" -> {
+            }
+            // Событие о снятии отметки "Мне нравится"
+            "like_remove" -> {
+            }
+            // Создание комментария в обсуждении
             "board_post_new" -> {
             }
+            // Редактирование комментария
             "board_post_edit" -> {
             }
+            // Восстановление комментария
             "board_post_restore" -> {
             }
+            // Удаление комментария в обсуждении
             "board_post_delete" -> {
             }
+            // Новый комментарий к товару
             "market_comment_new" -> {
             }
+            // Редактирование комментария к товару
             "market_comment_edit" -> {
             }
+            // Восстановление комментария к товару
             "market_comment_restore" -> {
             }
+            // Удаление комментария к товару
             "market_comment_delete" -> {
             }
+            // Новый заказ
+            "market_order_new" -> {
+            }
+            // Редактирование заказа
+            "market_order_edit" -> {
+            }
+            // Удаление участника из сообщества
             "group_leave" -> {
             }
+            // Добавление участника или заявки на вступление в сообщество
             "group_join" -> {
             }
+            // Добавление пользователя в чёрный список
             "user_block" -> {
             }
-            "user_unblock" -> {
-            }
+            // Добавление голоса в публичном опросе
             "poll_vote_new" -> {
             }
+            // Редактирование списка руководителей
             "group_officers_edit" -> {
             }
+            // Изменение настроек сообщества
             "group_change_settings" -> {
             }
+            // Изменение главного фото
             "group_change_photo" -> {
+            }
+            // Платёж через VK Pay
+            "vkpay_transaction" -> {
+            }
+            // Событие в VK Mini Apps
+            "app_payload" -> {
+            }
+            // Создание подписки
+            "donut_subscription_create" -> {
+            }
+            // Продление подписки
+            "donut_subscription_prolonged" -> {
+            }
+            // Подписка истекла
+            "donut_subscription_expired" -> {
+            }
+            // Отмена подписки
+            "donut_subscription_cancelled" -> {
+            }
+            // Изменение стоимости подписки
+            "donut_subscription_price_changed" -> {
+            }
+            // Вывод денег
+            "donut_money_withdraw" -> {
+            }
+            // Ошибка вывода денег
+            "donut_money_withdraw_error" -> {
             }
         }
     }
