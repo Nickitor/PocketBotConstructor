@@ -6,10 +6,11 @@
 // ФАЙЛ СОДЕРЖИТ КЛАСС СЕРВЕРА. СЕРВЕР ОТПРАВЛЯЕТ ЗАПРОСЫ VK API И
 // ОБРАБАТЫВАЕТ ОТВЕТЫ. URL ЗАПРОСЫ ФОРМИРУЮТСЯ В КЛАССЕ Requests.
 // *********************************************************************
-package com.uneasypixel.pocketbotconstructor.network
+package com.uneasypixel.pocketbotconstructor.Data.Gateway
 
 import android.util.Log
 import com.uneasypixel.pocketbotconstructor.BuildConfig
+import com.uneasypixel.pocketbotconstructor.Data.API.URLBuilder
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.BufferedReader
@@ -95,7 +96,7 @@ class Server(
      * Получение данных Long Poll сервера
      */
     private fun getLongPollServer(): JSONObject? {
-        val url = Requests.getURLGetLongPollServer(groupID, tokenGroup)
+        val url = URLBuilder.getURLGetLongPollServer(groupID, tokenGroup)
         var response: JSONObject? = null
 
         if (url != null)
@@ -110,7 +111,7 @@ class Server(
      */
     private fun getResponseLongPollServer(): String? {
         try {
-            val url = Requests.getURLLongPollServerRequest(
+            val url = URLBuilder.getURLLongPollServerRequest(
                     server!!,
                     key!!,
                     ts!!,
@@ -184,7 +185,7 @@ class Server(
     fun sendMessageToID(
             message: String,
             userID: String): JSONObject? {
-        val url = Requests.getUrlSendMessageToID(message, userID, tokenGroup)
+        val url = URLBuilder.getUrlSendMessageToID(message, userID, tokenGroup)
 
         var response: JSONObject? = null
 

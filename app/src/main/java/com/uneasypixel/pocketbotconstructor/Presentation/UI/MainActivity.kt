@@ -7,14 +7,15 @@
 // ФРАГМЕНТОВ НА ЭКРАНЕ. ПРАВИЛА ПЕРЕХОДОВ МЕЖДУ ФРАГМЕНТАМИ ОПИСАНЫ
 // С ПОМОЩЬЮ НАВИГАЦИОННОГО ГРАФА В ФАЙЛЕ res/navigation/nav_graph.xml
 // *********************************************************************
-package com.uneasypixel.pocketbotconstructor
+package com.uneasypixel.pocketbotconstructor.Presentation.UI
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.uneasypixel.pocketbotconstructor.R
 import com.uneasypixel.pocketbotconstructor.databinding.ActivityMainBinding
-import com.uneasypixel.pocketbotconstructor.network.Server
+import com.uneasypixel.pocketbotconstructor.Data.Gateway.Server
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 

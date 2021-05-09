@@ -6,13 +6,25 @@
 // ФАЙЛ СОДЕРЖИТ СИНГЛТОН, КОТОРЫЙ ВКЛЮЧАЕТ В СЕБЯ МЕТОДЫ ДЛЯ ФОРМИРОВАНИЯ
 // URL ЗАПРОСОВ ДЛЯ ОТПРАВКИ СЕРВЕРУ.
 // *********************************************************************
-package com.uneasypixel.pocketbotconstructor.network
+package com.uneasypixel.pocketbotconstructor.Data.API
 
 import android.net.Uri
+import com.uneasypixel.pocketbotconstructor.CONSTANTS.HTTPS_PROTOCOL
+import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_DOMEN_API
+import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_METHODS_METHOD
+import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_METHOD_GET_LONG_POLL_SERVER
+import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_METHOD_MESSAGES_SEND
+import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_PARAM_ACCESS_TOKEN
+import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_PARAM_GROUP_ID
+import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_PARAM_MESSAGE
+import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_PARAM_RANDOM_ID
+import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_PARAM_USER_ID
+import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_PARAM_VERSION
+import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_VALUE_VERSION
 import java.net.MalformedURLException
 import java.net.URL
 
-object Requests {
+object URLBuilder {
 
     /**
      * Получение Uri метода VK API без указания параметров

@@ -9,7 +9,7 @@
     android:paddingTop="40sp"
     android:paddingRight="40sp"
     android:paddingBottom="40sp"
-    tools:context=".fragments.FirstStartStepTwoFragment">
+    tools:context=".Presentation.UI.FirstStartStepTwoFragment">
 
     <Button
         android:id="@+id/button_enter_vk"

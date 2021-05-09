@@ -6,7 +6,7 @@
 // ФАЙЛ СОДЕРЖИТ КЛАСС ФРАГМЕНТА. ДАННЫЙ ФРАГМЕНТ ЗАПУСКАЕТСЯ ОДИН РАЗ
 // ПРИ ПЕРВОМ ЗАПУСКЕ ПРИЛОЖЕНИЯ И СОДЕРЖИТ ПРИВЕТСВИЕ И ОПИСАНИЕ ПРИЛОЖЕНИЯ.
 // *********************************************************************
-package com.uneasypixel.pocketbotconstructor.fragments
+package com.uneasypixel.pocketbotconstructor.Presentation.UI
 
 import android.os.Bundle
 import android.view.LayoutInflater

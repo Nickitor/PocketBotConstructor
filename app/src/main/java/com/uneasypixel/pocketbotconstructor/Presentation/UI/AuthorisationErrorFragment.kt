@@ -7,7 +7,7 @@
 // ФРАГМЕНТ ОТОБРАЖАЕТСЯ, КОГДА В ПРОЦЕССЕ ПОЛУЧЕНИЯ ДОСТУПА К ФУНКЦИЯМ
 // VP API ПРОИЗОШЛА ОШИБКА.
 // *********************************************************************
-package com.uneasypixel.pocketbotconstructor.fragments
+package com.uneasypixel.pocketbotconstructor.Presentation.UI
 
 import android.os.Bundle
 import android.view.LayoutInflater
