@@ -3,8 +3,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="colorPrimary">#9CD7FF</color>
-    <color name="colorPrimaryVariant">#71ADF6</color>
+    <color name="colorPrimary">#93C2FB</color>
+    <color name="colorPrimaryVariant">#68A2EA</color>
     <color name="colorOnPrimary">#FFFFFF</color>
 
     <color name="errorColor">#FF6382</color>
