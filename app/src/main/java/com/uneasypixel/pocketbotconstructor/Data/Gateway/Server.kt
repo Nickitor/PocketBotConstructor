@@ -51,7 +51,7 @@ class Server(
         ts = response?.getString("ts")
 
         if (BuildConfig.DEBUG) {
-            Log.i(TAG, "Инициализация сервера. Ответ от Long Poll Server: ${response.toString()}")
+            Log.i(TAG, "Инициализация сервера. Ответ от Long Poll ServerDAO: ${response.toString()}")
         }
     }
 

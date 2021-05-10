@@ -1,4 +1,5 @@
 package com.uneasypixel.pocketbotconstructor.Domain.Entities
 
-class Response {
-}
+import com.uneasypixel.pocketbotconstructor.Domain.DAO.ResponseDAO
+
+class Response(override var text: String?) : ResponseDAO

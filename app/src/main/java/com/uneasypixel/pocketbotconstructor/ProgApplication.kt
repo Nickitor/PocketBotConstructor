@@ -11,7 +11,12 @@ package com.uneasypixel.pocketbotconstructor
 import android.app.Application
 
 class ProgApplication : Application() {
+
+    lateinit var  dependencyFactory: DependencyFactory
+        private set
+
     override fun onCreate() {
         super.onCreate()
+        dependencyFactory = DependencyFactory()
     }
 }
