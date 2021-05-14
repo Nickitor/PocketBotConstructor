@@ -12,7 +12,7 @@
     tools:context=".Presentation.UI.FirstStartStepOneFragment">
 
     <Button
-        android:id="@+id/button_next"
+        android:id="@+id/first_start_step_one_button_next"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
@@ -25,7 +25,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/ic_pocket_bot"
+        android:id="@+id/first_start_step_one_ic_pocket_bot"
         android:layout_width="187dp"
         android:layout_height="198dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -37,7 +37,7 @@
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/textView_title"
+        android:id="@+id/first_start_step_one_textView_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
@@ -48,10 +48,10 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ic_pocket_bot" />
+        app:layout_constraintTop_toBottomOf="@+id/first_start_step_one_ic_pocket_bot" />
 
     <TextView
-        android:id="@+id/textView_subtitle"
+        android:id="@+id/first_start_step_one_textView_subtitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -61,29 +61,29 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_title" />
+        app:layout_constraintTop_toBottomOf="@+id/first_start_step_one_textView_title" />
 
     <RadioGroup
-        android:id="@+id/radioGroup"
+        android:id="@+id/first_start_step_one_radioGroup"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:baselineAligned="false"
-        android:checkedButton="@id/radioButton_step_one"
+        android:checkedButton="@id/first_start_step_one_radioButton_step_one"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/button_next"
+        app:layout_constraintBottom_toTopOf="@+id/first_start_step_one_button_next"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <RadioButton
-            android:id="@+id/radioButton_step_one"
+            android:id="@+id/first_start_step_one_radioButton_step_one"
             style="@style/Widget.AppCompat.CompoundButton.RadioButton"
             android:layout_width="32dp"
             android:layout_height="wrap_content"
             android:checked="false" />
 
         <RadioButton
-            android:id="@+id/radioButton_step_two"
+            android:id="@+id/first_start_step_one_radioButton_step_two"
             android:layout_width="32dp"
             android:layout_height="wrap_content" />
     </RadioGroup>

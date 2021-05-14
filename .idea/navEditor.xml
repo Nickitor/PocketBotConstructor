@@ -13,18 +13,9 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="250" />
-                            <option name="y" value="98" />
+                            <option name="x" value="578" />
+                            <option name="y" value="33" />
                           </Point>
-                        </option>
-                        <option name="myPositions">
-                          <map>
-                            <entry key="action_authorisationErrorFragment_to_firstStartStepOneFragment">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
-                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -61,12 +52,33 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_firstStartStepTwoFragment_to_authorisationErrorFragment">
+                            <entry key="action_firstStartStepTwoFragment_to_firstStartStepOneFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
                             </entry>
-                            <entry key="action_firstStartStepTwoFragment_to_firstStartStepOneFragment">
+                            <entry key="action_firstStartStepTwoFragment_to_listOfBotsFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="listOfBotsFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="288" />
+                            <option name="y" value="-12" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_listOfBotsFragment_to_authorisationErrorFragment">
                               <value>
                                 <LayoutPositions />
                               </value>

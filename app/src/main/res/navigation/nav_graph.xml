@@ -22,16 +22,21 @@
             android:id="@+id/action_firstStartStepTwoFragment_to_firstStartStepOneFragment"
             app:destination="@id/firstStartStepOneFragment" />
         <action
-            android:id="@+id/action_firstStartStepTwoFragment_to_authorisationErrorFragment"
-            app:destination="@id/authorisationErrorFragment" />
+            android:id="@+id/action_firstStartStepTwoFragment_to_listOfBotsFragment"
+            app:destination="@id/listOfBotsFragment" />
     </fragment>
     <fragment
         android:id="@+id/authorisationErrorFragment"
         android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.AuthorisationErrorFragment"
         android:label="fragment_authorisation_error"
-        tools:layout="@layout/fragment_authorisation_error" >
+        tools:layout="@layout/fragment_authorisation_error" />
+    <fragment
+        android:id="@+id/listOfBotsFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.ListOfBotsFragment"
+        android:label="fragment_list_of_bots"
+        tools:layout="@layout/fragment_list_of_bots" >
         <action
-            android:id="@+id/action_authorisationErrorFragment_to_firstStartStepOneFragment"
-            app:destination="@id/firstStartStepOneFragment" />
+            android:id="@+id/action_listOfBotsFragment_to_authorisationErrorFragment"
+            app:destination="@id/authorisationErrorFragment" />
     </fragment>
 </navigation>

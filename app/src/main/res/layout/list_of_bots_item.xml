@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="40dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginRight="40dp"
+    android:layout_marginBottom="5dp"
+    android:backgroundTint="@color/colorOnPrimary"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:backgroundTint="@color/colorPrimary"
+            app:cardCornerRadius="20dp">
+
+            <ImageView
+                android:id="@+id/bot_image"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@color/colorOnPrimary"
+                android:backgroundTint="@color/colorPrimaryVariant"
+                android:importantForAccessibility="no"
+                android:scaleType="centerCrop"
+                tools:srcCompat="@drawable/ic_android_robot_mobile_mood_emoji" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/bot_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-light"
+            android:textAlignment="center"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            tools:text="Bot name"
+            tools:visibility="visible" />
+
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

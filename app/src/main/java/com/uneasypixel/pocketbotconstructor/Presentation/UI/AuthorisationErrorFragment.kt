@@ -14,8 +14,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import com.uneasypixel.pocketbotconstructor.R
 import com.uneasypixel.pocketbotconstructor.databinding.FragmentAuthorisationErrorBinding
 
 class AuthorisationErrorFragment : Fragment() {
@@ -36,10 +34,6 @@ class AuthorisationErrorFragment : Fragment() {
     // Инициализация компонентов макета фрагмента
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        // Действие при нажатии кнопки возврата к начальному фрагменту
-        binding.buttonBack.setOnClickListener {
-            findNavController().navigate(R.id.action_authorisationErrorFragment_to_firstStartStepOneFragment)
-        }
     }
 
     // Удаление компнентов внутри фрагмента

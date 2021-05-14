@@ -36,13 +36,13 @@ class FirstStartStepTwoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         // Действие при нажатии первой RadioButton
-        binding.radioButtonStepOne.setOnClickListener {
+        binding.firstStartStepTwoRadioButtonStepOne.setOnClickListener {
             findNavController().navigate(R.id.action_firstStartStepTwoFragment_to_firstStartStepOneFragment)
         }
 
         // Действие при нажатии кнопки входа ВКонтакте
-        binding.buttonEnterVk.setOnClickListener {
-            findNavController().navigate(R.id.action_firstStartStepTwoFragment_to_authorisationErrorFragment)
+        binding.firstStartStepTwoButtonEnterVk.setOnClickListener {
+            findNavController().navigate(R.id.action_firstStartStepTwoFragment_to_listOfBotsFragment)
         }
     }
 

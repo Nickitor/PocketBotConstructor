@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_first_start_step_one"
+    android:id="@+id/activity_authorization_error"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="40sp"
@@ -12,7 +12,7 @@
     tools:context=".Presentation.UI.AuthorisationErrorFragment">
 
     <Button
-        android:id="@+id/button_back"
+        android:id="@+id/authorization_error_button_back"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
@@ -28,7 +28,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/ic_pocket_bot"
+        android:id="@+id/authorization_error_ic_pocket_bot"
         android:layout_width="187dp"
         android:layout_height="198dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -40,7 +40,7 @@
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/textView_title"
+        android:id="@+id/authorization_error_textView_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
@@ -51,10 +51,10 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ic_pocket_bot" />
+        app:layout_constraintTop_toBottomOf="@+id/authorization_error_ic_pocket_bot" />
 
     <TextView
-        android:id="@+id/textView_subtitle"
+        android:id="@+id/authorization_error_textView_subtitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -64,6 +64,6 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_title" />
+        app:layout_constraintTop_toBottomOf="@+id/authorization_error_textView_title" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
