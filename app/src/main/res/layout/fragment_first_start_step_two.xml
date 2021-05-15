@@ -2,69 +2,81 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_first_start_step_two"
+    android:id="@+id/first_start_step_two__constraint_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="40sp"
-    android:paddingTop="40sp"
-    android:paddingRight="40sp"
-    android:paddingBottom="40sp"
-    tools:context=".Presentation.UI.FirstStartStepTwoFragment">
+    android:paddingLeft="20sp"
+    android:paddingTop="20sp"
+    android:paddingRight="20sp"
+    android:paddingBottom="20sp"
+    tools:context=".Presentation.UI.FirstStartStepOneFragment">
 
     <Button
-        android:id="@+id/first_start_step_two_button_enter_vk"
+        android:id="@+id/first_start_step_two_button_next"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:gravity="center_horizontal|top"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="15dp"
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
-        android:text="@string/enter"
+        android:text="@string/next_step"
         android:textSize="22sp"
-        app:icon="@drawable/ic_vk"
-        app:iconGravity="textStart"
-        app:iconSize="30dp"
-        app:iconTint="@color/colorPrimaryVariant"
+        android:translationZ="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/first_start_step_two_ic_pocket_bot"
-        android:layout_width="187dp"
-        android:layout_height="198dp"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/first_start_step_two_materialCardView"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:backgroundTint="@color/colorOnPrimary"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.324"
-        app:srcCompat="@drawable/ic_pocket_bot_fine"
-        tools:ignore="ContentDescription" />
+        app:layout_constraintVertical_bias="0.3">
+
+        <ImageView
+            android:id="@+id/first_start_step_two_ic_pocket_bot"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_android_robot_mobile_mood_emoji_smile_happy_successful"
+            tools:ignore="ContentDescription" />
+
+    </com.google.android.material.card.MaterialCardView>
 
     <TextView
         android:id="@+id/first_start_step_two_textView_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="36dp"
         android:fontFamily="sans-serif-light"
         android:text="@string/lets_start_title"
         android:textAlignment="center"
-        android:textSize="22sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/first_start_step_two_ic_pocket_bot" />
+        app:layout_constraintTop_toBottomOf="@+id/first_start_step_two_materialCardView" />
 
     <TextView
         android:id="@+id/first_start_step_two_textView_subtitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
         android:fontFamily="sans-serif-light"
         android:text="@string/lets_start_subtitle"
         android:textAlignment="center"
-        android:textSize="16sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.375"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/first_start_step_two_textView_title" />
 
@@ -73,24 +85,22 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:baselineAligned="false"
-        android:checkedButton="@id/first_start_step_two_radioButton_step_two"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/first_start_step_two_button_enter_vk"
+        app:layout_constraintBottom_toTopOf="@+id/first_start_step_two_button_next"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <RadioButton
             android:id="@+id/first_start_step_two_radioButton_step_one"
-            style="@style/Widget.AppCompat.CompoundButton.RadioButton"
             android:layout_width="32dp"
-            android:layout_height="wrap_content"
-            android:checked="false" />
+            android:layout_height="wrap_content"/>
 
         <RadioButton
             android:id="@+id/first_start_step_two_radioButton_step_two"
             android:layout_width="32dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:checked="true" />
     </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

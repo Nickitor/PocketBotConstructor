@@ -3,9 +3,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="colorPrimary">#93C2FB</color>
-    <color name="colorPrimaryVariant">#68A2EA</color>
-    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryVariant">#F5F7FA</color>
+    <color name="colorOnPrimary">#6EC5FF</color>
 
     <color name="errorColor">#FF6382</color>
 </resources>

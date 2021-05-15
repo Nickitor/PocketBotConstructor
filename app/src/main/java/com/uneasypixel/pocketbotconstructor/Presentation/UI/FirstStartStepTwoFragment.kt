@@ -41,7 +41,7 @@ class FirstStartStepTwoFragment : Fragment() {
         }
 
         // Действие при нажатии кнопки входа ВКонтакте
-        binding.firstStartStepTwoButtonEnterVk.setOnClickListener {
+        binding.firstStartStepTwoButtonNext.setOnClickListener {
             findNavController().navigate(R.id.action_firstStartStepTwoFragment_to_listOfBotsFragment)
         }
     }

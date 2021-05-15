@@ -24,7 +24,7 @@ class ListOfBotsFragment : Fragment() {
 
         val listOfBots = (requireActivity().application as ProgApplication).dependencyFactory.provideGetBotsUseCase().getBots()
 
-        val recyclerView = binding.recyclerView
+        val recyclerView = binding.listOfBotsRecyclerView
         recyclerView.adapter = ListOfBotsItemAdapter(listOfBots)
 
         recyclerView.setHasFixedSize(true)
