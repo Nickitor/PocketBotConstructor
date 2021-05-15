@@ -26,17 +26,26 @@
             app:destination="@id/listOfBotsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/authorisationErrorFragment"
-        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.AuthorisationErrorFragment"
-        android:label="fragment_authorisation_error"
-        tools:layout="@layout/fragment_authorisation_error" />
-    <fragment
         android:id="@+id/listOfBotsFragment"
         android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.ListOfBotsFragment"
         android:label="fragment_list_of_bots"
         tools:layout="@layout/fragment_list_of_bots" >
         <action
-            android:id="@+id/action_listOfBotsFragment_to_authorisationErrorFragment"
-            app:destination="@id/authorisationErrorFragment" />
+            android:id="@+id/action_listOfBotsFragment_to_botMenuFragment"
+            app:destination="@id/botMenuFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/botMenuFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.BotMenuFragment"
+        android:label="BotMenuFragment"
+        tools:layout="@layout/fragment_bot_menu" >
+        <action
+            android:id="@+id/action_botMenuFragment_to_sendingMenuFragment"
+            app:destination="@id/sendingMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sendingMenuFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.SendingMenuFragment"
+        android:label="SendingMenuFragment"
+        tools:layout="@layout/fragment_sending_menu"/>
 </navigation>

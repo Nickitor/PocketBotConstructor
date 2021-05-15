@@ -32,6 +32,7 @@ object CONSTANTS {
 
     // НАЗВАНИЯ МЕТОДОВ VK API
     const val VK_METHOD_MESSAGES_SEND = "/messages.send"
+    const val VK_METHOD_GET_CONVERSATIONS = "/messages.getConversations"
     const val VK_METHOD_GET_LONG_POLL_SERVER = "/groups.getLongPollServer"
 
 

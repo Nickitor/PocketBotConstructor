@@ -1,4 +1,4 @@
-package com.uneasypixel.pocketbotconstructor.Presentation.ViewModel
+package com.uneasypixel.pocketbotconstructor.Presentation.Adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +18,7 @@ class ListOfBotsItemAdapter(
     class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         init {
             view.setOnClickListener(
-                Navigation.createNavigateOnClickListener(R.id.action_listOfBotsFragment_to_authorisationErrorFragment)
+                Navigation.createNavigateOnClickListener(R.id.action_listOfBotsFragment_to_botMenuFragment)
             )
         }
 

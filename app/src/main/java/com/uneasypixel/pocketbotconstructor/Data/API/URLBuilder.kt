@@ -12,6 +12,7 @@ import android.net.Uri
 import com.uneasypixel.pocketbotconstructor.CONSTANTS.HTTPS_PROTOCOL
 import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_DOMEN_API
 import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_METHODS_METHOD
+import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_METHOD_GET_CONVERSATIONS
 import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_METHOD_GET_LONG_POLL_SERVER
 import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_METHOD_MESSAGES_SEND
 import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_PARAM_ACCESS_TOKEN
@@ -95,6 +96,19 @@ object URLBuilder {
                     .appendQueryParameter(VK_PARAM_USER_ID, userID)
                     .appendQueryParameter(VK_PARAM_RANDOM_ID, getRandomID())
                     .build()
+    )
+
+
+    /**
+     * Получение URL запроса на получение бесед пользователя или группы
+     * token - токен
+     */
+    fun getUrlGetConversations(
+        token: String
+    ): URL? = getURLFromUri(
+        getURIWithVersionAndToken(method = VK_METHOD_GET_CONVERSATIONS, token = token)
+            .buildUpon()
+            .build()
     )
 
 

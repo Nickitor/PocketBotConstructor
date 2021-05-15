@@ -6,7 +6,11 @@ import org.json.JSONObject
 
 class SendMessageAPIImp(private val sendRequestApi: ISendRequestAPI) : ISendMessageAPI {
 
-    override suspend fun sendMessageToUser(message: String, userID: String, token: String): JSONObject? {
+    override suspend fun sendMessageToUser(
+        message: String,
+        userID: String,
+        token: String
+    ): JSONObject? {
 
         val url = URLBuilder.getUrlSendMessageToID(message, userID, token)
 

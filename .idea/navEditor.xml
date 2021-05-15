@@ -8,13 +8,13 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
-                  <entry key="authorisationErrorFragment">
+                  <entry key="botMenuFragment">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="578" />
-                            <option name="y" value="33" />
+                            <option name="x" value="451" />
+                            <option name="y" value="-67" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -72,18 +72,30 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="288" />
-                            <option name="y" value="-12" />
+                            <option name="x" value="232" />
+                            <option name="y" value="102" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_listOfBotsFragment_to_authorisationErrorFragment">
+                            <entry key="action_listOfBotsFragment_to_botMenuFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
                             </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="sendingMenuFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="697" />
+                            <option name="y" value="-170" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>
