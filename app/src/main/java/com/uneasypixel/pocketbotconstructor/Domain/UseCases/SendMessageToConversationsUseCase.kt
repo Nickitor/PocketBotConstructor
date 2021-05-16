@@ -1,4 +1,4 @@
-package com.uneasypixel.pocketbotconstructor.Domain.UseCase
+package com.uneasypixel.pocketbotconstructor.Domain.UseCases
 
 class SendMessageToConversationsUseCase(
     private val getConversationsUseCase: GetConversationsUseCase,

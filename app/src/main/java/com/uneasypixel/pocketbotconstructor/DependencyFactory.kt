@@ -1,23 +1,11 @@
 package com.uneasypixel.pocketbotconstructor
 
-import com.uneasypixel.pocketbotconstructor.Data.API.GetConversationsAPIImp
-import com.uneasypixel.pocketbotconstructor.Data.API.SendMessageAPIImp
-import com.uneasypixel.pocketbotconstructor.Data.API.SendRequestAPIImp
-import com.uneasypixel.pocketbotconstructor.Data.Gateway.GetBotsGatewayImp
-import com.uneasypixel.pocketbotconstructor.Data.Gateway.GetConversationsGatewayImp
-import com.uneasypixel.pocketbotconstructor.Data.Gateway.SendMessageGatewayImp
-import com.uneasypixel.pocketbotconstructor.Data.Interfaces.IGetBotsStorage
-import com.uneasypixel.pocketbotconstructor.Data.Interfaces.IGetConversationsAPI
-import com.uneasypixel.pocketbotconstructor.Data.Interfaces.ISendMessageAPI
-import com.uneasypixel.pocketbotconstructor.Data.Interfaces.ISendRequestAPI
+import com.uneasypixel.pocketbotconstructor.Data.API.*
+import com.uneasypixel.pocketbotconstructor.Data.Gateway.*
+import com.uneasypixel.pocketbotconstructor.Data.Interfaces.*
 import com.uneasypixel.pocketbotconstructor.Data.Storage.GetBotsStorageImp
-import com.uneasypixel.pocketbotconstructor.Domain.Interfaces.IGetBotsGateway
-import com.uneasypixel.pocketbotconstructor.Domain.Interfaces.IGetConversationsGateway
-import com.uneasypixel.pocketbotconstructor.Domain.Interfaces.ISendMessageGateway
-import com.uneasypixel.pocketbotconstructor.Domain.UseCase.GetBotsUseCase
-import com.uneasypixel.pocketbotconstructor.Domain.UseCase.GetConversationsUseCase
-import com.uneasypixel.pocketbotconstructor.Domain.UseCase.SendMessageToConversationsUseCase
-import com.uneasypixel.pocketbotconstructor.Domain.UseCase.SendMessageToUserUseCase
+import com.uneasypixel.pocketbotconstructor.Domain.Interfaces.*
+import com.uneasypixel.pocketbotconstructor.Domain.UseCases.*
 
 class DependencyFactory {
 
@@ -62,6 +50,38 @@ class DependencyFactory {
             provideGetConversationsUseCase(),
             provideSendMessageToUserUseCase()
         )
+    }
+
+
+    // GetLongPollServer
+    fun provideGetLongPollServerUseCase() : GetLongPollServerUseCase {
+        return GetLongPollServerUseCase(provideGetLongPollServerGateWay())
+    }
+
+    private fun provideGetLongPollServerGateWay() : IGetLongPollServerGateway {
+        return GetLongPollServerGatewayImp(provideGetLongPollServerApi())
+    }
+
+    private fun provideGetLongPollServerApi() : IGetLongPollServerAPI {
+        return GetLongPollServerAPIImp(provideGetLongPollServerApiIml())
+    }
+
+    private fun provideGetLongPollServerApiIml() : ISendRequestAPI {
+        return SendRequestAPIImp()
+    }
+
+
+    // GetResponseLongPollServer
+    fun provideGetResponseLongPollServerUseCase() : GetResponseLongPollServerUseCase {
+        return GetResponseLongPollServerUseCase(provideGetResponseLongPollServerGateWay())
+    }
+
+    private fun provideGetResponseLongPollServerGateWay() : IGetResponseLongPollServerGateway {
+        return GetResponseLongPollServerGatewayImp(provideGetResponseLongPollServerApi())
+    }
+
+    private fun provideGetResponseLongPollServerApi() : IGetResponseLongPollServerAPI {
+        return GetResponseLongPollServerAPIImp()
     }
 
 

@@ -1,198 +1,77 @@
-/**
- * Автор: Никита Юрьевич Замыслов
- * Дата создания: 08.05.2021
- */
-// *********************************************************************
-// ФАЙЛ СОДЕРЖИТ КЛАСС СЕРВЕРА. СЕРВЕР ОТПРАВЛЯЕТ ЗАПРОСЫ VK API И
-// ОБРАБАТЫВАЕТ ОТВЕТЫ. URL ЗАПРОСЫ ФОРМИРУЮТСЯ В КЛАССЕ Requests.
-// *********************************************************************
-package com.uneasypixel.pocketbotconstructor.Data.Gateway
+package com.uneasypixel.pocketbotconstructor.Presentation.ViewModels
 
-import android.util.Log
-import com.uneasypixel.pocketbotconstructor.BuildConfig
-import com.uneasypixel.pocketbotconstructor.Data.API.URLBuilder
+import androidx.lifecycle.ViewModel
+import com.uneasypixel.pocketbotconstructor.DependencyFactory
+import com.uneasypixel.pocketbotconstructor.Domain.Entities.Server
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.json.JSONArray
 import org.json.JSONObject
-import java.io.BufferedReader
-import java.io.IOException
-import java.io.InputStreamReader
-import java.io.UnsupportedEncodingException
-import java.net.*
-import java.util.*
 
-/**
- * Класс сервера
- * server - адрес сервера
- * key - секретный ключ сессии
- * ts - номер последнего события, начиная с которого нужно получать данные
- * groupID - ID сообщества чат-бота
- * tokenUser - токен пользователя
- * tokenGroup - токен сообщества
- * waitTimeResponse - время ожидания ответа
- */
-class Server(
-        private val groupID: String,
-        private val tokenUser: String,
-        private var tokenGroup: String,
-        private var waitTimeResponse: String) {
+class BotMenuViewModel(
 
-    private val TAG = this.javaClass.simpleName
+) : ViewModel() {
 
-    private var server: String? = null
-    private var key: String? = null
-    private var ts: String? = null
+    private var server: Server = Server(
+        "193525063",
+        "88a1d21f807fe5a534ebd62721612411fe5e2fcdd6d15a65fb879b84754f91d60d25f68b0cc116b9c3f78",
+        waitTimeResponse = "25"
+    )
+    private var isRunning: Boolean = false
+    private lateinit var dependencyFactory: DependencyFactory
 
-    // Инициализация сервера
-    init {
-        val response: JSONObject? = getLongPollServer()?.getJSONObject("response")
+    fun switchLongPollServer(DependencyFactory: DependencyFactory): Boolean {
+        dependencyFactory = DependencyFactory
 
-        server = response?.getString("server")
-        key = response?.getString("key")
-        ts = response?.getString("ts")
+        if (isRunning)
+            stopLongPollServer()
+        else
+            startLongPollServer()
 
-        if (BuildConfig.DEBUG) {
-            Log.i(TAG, "Инициализация сервера. Ответ от Long Poll ServerDAO: ${response.toString()}")
-        }
+        return isRunning
     }
 
+    private fun startLongPollServer() {
+        isRunning = true
 
-    /**
-     * Отправка запроса и возврат ответа от сервера по URL
-     * url = URL запроса к серверу
-     */
-    private fun getResponse(url: URL): JSONObject? {
-        val urlConnection = url.openConnection() as? HttpURLConnection
+        GlobalScope.launch {
 
-        try {
-            val input = urlConnection?.inputStream
+            val getLongPollServerUseCase = dependencyFactory.provideGetLongPollServerUseCase()
+            val getResponseLongPollServerUseCase = dependencyFactory.provideGetResponseLongPollServerUseCase()
 
-            val scanner = Scanner(input)
-            scanner.useDelimiter("\\A")
+            val longPollServer = getLongPollServerUseCase.getLongPollServer(server.groupID, server.tokenGroup)
 
-            val hasInput = scanner.hasNext()
+            server.key = longPollServer.key
+            server.server = longPollServer.server
+            server.ts = longPollServer.ts
 
-            return if (hasInput) {
-                JSONObject(scanner.next())
-            } else
-                null
+            while (isRunning) {
 
-        } catch (e: UnknownHostException) {
+                var response = getResponseLongPollServerUseCase.getResponseLongPollServer(server)
+                var event: JSONObject
+                var updates: JSONArray
 
-        } catch (e: SocketTimeoutException) {
+                if (!response!!.has("failed")) {
 
-        } catch (e: NullPointerException) {
+                    updates = response.getJSONArray("updates")
 
-        } catch (e: IOException) {
+                    if (updates.length() != 0) {
 
-        } finally {
-            urlConnection?.disconnect()
-        }
+                        server.ts = response.getString("ts")
 
-        return null
-    }
-
-
-    /**
-     * Получение данных Long Poll сервера
-     */
-    private fun getLongPollServer(): JSONObject? {
-        val url = URLBuilder.getURLGetLongPollServer(groupID, tokenGroup)
-        var response: JSONObject? = null
-
-        if (url != null)
-            response = getResponse(url)
-
-        return response
-    }
-
-
-    /**
-     * Отправка запроса Long Poll серверу
-     */
-    private fun getResponseLongPollServer(): String? {
-        try {
-            val url = URLBuilder.getURLLongPollServerRequest(
-                    server!!,
-                    key!!,
-                    ts!!,
-                    waitTimeResponse
-            )
-
-            var inputLine: String?
-            var result: String? = ""
-            val urlConnection: URLConnection = url!!.openConnection()
-            urlConnection.doOutput = true
-
-            val reader = BufferedReader(InputStreamReader(urlConnection.getInputStream(), "UTF8"))
-
-            while (reader.readLine().also { inputLine = it } != null) {
-                result += inputLine
-            }
-
-            reader.close()
-
-            return result
-
-        } catch (e: UnsupportedEncodingException) {
-            e.printStackTrace()
-        } catch (e: MalformedURLException) {
-            e.printStackTrace()
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-
-        return null
-    }
-
-    /**
-     * Функция непрерывного обращения к Long Poll серверу для
-     * получения обновлений о событиях бота
-     */
-    fun start() {
-        var json: JSONObject
-        var rec: JSONObject
-        var updates: JSONArray
-
-        while (true) {
-
-            json = JSONObject(getResponseLongPollServer()!!)
-
-            if (json.has("failed")) {
-                println("Ответ от сервера: $json")
-                return
-            }
-
-            updates = json.getJSONArray("updates")
-
-            if (updates.length() != 0) {
-
-                ts = json.getString("ts")
-
-                for (i in 0 until updates.length()) {
-                    rec = updates.getJSONObject(i)
-                    responseToEvents(rec.getJSONObject("object"), rec.getString("type"))
+                        for (i in 0 until updates.length()) {
+                            response = updates.getJSONObject(i)
+                            responseToEvents(response.getJSONObject("object"), response.getString("type"))
+                        }
+                    }
                 }
             }
         }
     }
 
 
-    /**
-     * Отправка сообщения пользователю по ID
-     * message - текст сообщения
-     * userID - ID пользователя
-     */
-    fun sendMessageToID(
-            message: String,
-            userID: String): JSONObject? {
-        val url = URLBuilder.getUrlSendMessageToID(message, userID, tokenGroup)
-
-        var response: JSONObject? = null
-
-        if (url != null)
-            response = getResponse(url)
-
-        return response
+    private fun stopLongPollServer() {
+        isRunning = false
     }
 
 
@@ -201,10 +80,15 @@ class Server(
      * response - ответ Long Poll сервера
      * type
      */
-    private fun responseToEvents(response: JSONObject, type: String?) {
+    private suspend fun responseToEvents(response: JSONObject, type: String?) {
         when (type) {
             // Входящее сообщение
             "message_new" -> {
+                val sendMessageToUserUseCase = dependencyFactory.provideSendMessageToUserUseCase()
+
+                sendMessageToUserUseCase.sendMessageToUser("Hello!",
+                response.getJSONObject("message").getString("from_id"),
+                server.tokenGroup)
             }
             // Новое исходящее сообщение
             "message_reply" -> {

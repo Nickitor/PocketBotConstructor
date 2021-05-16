@@ -1,4 +1,4 @@
-package com.uneasypixel.pocketbotconstructor.Domain.UseCase
+package com.uneasypixel.pocketbotconstructor.Domain.UseCases
 
 import com.uneasypixel.pocketbotconstructor.Domain.Interfaces.IGetConversationsGateway
 
