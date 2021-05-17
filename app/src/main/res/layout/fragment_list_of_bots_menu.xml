@@ -9,7 +9,7 @@
     android:layout_marginTop="20dp"
     android:layout_marginRight="20dp"
     android:layout_marginBottom="20dp"
-    tools:context=".Presentation.UI.ListOfBotsFragment">
+    tools:context=".Presentation.UI.ListOfBotsMenuFragment">
 
     <Button
         android:id="@+id/list_of_bots_button_next"

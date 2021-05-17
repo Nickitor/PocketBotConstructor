@@ -9,7 +9,7 @@
     android:layout_marginTop="20dp"
     android:layout_marginRight="20dp"
     android:layout_marginBottom="20dp"
-    tools:context=".Presentation.UI.ListOfBotsFragment">
+    tools:context=".Presentation.UI.SendingMenuFragment">
 
     <Button
         android:id="@+id/sending_menu_button_send"
@@ -23,7 +23,7 @@
         android:text="@string/button_send"
         android:textSize="22sp"
         android:translationZ="5dp"
-        app:icon="@drawable/ic_sending"
+        app:icon="@drawable/ic_sending_menu"
         app:iconGravity="textStart"
         app:iconSize="25dp"
         app:iconTint="@color/colorOnPrimary"

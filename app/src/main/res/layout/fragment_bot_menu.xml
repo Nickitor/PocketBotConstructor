@@ -9,7 +9,23 @@
     android:layout_marginTop="20dp"
     android:layout_marginRight="20dp"
     android:layout_marginBottom="20dp"
-    tools:context=".Presentation.UI.ListOfBotsFragment">
+    tools:context=".Presentation.UI.BotMenuFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/bot_menu_recycler_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:foregroundGravity="center"
+        android:paddingBottom="200dp"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/bot_menu_button_start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bot_menu_subtitle"
+        app:layout_constraintVertical_bias="0.0"
+        tools:itemCount="10"
+        tools:listitem="@layout/bot_menu_button_item" />
 
     <Button
         android:id="@+id/bot_menu_button_start"
@@ -64,57 +80,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bot_menu_title"
         app:layout_goneMarginRight="40dp" />
-
-    <LinearLayout
-        android:id="@+id/bot_menu_item_sending_lenear_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bot_menu_subtitle">
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/bot_menu_item_sending_card_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="15dp"
-            android:backgroundTint="@color/colorPrimary"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="10dp">
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/bot_menu_item_sending_card_view_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="7dp"
-                android:backgroundTint="@color/colorPrimary"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="5dp">
-
-                <ImageView
-                    android:id="@+id/bot_menu_item_sending_image_view"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:padding="10dp"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/ic_sending" />
-            </com.google.android.material.card.MaterialCardView>
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <TextView
-            android:id="@+id/bot_menu_item_sending_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
-            android:text="Рассылка"
-            android:textAlignment="center"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

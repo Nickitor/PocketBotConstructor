@@ -15,12 +15,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.uneasypixel.pocketbotconstructor.R
-import com.uneasypixel.pocketbotconstructor.databinding.FragmentFirstStartStepTwoBinding
+import com.uneasypixel.pocketbotconstructor.databinding.FragmentFirstStartStepTwoMenuBinding
 
-class FirstStartStepTwoFragment : Fragment() {
+class FirstStartStepTwoMenuFragment : Fragment() {
 
     // Объект привязки для получения объектов интерфейса
-    private var _binding: FragmentFirstStartStepTwoBinding? = null
+    private var _binding: FragmentFirstStartStepTwoMenuBinding? = null
     private val binding get() = _binding!!
 
     // Создание макета фрагмента
@@ -28,7 +28,7 @@ class FirstStartStepTwoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentFirstStartStepTwoBinding.inflate(inflater, container, false)
+        _binding = FragmentFirstStartStepTwoMenuBinding.inflate(inflater, container, false)
         return binding.root
     }
 

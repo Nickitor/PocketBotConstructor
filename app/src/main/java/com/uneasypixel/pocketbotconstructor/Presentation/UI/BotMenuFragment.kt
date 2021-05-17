@@ -7,11 +7,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import com.uneasypixel.pocketbotconstructor.Presentation.Adapters.BotMenuItemAdapter
 import com.uneasypixel.pocketbotconstructor.Presentation.ViewModels.BotMenuViewModel
 import com.uneasypixel.pocketbotconstructor.ProgApplication
 import com.uneasypixel.pocketbotconstructor.R
 import com.uneasypixel.pocketbotconstructor.databinding.FragmentBotMenuBinding
+
 
 class BotMenuFragment : Fragment() {
 
@@ -28,15 +30,17 @@ class BotMenuFragment : Fragment() {
     ): View {
         _binding = FragmentBotMenuBinding.inflate(inflater, container, false)
 
+        val recyclerView = binding.botMenuRecyclerView
+        recyclerView.adapter = BotMenuItemAdapter(viewModel.buttons)
+
+        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager = GridLayoutManager(context, 3)
+
         return binding.root
     }
 
     // Инициализация компонентов макета фрагмента
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-        binding.botMenuItemSendingLenearLayout.setOnClickListener {
-            findNavController().navigate(R.id.action_botMenuFragment_to_sendingMenuFragment)
-        }
 
         binding.botMenuButtonStart.setOnClickListener {
             if (viewModel.switchLongPollServer((requireActivity().application as ProgApplication).dependencyFactory))

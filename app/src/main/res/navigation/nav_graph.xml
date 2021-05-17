@@ -6,18 +6,18 @@
     app:startDestination="@id/firstStartStepOneFragment">
     <fragment
         android:id="@+id/firstStartStepOneFragment"
-        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.FirstStartStepOneFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.FirstStartStepOneMenuFragment"
         android:label="fragment_first_start_step_one"
-        tools:layout="@layout/fragment_first_start_step_one" >
+        tools:layout="@layout/fragment_first_start_step_one_menu" >
         <action
             android:id="@+id/action_firstStartStepOneFragment_to_firstStartStepTwoFragment"
             app:destination="@id/firstStartStepTwoFragment" />
     </fragment>
     <fragment
         android:id="@+id/firstStartStepTwoFragment"
-        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.FirstStartStepTwoFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.FirstStartStepTwoMenuFragment"
         android:label="fragment_first_start_step_two"
-        tools:layout="@layout/fragment_first_start_step_two" >
+        tools:layout="@layout/fragment_first_start_step_two_menu" >
         <action
             android:id="@+id/action_firstStartStepTwoFragment_to_firstStartStepOneFragment"
             app:destination="@id/firstStartStepOneFragment" />
@@ -27,9 +27,9 @@
     </fragment>
     <fragment
         android:id="@+id/listOfBotsFragment"
-        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.ListOfBotsFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.ListOfBotsMenuFragment"
         android:label="fragment_list_of_bots"
-        tools:layout="@layout/fragment_list_of_bots" >
+        tools:layout="@layout/fragment_list_of_bots_menu" >
         <action
             android:id="@+id/action_listOfBotsFragment_to_botMenuFragment"
             app:destination="@id/botMenuFragment" />
@@ -42,10 +42,66 @@
         <action
             android:id="@+id/action_botMenuFragment_to_sendingMenuFragment"
             app:destination="@id/sendingMenuFragment" />
+        <action
+            android:id="@+id/action_botMenuFragment_to_createMenuMenuFragment"
+            app:destination="@id/createMenuMenuFragment" />
+        <action
+            android:id="@+id/action_botMenuFragment_to_setOfPhrasesMenuFragment"
+            app:destination="@id/setOfPhrasesMenuFragment" />
+        <action
+            android:id="@+id/action_botMenuFragment_to_reactionsToPhrasesMenuFragment"
+            app:destination="@id/reactionsToPhrasesMenuFragment" />
+        <action
+            android:id="@+id/action_botMenuFragment_to_reactionsToEventsMenuFragment"
+            app:destination="@id/reactionsToEventsMenuFragment" />
+        <action
+            android:id="@+id/action_botMenuFragment_to_dialoguesMenuFragment"
+            app:destination="@id/dialoguesMenuFragment" />
+        <action
+            android:id="@+id/action_botMenuFragment_to_statisticsMenuFragment"
+            app:destination="@id/statisticsMenuFragment" />
+        <action
+            android:id="@+id/action_botMenuFragment_to_variablesMenuFragment"
+            app:destination="@id/variablesMenuFragment" />
     </fragment>
     <fragment
         android:id="@+id/sendingMenuFragment"
         android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.SendingMenuFragment"
         android:label="SendingMenuFragment"
         tools:layout="@layout/fragment_sending_menu"/>
+    <fragment
+        android:id="@+id/createMenuMenuFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.CreateMenuMenuFragment"
+        android:label="CreateMenuMenuFragment"
+        tools:layout="@layout/fragment_create_menu_menu"/>
+    <fragment
+        android:id="@+id/setOfPhrasesMenuFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.SetOfPhrasesMenuFragment"
+        android:label="fragment_set_of_phrases_menu"
+        tools:layout="@layout/fragment_set_of_phrases_menu" />
+    <fragment
+        android:id="@+id/reactionsToPhrasesMenuFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.ReactionsToPhrasesMenuFragment"
+        android:label="fragment_reactions_to_phrases_menu"
+        tools:layout="@layout/fragment_reactions_to_phrases_menu" />
+    <fragment
+        android:id="@+id/reactionsToEventsMenuFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.ReactionsToEventsMenuFragment"
+        android:label="fragment_reactions_to_events_menu"
+        tools:layout="@layout/fragment_reactions_to_events_menu" />
+    <fragment
+        android:id="@+id/dialoguesMenuFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.DialoguesMenuFragment"
+        android:label="fragment_dialogues_menu"
+        tools:layout="@layout/fragment_dialogues_menu" />
+    <fragment
+        android:id="@+id/statisticsMenuFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.StatisticsMenuFragment"
+        android:label="fragment_statistics_menu"
+        tools:layout="@layout/fragment_statistics_menu" />
+    <fragment
+        android:id="@+id/variablesMenuFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.VariablesMenuFragment"
+        android:label="fragment_variables_menu"
+        tools:layout="@layout/fragment_variables_menu" />
 </navigation>

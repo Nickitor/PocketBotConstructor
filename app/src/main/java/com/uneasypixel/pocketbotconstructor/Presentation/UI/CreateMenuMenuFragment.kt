@@ -5,14 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.uneasypixel.pocketbotconstructor.Presentation.Adapters.ListOfBotsItemAdapter
-import com.uneasypixel.pocketbotconstructor.ProgApplication
-import com.uneasypixel.pocketbotconstructor.databinding.FragmentListOfBotsBinding
+import com.uneasypixel.pocketbotconstructor.databinding.FragmentCreateMenuMenuBinding
 
+class CreateMenuMenuFragment : Fragment() {
 
-class ListOfBotsFragment : Fragment() {
     // Объект привязки для получения объектов интерфейса
-    private var _binding: FragmentListOfBotsBinding? = null
+    private var _binding: FragmentCreateMenuMenuBinding? = null
     private val binding get() = _binding!!
 
     // Создание макета фрагмента
@@ -20,21 +18,12 @@ class ListOfBotsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentListOfBotsBinding.inflate(inflater, container, false)
-
-        val listOfBots = (requireActivity().application as ProgApplication).dependencyFactory.provideGetBotsUseCase().getBots()
-
-        val recyclerView = binding.listOfBotsRecyclerView
-        recyclerView.adapter = ListOfBotsItemAdapter(listOfBots)
-
-        recyclerView.setHasFixedSize(true)
-
+        _binding = FragmentCreateMenuMenuBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     // Инициализация компонентов макета фрагмента
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
     }
 
     // Удаление компнентов внутри фрагмента
