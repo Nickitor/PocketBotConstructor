@@ -36,9 +36,11 @@ class BotMenuViewModel(
     )
     val buttons get() = _buttons
 
-    fun switchLongPollServer(DependencyFactory: DependencyFactory): Boolean {
+    fun setDependencyFactory(DependencyFactory: DependencyFactory) {
         dependencyFactory = DependencyFactory
+    }
 
+    fun switchLongPollServer(): Boolean {
         if (isRunning)
             stopLongPollServer()
         else
