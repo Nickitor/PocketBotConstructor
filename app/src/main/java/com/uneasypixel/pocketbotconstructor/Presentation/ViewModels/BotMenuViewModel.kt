@@ -2,6 +2,7 @@ package com.uneasypixel.pocketbotconstructor.Presentation.ViewModels
 
 import androidx.lifecycle.ViewModel
 import com.uneasypixel.pocketbotconstructor.DependencyFactory
+import com.uneasypixel.pocketbotconstructor.Domain.Entities.Bot
 import com.uneasypixel.pocketbotconstructor.Domain.Entities.Server
 import com.uneasypixel.pocketbotconstructor.Presentation.Views.BotMenuButton
 import com.uneasypixel.pocketbotconstructor.R
@@ -19,6 +20,7 @@ class BotMenuViewModel(
         "88a1d21f807fe5a534ebd62721612411fe5e2fcdd6d15a65fb879b84754f91d60d25f68b0cc116b9c3f78",
         waitTimeResponse = "25"
     )
+
     private var isRunning: Boolean = false
     private lateinit var dependencyFactory: DependencyFactory
     private val _buttons: List<BotMenuButton> = listOf(
@@ -36,8 +38,15 @@ class BotMenuViewModel(
     )
     val buttons get() = _buttons
 
+    private var _curBot: Bot? = null
+    val curBot get() = _curBot
+
     fun setDependencyFactory(DependencyFactory: DependencyFactory) {
         dependencyFactory = DependencyFactory
+    }
+
+    fun setBot(bot : Bot?) {
+        _curBot = bot
     }
 
     fun switchLongPollServer(): Boolean {
@@ -104,9 +113,19 @@ class BotMenuViewModel(
             "message_new" -> {
                 val sendMessageToUserUseCase = dependencyFactory.provideSendMessageToUserUseCase()
 
-                sendMessageToUserUseCase.sendMessageToUser("Hello!",
-                response.getJSONObject("message").getString("from_id"),
-                server.tokenGroup)
+                val message = response.getJSONObject("message").getString("text")
+
+                if (curBot!!.reactionsToPhrases[message] != null){
+                    val fromId = response.getJSONObject("message").getString("from_id")
+                    val answerList = curBot!!.reactionsToPhrases[message]
+                    val answer = answerList?.get((0 until answerList.size).random())
+
+                    sendMessageToUserUseCase.sendMessageToUser(
+                        answer!!,
+                        fromId,
+                        server.tokenGroup
+                    )
+                }
             }
             // Новое исходящее сообщение
             "message_reply" -> {

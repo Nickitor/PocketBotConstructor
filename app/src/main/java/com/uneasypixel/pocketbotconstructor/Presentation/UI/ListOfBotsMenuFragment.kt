@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -22,10 +23,20 @@ class ListOfBotsMenuFragment : Fragment(), IRecyclerViewClickListener {
     private val binding get() = _binding!!
     private val viewModel: ListOfBotsViewModel by viewModels()
 
+    // Создание фрагмента
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         viewModel.getBots((requireActivity().application as ProgApplication).dependencyFactory)
+
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true ) {
+                override fun handleOnBackPressed() {
+
+                }
+            }
+
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
     }
 
     // Создание макета фрагмента
@@ -58,7 +69,7 @@ class ListOfBotsMenuFragment : Fragment(), IRecyclerViewClickListener {
 
     override fun recyclerViewListClicked(position: Int) {
 
-        val bundle = bundleOf("SOME_BUNDLE_KEY" to viewModel.listOfBots[position])
+        val bundle = bundleOf("BOT_KEY" to viewModel.listOfBots[position])
         findNavController().navigate(R.id.action_listOfBotsFragment_to_botMenuFragment, bundle)
     }
 }

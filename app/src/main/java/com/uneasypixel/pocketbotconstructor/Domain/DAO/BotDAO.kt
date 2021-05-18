@@ -2,5 +2,7 @@ package com.uneasypixel.pocketbotconstructor.Domain.DAO
 
 interface BotDAO {
     var name : String?
-    val imageResourceId: Int
+    var imageResourceId: Int
+
+    var reactionsToPhrases : Map<String, MutableList<String>>
 }

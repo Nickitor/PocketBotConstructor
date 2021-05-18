@@ -4,7 +4,8 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.uneasypixel.pocketbotconstructor.Domain.DAO.BotDAO
 
-class Bot(override var name: String?, override val imageResourceId: Int) : BotDAO, Parcelable {
+class Bot(override var name: String?, override var imageResourceId: Int
+) : BotDAO, Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readInt()
@@ -29,4 +30,7 @@ class Bot(override var name: String?, override val imageResourceId: Int) : BotDA
             return arrayOfNulls(size)
         }
     }
+
+    override var reactionsToPhrases: Map<String, MutableList<String>> = mapOf()
+
 }

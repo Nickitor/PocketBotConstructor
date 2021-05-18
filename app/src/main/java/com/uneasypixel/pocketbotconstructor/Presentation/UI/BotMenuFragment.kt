@@ -5,12 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.uneasypixel.pocketbotconstructor.Domain.Entities.Bot
 import com.uneasypixel.pocketbotconstructor.Presentation.Adapters.BotMenuItemAdapter
 import com.uneasypixel.pocketbotconstructor.Presentation.ViewModels.BotMenuViewModel
+import com.uneasypixel.pocketbotconstructor.Presentation.ViewModels.ListOfBotsViewModel
 import com.uneasypixel.pocketbotconstructor.ProgApplication
 import com.uneasypixel.pocketbotconstructor.R
 import com.uneasypixel.pocketbotconstructor.databinding.FragmentBotMenuBinding
@@ -23,9 +25,23 @@ class BotMenuFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: BotMenuViewModel by viewModels()
+    private val viewModel2: ListOfBotsViewModel by viewModels()
 
+    // Создание фрагмента
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        viewModel.setDependencyFactory((requireActivity().application as ProgApplication).dependencyFactory)
+        viewModel.setBot(arguments?.getParcelable<Bot>("BOT_KEY"))
+
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true ) {
+                override fun handleOnBackPressed() {
+
+                }
+            }
+
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
     }
 
     // Создание макета фрагмента
@@ -35,17 +51,13 @@ class BotMenuFragment : Fragment() {
     ): View {
         _binding = FragmentBotMenuBinding.inflate(inflater, container, false)
 
-        viewModel.setDependencyFactory((requireActivity().application as ProgApplication).dependencyFactory)
-
         val recyclerView = binding.botMenuRecyclerView
         recyclerView.adapter = BotMenuItemAdapter(viewModel.buttons)
 
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = GridLayoutManager(context, 3)
 
-        val Bot = arguments?.getParcelable<Bot>("SOME_BUNDLE_KEY")
-
-        binding.botMenuTitle.text = Bot?.name
+        binding.botMenuTitle.text = viewModel.curBot?.name
 
         return binding.root
     }

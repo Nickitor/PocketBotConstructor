@@ -12,6 +12,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.uneasypixel.pocketbotconstructor.R
@@ -22,6 +23,21 @@ class FirstStartStepOneMenuFragment : Fragment() {
     // Объект привязки для получения объектов интерфейса
     private var _binding: FragmentFirstStartStepOneMenuBinding? = null
     private val binding get() = _binding!!
+
+    // Создание фрагмента
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true ) {
+                override fun handleOnBackPressed() {
+
+                }
+            }
+
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+    }
 
     // Создание макета фрагмента
     override fun onCreateView(
@@ -44,6 +60,13 @@ class FirstStartStepOneMenuFragment : Fragment() {
         binding.firstStartStepOneRadioButtonStepTwo.setOnClickListener {
             findNavController().navigate(R.id.action_firstStartStepOneFragment_to_firstStartStepTwoFragment)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        binding.firstStartStepOneRadioButtonStepTwo.isChecked = false
+        binding.firstStartStepOneRadioButtonStepOne.isChecked = true
     }
 
     // Удаление компнентов внутри фрагмента

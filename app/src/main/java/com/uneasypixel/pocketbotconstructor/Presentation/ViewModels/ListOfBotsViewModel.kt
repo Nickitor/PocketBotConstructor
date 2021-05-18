@@ -17,8 +17,9 @@ class ListOfBotsViewModel : ViewModel() {
         _listOfBots.clear()
 
         for (botDAO in listOfBotsDAO){
-
-            _listOfBots.add(Bot(botDAO.name, botDAO.imageResourceId))
+            val bot = Bot(botDAO.name, botDAO.imageResourceId)
+            bot.reactionsToPhrases = botDAO.reactionsToPhrases
+            _listOfBots.add(bot)
         }
     }
 }
