@@ -6,11 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.uneasypixel.pocketbotconstructor.Domain.Entities.Bot
 import com.uneasypixel.pocketbotconstructor.Presentation.Adapters.BotMenuItemAdapter
+import com.uneasypixel.pocketbotconstructor.Presentation.Adapters.IRecyclerViewClickListener
 import com.uneasypixel.pocketbotconstructor.Presentation.ViewModels.BotMenuViewModel
 import com.uneasypixel.pocketbotconstructor.Presentation.ViewModels.ListOfBotsViewModel
 import com.uneasypixel.pocketbotconstructor.ProgApplication
@@ -18,7 +21,7 @@ import com.uneasypixel.pocketbotconstructor.R
 import com.uneasypixel.pocketbotconstructor.databinding.FragmentBotMenuBinding
 
 
-class BotMenuFragment : Fragment() {
+class BotMenuFragment : Fragment(), IRecyclerViewClickListener {
 
     // Объект привязки для получения объектов интерфейса
     private var _binding: FragmentBotMenuBinding? = null
@@ -37,7 +40,7 @@ class BotMenuFragment : Fragment() {
         val callback: OnBackPressedCallback =
             object : OnBackPressedCallback(true ) {
                 override fun handleOnBackPressed() {
-
+                    findNavController().navigate(R.id.action_botMenuFragment_to_listOfBotsFragment)
                 }
             }
 
@@ -52,7 +55,7 @@ class BotMenuFragment : Fragment() {
         _binding = FragmentBotMenuBinding.inflate(inflater, container, false)
 
         val recyclerView = binding.botMenuRecyclerView
-        recyclerView.adapter = BotMenuItemAdapter(viewModel.buttons)
+        recyclerView.adapter = BotMenuItemAdapter(viewModel.buttons, this)
 
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = GridLayoutManager(context, 3)
@@ -85,5 +88,21 @@ class BotMenuFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    // Переходы к фрагментам по кнопка меню
+    override fun recyclerViewListClicked(position: Int) {
+
+        val bundle = bundleOf("BOT_KEY" to viewModel.curBot)
+        when (position) {
+            0 -> findNavController().navigate(R.id.action_botMenuFragment_to_createMenuMenuFragment, bundle)
+            1 -> findNavController().navigate(R.id.action_botMenuFragment_to_setOfPhrasesMenuFragment, bundle)
+            2 -> findNavController().navigate(R.id.action_botMenuFragment_to_reactionsToPhrasesMenuFragment, bundle)
+            3 -> findNavController().navigate(R.id.action_botMenuFragment_to_reactionsToEventsMenuFragment, bundle)
+            4 -> findNavController().navigate(R.id.action_botMenuFragment_to_dialoguesMenuFragment, bundle)
+            5 -> findNavController().navigate(R.id.action_botMenuFragment_to_statisticsMenuFragment, bundle)
+            6 -> findNavController().navigate(R.id.action_botMenuFragment_to_sendingMenuFragment, bundle)
+            7 -> findNavController().navigate(R.id.action_botMenuFragment_to_variablesMenuFragment, bundle)
+        }
     }
 }

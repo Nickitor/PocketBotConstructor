@@ -42,8 +42,6 @@ class ListOfBotsItemAdapter(
         val item = dataset[position]
         holder.textView.text = item.name
         holder.imageView.setImageResource(item.imageResourceId)
-
-
     }
 
     override fun getItemCount() = dataset.size

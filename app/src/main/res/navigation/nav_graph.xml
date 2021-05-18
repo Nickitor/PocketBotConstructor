@@ -63,6 +63,9 @@
         <action
             android:id="@+id/action_botMenuFragment_to_variablesMenuFragment"
             app:destination="@id/variablesMenuFragment" />
+        <action
+            android:id="@+id/action_botMenuFragment_to_listOfBotsFragment"
+            app:destination="@id/listOfBotsFragment" />
     </fragment>
     <fragment
         android:id="@+id/sendingMenuFragment"
