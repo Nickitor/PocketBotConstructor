@@ -1,6 +1,5 @@
 package com.uneasypixel.pocketbotconstructor.Presentation.ViewModels
 
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.uneasypixel.pocketbotconstructor.DependencyFactory
@@ -8,14 +7,14 @@ import com.uneasypixel.pocketbotconstructor.Domain.Entities.Bot
 import com.uneasypixel.pocketbotconstructor.Presentation.Adapters.IRecyclerViewClickListener
 import com.uneasypixel.pocketbotconstructor.Presentation.Adapters.ListOfBotsItemAdapter
 import com.uneasypixel.pocketbotconstructor.Presentation.Adapters.SimpleItemTouchHelperCallback
-import com.uneasypixel.pocketbotconstructor.Presentation.DTO.BotDTO
-import com.uneasypixel.pocketbotconstructor.R
+import com.uneasypixel.pocketbotconstructor.Presentation.UI.ListOfBotsMenuFragment
 
 
-class ListOfBotsViewModel() : ViewModel() {
+class ListOfBotsViewModel() : ViewModel(), IRecyclerViewClickListener {
 
     private lateinit var dependencyFactory: DependencyFactory
     private lateinit var callback: ItemTouchHelper.Callback
+    private lateinit var owner: ListOfBotsMenuFragment
 
     private lateinit var _adapter: ListOfBotsItemAdapter
     val adapter get() = _adapter
@@ -23,36 +22,34 @@ class ListOfBotsViewModel() : ViewModel() {
     private lateinit var _touchHelper : ItemTouchHelper
     val touchHelper get() = _touchHelper
 
-    private var _listOfBots : List<Bot> = mutableListOf()
-    val listOfBots get() = _listOfBots
+    val listOfBots get() = adapter.dataset
 
-    fun initial(DependencyFactory: DependencyFactory, clickListener: IRecyclerViewClickListener, owner: LifecycleOwner) {
+    fun initial(DependencyFactory: DependencyFactory, clickListener: IRecyclerViewClickListener, Owner: ListOfBotsMenuFragment) {
 
+        owner = Owner
         dependencyFactory = DependencyFactory
-        _listOfBots = dependencyFactory.provideGetBotsUseCase().getBots()
-
-        val listOfBotsDTO : MutableList<BotDTO> = mutableListOf()
-
-        for (bot in _listOfBots)
-            listOfBotsDTO.add(BotDTO(bot.name, bot.imageResourceId))
+        val _listOfBots = dependencyFactory.provideGetBotsUseCase().getBots(owner!!.requireContext())
 
         _adapter = ListOfBotsItemAdapter(
-            listOfBotsDTO,
-            clickListener
+            _listOfBots,
+            clickListener,
+            this
         )
 
         callback = SimpleItemTouchHelperCallback(adapter)
         _touchHelper = ItemTouchHelper(callback)
     }
 
-    fun addItem() {
-        _adapter.addItem(BotDTO("#1 Bot", R.drawable.ic_android_robot_mobile_mood_emoji_happy_smile))
-
-        println(listOfBots.size)
+    fun addItem(newBot : Bot) {
+        _adapter.addItem(newBot)
     }
 
     override fun onCleared() {
         super.onCleared()
         println("View Model is cleare")
+    }
+
+    override fun recyclerViewListClicked(position: Int) {
+        dependencyFactory.provideSaveBotsUseCase().saveBots(owner!!.requireContext(), adapter.dataset)
     }
 }

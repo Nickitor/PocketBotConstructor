@@ -3,7 +3,7 @@ package com.uneasypixel.pocketbotconstructor.Domain.Interfaces
 import android.content.Context
 import com.uneasypixel.pocketbotconstructor.Domain.Entities.Bot
 
-interface IGetBotsGateway {
+interface ISaveBotsGateway {
 
-    fun getBots(context: Context) : MutableList<Bot>
+    fun saveBots(context: Context, bots : List<Bot>)
 }

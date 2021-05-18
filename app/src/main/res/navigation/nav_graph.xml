@@ -33,6 +33,9 @@
         <action
             android:id="@+id/action_listOfBotsFragment_to_botMenuFragment"
             app:destination="@id/botMenuFragment" />
+        <action
+            android:id="@+id/action_listOfBotsFragment_to_addNewBotMenuFragment"
+            app:destination="@id/addNewBotMenuFragment" />
     </fragment>
     <fragment
         android:id="@+id/botMenuFragment"
@@ -107,4 +110,13 @@
         android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.VariablesMenuFragment"
         android:label="fragment_variables_menu"
         tools:layout="@layout/fragment_variables_menu" />
+    <fragment
+        android:id="@+id/addNewBotMenuFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.AddNewBotMenuFragment"
+        android:label="fragment_add_new_bot_menu"
+        tools:layout="@layout/fragment_add_new_bot_menu" >
+        <action
+            android:id="@+id/action_addNewBotMenuFragment_to_listOfBotsFragment"
+            app:destination="@id/listOfBotsFragment" />
+    </fragment>
 </navigation>

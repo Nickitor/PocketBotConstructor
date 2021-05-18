@@ -4,6 +4,7 @@ import com.uneasypixel.pocketbotconstructor.Data.API.*
 import com.uneasypixel.pocketbotconstructor.Data.Gateway.*
 import com.uneasypixel.pocketbotconstructor.Data.Interfaces.*
 import com.uneasypixel.pocketbotconstructor.Data.Storage.GetBotsStorageImp
+import com.uneasypixel.pocketbotconstructor.Data.Storage.SaveBotsStorageImp
 import com.uneasypixel.pocketbotconstructor.Domain.Interfaces.*
 import com.uneasypixel.pocketbotconstructor.Domain.UseCases.*
 
@@ -96,5 +97,19 @@ class DependencyFactory {
 
     private fun provideGetBotsStorage() : IGetBotsStorage {
         return GetBotsStorageImp()
+    }
+
+
+    // SaveBotsUseCase
+    fun provideSaveBotsUseCase() : SaveBotsUseCase {
+        return SaveBotsUseCase(provideSaveBotsGateWay())
+    }
+
+    private fun provideSaveBotsGateWay() : ISaveBotsGateway {
+        return SaveBotsGatewayImp(provideSaveBotsStorage())
+    }
+
+    private fun provideSaveBotsStorage() : ISaveBotsStorage {
+        return SaveBotsStorageImp()
     }
 }

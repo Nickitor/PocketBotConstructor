@@ -6,14 +6,15 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.uneasypixel.pocketbotconstructor.Presentation.DTO.BotDTO
+import com.uneasypixel.pocketbotconstructor.Domain.Entities.Bot
 import com.uneasypixel.pocketbotconstructor.R
 import java.util.*
 
 
 class ListOfBotsItemAdapter(
-    val dataset: MutableList<BotDTO>,
-    private val clickListener: IRecyclerViewClickListener
+    val dataset: MutableList<Bot>,
+    private val clickListener: IRecyclerViewClickListener,
+    private val dataListener: IRecyclerViewClickListener
 ) : RecyclerView.Adapter<ListOfBotsItemAdapter.ItemViewHolder>(),
     ItemTouchHelperAdapter{
 
@@ -46,16 +47,18 @@ class ListOfBotsItemAdapter(
         holder.imageView.setImageResource(item.imageResourceId)
     }
 
-    fun addItem(newBot : BotDTO) {
+    override fun getItemCount() = dataset.size
+
+    fun addItem(newBot : Bot) {
         dataset.add(dataset.size, newBot)
         notifyItemInserted(dataset.size)
+        dataListener.recyclerViewListClicked(dataset.size)
     }
-
-    override fun getItemCount() = dataset.size
 
     override fun onItemDismiss(position: Int) {
         dataset.removeAt(position)
         notifyItemRemoved(position)
+        dataListener.recyclerViewListClicked(position)
     }
 
     override fun onItemMove(fromPosition: Int, toPosition: Int): Boolean {
@@ -69,6 +72,7 @@ class ListOfBotsItemAdapter(
             }
         }
         notifyItemMoved(fromPosition, toPosition)
+        dataListener.recyclerViewListClicked(fromPosition)
         return true
     }
 }

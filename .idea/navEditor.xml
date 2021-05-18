@@ -8,6 +8,18 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
+                  <entry key="addNewBotMenuFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="252" />
+                            <option name="y" value="405" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="botMenuFragment">
                     <value>
                       <LayoutPositions>
@@ -25,6 +37,11 @@
                               </value>
                             </entry>
                             <entry key="action_botMenuFragment_to_dialoguesMenuFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_botMenuFragment_to_listOfBotsFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -50,6 +67,11 @@
                               </value>
                             </entry>
                             <entry key="action_botMenuFragment_to_statisticsMenuFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_botMenuFragment_to_variablesMenuFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -141,6 +163,11 @@
                         </option>
                         <option name="myPositions">
                           <map>
+                            <entry key="action_listOfBotsFragment_to_addNewBotMenuFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_listOfBotsFragment_to_botMenuFragment">
                               <value>
                                 <LayoutPositions />
