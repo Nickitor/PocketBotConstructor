@@ -20,8 +20,9 @@ class ListOfBotsItemAdapter(
 
     class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
-        val textView: TextView = view.findViewById(R.id.bot_name)
-        val imageView: ImageView = view.findViewById(R.id.bot_image)
+        val textView: TextView = view.findViewById(R.id.list_of_bots_item_name)
+        val imageView: ImageView = view.findViewById(R.id.list_of_bots_item_bot_image)
+        val powerText: TextView = view.findViewById(R.id.list_of_bots_item_power_title)
 
         fun onClick(clickListener: IRecyclerViewClickListener) {
             view.setOnClickListener {
@@ -45,6 +46,11 @@ class ListOfBotsItemAdapter(
         val item = dataset[position]
         holder.textView.text = item.name
         holder.imageView.setImageResource(item.imageResourceId)
+
+        if (dataset[position].isEnabled)
+            holder.powerText.text = "Включен"
+        else
+            holder.powerText.text = "Выключен"
     }
 
     override fun getItemCount() = dataset.size

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="40dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginRight="40dp"
+    android:layout_marginBottom="5dp"
+    android:backgroundTint="@color/colorPrimary"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimary"
+            app:cardCornerRadius="20dp">
+
+            <ImageView
+                android:id="@+id/bot_image"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@color/colorOnPrimary"
+                android:importantForAccessibility="no"
+                android:scaleType="centerCrop"
+                tools:srcCompat="@android:drawable/ic_menu_edit" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/phrase_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif-light"
+                android:textAlignment="center"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                tools:text="# Сообщение"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/phrase_name4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif-light"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="# Ответ"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

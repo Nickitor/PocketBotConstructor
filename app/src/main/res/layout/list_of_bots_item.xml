@@ -2,6 +2,7 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/list_of_bots_item_material_card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="40dp"
@@ -13,38 +14,90 @@
     app:cardElevation="10dp">
 
     <LinearLayout
+        android:id="@+id/list_of_bots_item_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/list_of_bots_item_material_card_view_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorPrimary"
-            app:cardCornerRadius="20dp">
+            app:cardCornerRadius="20dp"
+            app:cardElevation="10dp">
 
-            <ImageView
-                android:id="@+id/bot_image"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:background="@color/colorOnPrimary"
-                android:importantForAccessibility="no"
-                android:scaleType="centerCrop"
-                tools:srcCompat="@drawable/ic_android_robot_mobile_mood_emoji" />
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/list_of_bots_item_material_card_view_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:backgroundTint="@color/colorPrimary"
+                app:cardCornerRadius="20dp">
+
+                <ImageView
+                    android:id="@+id/list_of_bots_item_bot_image"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="@color/colorOnPrimary"
+                    android:importantForAccessibility="no"
+                    android:scaleType="centerCrop"
+                    tools:srcCompat="@drawable/ic_android_robot_mobile_mood_emoji" />
+            </com.google.android.material.card.MaterialCardView>
         </com.google.android.material.card.MaterialCardView>
 
-        <TextView
-            android:id="@+id/bot_name"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/list_of_bots_item_linear_layot_2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="sans-serif-light"
-            android:textAlignment="center"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            tools:text="# Bot"
-            tools:visibility="visible" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/list_of_bots_item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif-light"
+                android:textAlignment="center"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                tools:text="# Бот"
+                tools:visibility="visible" />
+
+            <LinearLayout
+                android:id="@+id/list_of_bots_item_linear_layot_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/list_of_bots_item_power"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@android:drawable/ic_lock_power_off"
+                    app:tint="@color/errorColor" />
+
+                <TextView
+                    android:id="@+id/list_of_bots_item_power_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Выключен"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="Выключен"
+                    tools:visibility="visible" />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
 
     </LinearLayout>

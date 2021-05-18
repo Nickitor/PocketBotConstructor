@@ -11,11 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.uneasypixel.pocketbotconstructor.Domain.Entities.Bot
 import com.uneasypixel.pocketbotconstructor.Presentation.Adapters.BotMenuItemAdapter
 import com.uneasypixel.pocketbotconstructor.Presentation.Adapters.IRecyclerViewClickListener
 import com.uneasypixel.pocketbotconstructor.Presentation.ViewModels.BotMenuViewModel
-import com.uneasypixel.pocketbotconstructor.Presentation.ViewModels.ListOfBotsViewModel
 import com.uneasypixel.pocketbotconstructor.ProgApplication
 import com.uneasypixel.pocketbotconstructor.R
 import com.uneasypixel.pocketbotconstructor.databinding.FragmentBotMenuBinding
@@ -28,19 +26,18 @@ class BotMenuFragment : Fragment(), IRecyclerViewClickListener {
     private val binding get() = _binding!!
 
     private val viewModel: BotMenuViewModel by viewModels()
-    private val viewModel2: ListOfBotsViewModel by viewModels()
 
     // Создание фрагмента
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         viewModel.setDependencyFactory((requireActivity().application as ProgApplication).dependencyFactory)
-        viewModel.setBot(arguments?.getParcelable<Bot>("BOT_KEY"))
 
         val callback: OnBackPressedCallback =
             object : OnBackPressedCallback(true ) {
                 override fun handleOnBackPressed() {
-                    findNavController().navigate(R.id.action_botMenuFragment_to_listOfBotsFragment)
+                    val bundle = bundleOf("BOT_KEY" to viewModel.curBot)
+                    findNavController().navigate(R.id.action_botMenuFragment_to_listOfBotsFragment, bundle)
                 }
             }
 
@@ -74,12 +71,14 @@ class BotMenuFragment : Fragment(), IRecyclerViewClickListener {
                 binding.botMenuButtonStart.text = resources.getString(R.string.button_stop)
                 Toast.makeText(requireContext(), "Чат-бот включен!", Toast.LENGTH_SHORT)
                     .show()
+                viewModel.curBot?.isEnabled = true
             }
             else
             {
                 binding.botMenuButtonStart.text = resources.getString(R.string.button_start)
                 Toast.makeText(requireContext(), "Чат-бот выключен!", Toast.LENGTH_SHORT)
                     .show()
+                viewModel.curBot?.isEnabled = false
             }
         }
     }

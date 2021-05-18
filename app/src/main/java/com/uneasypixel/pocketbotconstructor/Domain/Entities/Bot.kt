@@ -34,4 +34,5 @@ class Bot(override var name: String?, override var imageResourceId: Int
     lateinit var reactionsToPhrases: Map<String, MutableList<String>>
     lateinit var groupID : String
     lateinit var token : String
+    var isEnabled : Boolean = false
 }
