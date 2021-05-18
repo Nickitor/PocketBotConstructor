@@ -12,7 +12,7 @@
     tools:context=".Presentation.UI.ListOfBotsMenuFragment">
 
     <Button
-        android:id="@+id/list_of_bots_button_next"
+        android:id="@+id/list_of_bots_button_add"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -20,7 +20,7 @@
         android:layout_marginBottom="15dp"
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
-        android:text="@string/next_step"
+        android:text="@string/list_of_bots_button_add"
         android:textSize="22sp"
         android:translationZ="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -53,7 +53,7 @@
         android:paddingBottom="170dp"
         android:scrollbars="vertical"
         app:layoutManager="LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/list_of_bots_button_next"
+        app:layout_constraintBottom_toTopOf="@+id/list_of_bots_button_add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

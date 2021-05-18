@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.uneasypixel.pocketbotconstructor.Presentation.Adapters.IRecyclerViewClickListener
-import com.uneasypixel.pocketbotconstructor.Presentation.Adapters.ListOfBotsItemAdapter
 import com.uneasypixel.pocketbotconstructor.Presentation.ViewModels.ListOfBotsViewModel
 import com.uneasypixel.pocketbotconstructor.ProgApplication
 import com.uneasypixel.pocketbotconstructor.R
@@ -27,7 +26,7 @@ class ListOfBotsMenuFragment : Fragment(), IRecyclerViewClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel.getBots((requireActivity().application as ProgApplication).dependencyFactory)
+        viewModel.initial((requireActivity().application as ProgApplication).dependencyFactory, this, this)
 
         val callback: OnBackPressedCallback =
             object : OnBackPressedCallback(true ) {
@@ -35,7 +34,6 @@ class ListOfBotsMenuFragment : Fragment(), IRecyclerViewClickListener {
 
                 }
             }
-
         requireActivity().onBackPressedDispatcher.addCallback(this, callback)
     }
 
@@ -47,10 +45,8 @@ class ListOfBotsMenuFragment : Fragment(), IRecyclerViewClickListener {
         _binding = FragmentListOfBotsMenuBinding.inflate(inflater, container, false)
 
         val recyclerView = binding.listOfBotsRecyclerView
-        recyclerView.adapter = ListOfBotsItemAdapter(
-            viewModel.listOfBots,
-            this)
-
+        recyclerView.adapter = viewModel.adapter
+        viewModel.touchHelper.attachToRecyclerView(recyclerView)
         recyclerView.setHasFixedSize(true)
 
         return binding.root
@@ -58,7 +54,9 @@ class ListOfBotsMenuFragment : Fragment(), IRecyclerViewClickListener {
 
     // Инициализация компонентов макета фрагмента
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
+        binding.listOfBotsButtonAdd.setOnClickListener {
+            viewModel.addItem()
+        }
     }
 
     // Удаление компнентов внутри фрагмента
@@ -69,7 +67,7 @@ class ListOfBotsMenuFragment : Fragment(), IRecyclerViewClickListener {
 
     override fun recyclerViewListClicked(position: Int) {
 
-        val bundle = bundleOf("BOT_KEY" to viewModel.listOfBots[position])
+        val bundle = bundleOf("BOT_KEY" to (viewModel.listOfBots[position]))
         findNavController().navigate(R.id.action_listOfBotsFragment_to_botMenuFragment, bundle)
     }
 }

@@ -16,10 +16,15 @@ class BotMenuViewModel(
 ) : ViewModel() {
 
     private var server: Server = Server(
-        "193525063",
-        "88a1d21f807fe5a534ebd62721612411fe5e2fcdd6d15a65fb879b84754f91d60d25f68b0cc116b9c3f78",
         waitTimeResponse = "25"
     )
+
+    private var bot : Bot = Bot("Bot", R.drawable.ic_android_robot_mobile_mood_emoji_happy_joke_tounge)
+
+    init {
+        bot.groupID = "193525063"
+        bot.token = "88a1d21f807fe5a534ebd62721612411fe5e2fcdd6d15a65fb879b84754f91d60d25f68b0cc116b9c3f78"
+    }
 
     private var isRunning: Boolean = false
     private lateinit var dependencyFactory: DependencyFactory
@@ -66,7 +71,7 @@ class BotMenuViewModel(
             val getLongPollServerUseCase = dependencyFactory.provideGetLongPollServerUseCase()
             val getResponseLongPollServerUseCase = dependencyFactory.provideGetResponseLongPollServerUseCase()
 
-            val longPollServer = getLongPollServerUseCase.getLongPollServer(server.groupID, server.tokenGroup)
+            val longPollServer = getLongPollServerUseCase.getLongPollServer(bot.groupID, bot.token)
 
             server.key = longPollServer.key
             server.server = longPollServer.server
@@ -123,7 +128,7 @@ class BotMenuViewModel(
                     sendMessageToUserUseCase.sendMessageToUser(
                         answer!!,
                         fromId,
-                        server.tokenGroup
+                        bot.token
                     )
                 }
             }

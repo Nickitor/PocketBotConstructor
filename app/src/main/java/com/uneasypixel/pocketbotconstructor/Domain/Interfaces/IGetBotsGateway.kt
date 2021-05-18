@@ -1,8 +1,8 @@
 package com.uneasypixel.pocketbotconstructor.Domain.Interfaces
 
-import com.uneasypixel.pocketbotconstructor.Data.DTO.BotDTO
+import com.uneasypixel.pocketbotconstructor.Domain.Entities.Bot
 
 interface IGetBotsGateway {
 
-    fun getBots() : List<BotDTO>
+    fun getBots() : List<Bot>
 }
