@@ -9,5 +9,4 @@ class SaveBotsGatewayImp (private val saveBotsStorage: ISaveBotsStorage) : ISave
     override fun saveBots(context: Context, bots: List<Bot>) {
         saveBotsStorage.saveBots(context, bots)
     }
-
 }

@@ -78,8 +78,8 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
-                    app:srcCompat="@android:drawable/ic_lock_power_off"
-                    app:tint="@color/errorColor" />
+                    android:tint="@color/colorOff"
+                    app:srcCompat="@android:drawable/ic_lock_power_off" />
 
                 <TextView
                     android:id="@+id/list_of_bots_item_power_title"

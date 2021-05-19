@@ -1,10 +1,13 @@
 package com.uneasypixel.pocketbotconstructor.Presentation.Adapters
 
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.widget.ImageViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.uneasypixel.pocketbotconstructor.Domain.Entities.Bot
 import com.uneasypixel.pocketbotconstructor.R
@@ -23,6 +26,7 @@ class ListOfBotsItemAdapter(
         val textView: TextView = view.findViewById(R.id.list_of_bots_item_name)
         val imageView: ImageView = view.findViewById(R.id.list_of_bots_item_bot_image)
         val powerText: TextView = view.findViewById(R.id.list_of_bots_item_power_title)
+        val powerView: ImageView = view.findViewById(R.id.list_of_bots_item_power)
 
         fun onClick(clickListener: IRecyclerViewClickListener) {
             view.setOnClickListener {
@@ -47,10 +51,16 @@ class ListOfBotsItemAdapter(
         holder.textView.text = item.name
         holder.imageView.setImageResource(item.imageResourceId)
 
-        if (dataset[position].isEnabled)
+        if (dataset[position].isEnabled) {
             holder.powerText.text = "Включен"
-        else
+            ImageViewCompat.setImageTintList(holder.powerView, ColorStateList.valueOf(Color.parseColor("#B5FFA8")));
+
+        }
+        else  {
             holder.powerText.text = "Выключен"
+            ImageViewCompat.setImageTintList(holder.powerView, ColorStateList.valueOf(Color.parseColor("#FF6382")));
+
+        }
     }
 
     override fun getItemCount() = dataset.size

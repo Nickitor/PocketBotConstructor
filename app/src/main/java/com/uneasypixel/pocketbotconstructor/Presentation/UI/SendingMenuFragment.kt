@@ -39,7 +39,7 @@ class SendingMenuFragment : Fragment() {
 
                 val sendMessageToConversations = (requireActivity().application as ProgApplication).dependencyFactory.provideSendMessageToConversationsUseCase()
 
-                sendMessageToConversations.sendMessageToCanversations(
+                sendMessageToConversations.sendMessageToConversations(
                     binding.sendingMenuSendingTextEditTextTextMultiLine.text.toString(),
                     tokenGroup)
             }

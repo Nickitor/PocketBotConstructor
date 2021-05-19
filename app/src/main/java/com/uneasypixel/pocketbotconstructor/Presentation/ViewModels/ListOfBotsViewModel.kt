@@ -28,10 +28,10 @@ class ListOfBotsViewModel() : ViewModel(), IRecyclerViewClickListener {
 
         owner = Owner
         dependencyFactory = DependencyFactory
-        val _listOfBots = dependencyFactory.provideGetBotsUseCase().getBots(owner!!.requireContext())
+        val listOfBots = dependencyFactory.provideGetBotsUseCase().getBots(owner.requireContext())
 
         _adapter = ListOfBotsItemAdapter(
-            _listOfBots,
+            listOfBots,
             clickListener,
             this
         )
@@ -44,12 +44,11 @@ class ListOfBotsViewModel() : ViewModel(), IRecyclerViewClickListener {
         _adapter.addItem(newBot)
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        println("View Model is cleare")
+    override fun recyclerViewListClicked(position: Int) {
+        saveBots()
     }
 
-    override fun recyclerViewListClicked(position: Int) {
-        dependencyFactory.provideSaveBotsUseCase().saveBots(owner!!.requireContext(), adapter.dataset)
+    private fun saveBots() {
+        dependencyFactory.provideSaveBotsUseCase().saveBots(owner.requireContext(), adapter.dataset)
     }
 }

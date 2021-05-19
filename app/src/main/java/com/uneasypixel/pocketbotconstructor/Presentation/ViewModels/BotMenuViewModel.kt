@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.uneasypixel.pocketbotconstructor.DependencyFactory
 import com.uneasypixel.pocketbotconstructor.Domain.Entities.Bot
 import com.uneasypixel.pocketbotconstructor.Domain.Entities.Server
+import com.uneasypixel.pocketbotconstructor.Presentation.UI.BotMenuFragment
 import com.uneasypixel.pocketbotconstructor.Presentation.Views.BotMenuButton
 import com.uneasypixel.pocketbotconstructor.R
 import kotlinx.coroutines.GlobalScope
@@ -15,61 +16,64 @@ class BotMenuViewModel(
 
 ) : ViewModel() {
 
-    private var server: Server = Server(
-        waitTimeResponse = "25"
-    )
-
-    private var bot : Bot = Bot("Bot", R.drawable.ic_android_robot_mobile_mood_emoji_happy_joke_tounge)
-
-    init {
-        bot.groupID = "193525063"
-        bot.token = "88a1d21f807fe5a534ebd62721612411fe5e2fcdd6d15a65fb879b84754f91d60d25f68b0cc116b9c3f78"
-    }
-
-    private var isRunning: Boolean = false
-    private lateinit var dependencyFactory: DependencyFactory
-    private val _buttons: List<BotMenuButton> = listOf(
-        BotMenuButton("Создание меню", R.drawable.ic_menu),
-        BotMenuButton("Наборы ответов", R.drawable.ic_set_of_phrases),
-
-        BotMenuButton("Реакции", R.drawable.ic_reactions_to_phrases),
-        BotMenuButton("События", R.drawable.ic_reactions_to_events),
-
-        BotMenuButton("Диалоги", R.drawable.ic_dialogues),
-        BotMenuButton("Статистика", R.drawable.ic_statistics),
-
-        BotMenuButton("Рассылка", R.drawable.ic_sending),
-        BotMenuButton("Переменные", R.drawable.ic_variables)
-    )
+    private var server: Server = Server(waitTimeResponse = "25")
+    private var _buttons: List<BotMenuButton>
     val buttons get() = _buttons
 
-    private var _curBot: Bot? = null
-    val curBot get() = _curBot
+    var listOfBots: MutableList<Bot> = mutableListOf()
+    var position: Int = 0
+    val bot get() = listOfBots[position]
 
-    fun setDependencyFactory(DependencyFactory: DependencyFactory) {
+    private lateinit var dependencyFactory: DependencyFactory
+    private lateinit var owner: BotMenuFragment
+
+    init {
+        _buttons = listOf(
+            BotMenuButton("Создание меню", R.drawable.ic_menu),
+            BotMenuButton("Наборы ответов", R.drawable.ic_set_of_phrases),
+
+            BotMenuButton("Реакции", R.drawable.ic_reactions_to_phrases),
+            BotMenuButton("События", R.drawable.ic_reactions_to_events),
+
+            BotMenuButton("Диалоги", R.drawable.ic_dialogues),
+            BotMenuButton("Статистика", R.drawable.ic_statistics),
+
+            BotMenuButton("Рассылка", R.drawable.ic_sending),
+            BotMenuButton("Переменные", R.drawable.ic_variables)
+        )
+    }
+
+    fun initial(
+        DependencyFactory: DependencyFactory,
+        Owner: BotMenuFragment,
+        ListOfBots: MutableList<Bot>,
+        Position: Int
+    ) {
         dependencyFactory = DependencyFactory
-    }
+        owner = Owner
 
-    fun setBot(bot : Bot?) {
-        _curBot = bot
-    }
+        listOfBots = ListOfBots
+        position = Position
 
-    fun switchLongPollServer(): Boolean {
-        if (isRunning)
-            stopLongPollServer()
-        else
+        println(listOfBots.size)
+
+        bot.groupID = "193525063"
+        bot.token =
+            "88a1d21f807fe5a534ebd62721612411fe5e2fcdd6d15a65fb879b84754f91d60d25f68b0cc116b9c3f78"
+
+        if (bot.isEnabled)
             startLongPollServer()
-
-        return isRunning
     }
 
-    private fun startLongPollServer() {
-        isRunning = true
+
+    fun startLongPollServer() {
+        bot.isEnabled = true
 
         GlobalScope.launch {
 
             val getLongPollServerUseCase = dependencyFactory.provideGetLongPollServerUseCase()
-            val getResponseLongPollServerUseCase = dependencyFactory.provideGetResponseLongPollServerUseCase()
+            val getResponseLongPollServerUseCase =
+                dependencyFactory.provideGetResponseLongPollServerUseCase()
 
             val longPollServer = getLongPollServerUseCase.getLongPollServer(bot.groupID, bot.token)
 
@@ -77,10 +81,9 @@ class BotMenuViewModel(
             server.server = longPollServer.server
             server.ts = longPollServer.ts
 
-            while (isRunning) {
+            while (bot.isEnabled) {
 
                 var response = getResponseLongPollServerUseCase.getResponseLongPollServer(server)
-                var event: JSONObject
                 var updates: JSONArray
 
                 if (!response!!.has("failed")) {
@@ -93,7 +96,10 @@ class BotMenuViewModel(
 
                         for (i in 0 until updates.length()) {
                             response = updates.getJSONObject(i)
-                            responseToEvents(response.getJSONObject("object"), response.getString("type"))
+                            responseToEvents(
+                                response.getJSONObject("object"),
+                                response.getString("type")
+                            )
                         }
                     }
                 }
@@ -102,8 +108,8 @@ class BotMenuViewModel(
     }
 
 
-    private fun stopLongPollServer() {
-        isRunning = false
+    fun stopLongPollServer() {
+        bot.isEnabled = false
     }
 
 
@@ -120,9 +126,9 @@ class BotMenuViewModel(
 
                 val message = response.getJSONObject("message").getString("text")
 
-                if (curBot!!.reactionsToPhrases[message] != null){
+                if (bot.reactionsToPhrases[message] != null) {
                     val fromId = response.getJSONObject("message").getString("from_id")
-                    val answerList = curBot!!.reactionsToPhrases[message]
+                    val answerList = bot.reactionsToPhrases[message]
                     val answer = answerList?.get((0 until answerList.size).random())
 
                     sendMessageToUserUseCase.sendMessageToUser(
@@ -286,5 +292,9 @@ class BotMenuViewModel(
             "donut_money_withdraw_error" -> {
             }
         }
+    }
+
+    fun saveBots() {
+        dependencyFactory.provideSaveBotsUseCase().saveBots(owner.requireContext(), listOfBots)
     }
 }

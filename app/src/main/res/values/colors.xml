@@ -7,5 +7,6 @@
     <color name="colorPrimaryVariant">#F5F7FA</color>
     <color name="colorOnPrimary">#6EC5FF</color>
 
-    <color name="errorColor">#FF6382</color>
+    <color name="colorOff">#FF6382</color>
+    <color name="colorOn">#B5FFA8</color>
 </resources>

@@ -5,7 +5,7 @@ class SendMessageToConversationsUseCase(
     private val sendMessageToUserUseCase: SendMessageToUserUseCase
 ) {
 
-    suspend fun sendMessageToCanversations(message : String, token : String) {
+    suspend fun sendMessageToConversations(message : String, token : String) {
 
         val usersIds : List<String> = getConversationsUseCase.getConversations(token)
 

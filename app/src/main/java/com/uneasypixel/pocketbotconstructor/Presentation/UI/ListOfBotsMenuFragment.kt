@@ -27,14 +27,18 @@ class ListOfBotsMenuFragment : Fragment(), IRecyclerViewClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel.initial((requireActivity().application as ProgApplication).dependencyFactory, this, this)
+        viewModel.initial(
+            (requireActivity().application as ProgApplication).dependencyFactory,
+            this,
+            this
+        )
 
         val newBot = arguments?.getParcelable<Bot>("NEW_BOT_KEY")
         if (newBot != null)
             viewModel.addItem(newBot)
 
         val callback: OnBackPressedCallback =
-            object : OnBackPressedCallback(true ) {
+            object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
 
                 }
@@ -73,7 +77,10 @@ class ListOfBotsMenuFragment : Fragment(), IRecyclerViewClickListener {
 
     override fun recyclerViewListClicked(position: Int) {
 
-        val bundle = bundleOf("BOT_KEY" to (viewModel.listOfBots[position]))
+        val bundle = bundleOf(
+            "BOTS_KEY" to viewModel.listOfBots,
+            "POS_KEY" to position
+        )
         findNavController().navigate(R.id.action_listOfBotsFragment_to_botMenuFragment, bundle)
     }
 }
