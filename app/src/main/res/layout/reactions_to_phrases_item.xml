@@ -2,6 +2,7 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/reactions_to_phrases_item_material_card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="40dp"
@@ -13,33 +14,46 @@
     app:cardElevation="10dp">
 
     <LinearLayout
+        android:id="@+id/reactions_to_phrases_item_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/reactions_to_phrases_item_material_card_view_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorPrimary"
-            app:cardCornerRadius="20dp">
+            app:cardCornerRadius="20dp"
+            app:cardElevation="10dp">
 
-            <ImageView
-                android:id="@+id/bot_image"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:background="@color/colorOnPrimary"
-                android:importantForAccessibility="no"
-                android:scaleType="centerCrop"
-                tools:srcCompat="@android:drawable/ic_menu_edit" />
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/reactions_to_phrases_item_material_card_view_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:backgroundTint="@color/colorPrimary"
+                app:cardCornerRadius="20dp">
+
+                <ImageView
+                    android:id="@+id/reactions_to_phrases_item_image"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="@color/colorOnPrimary"
+                    android:importantForAccessibility="no"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@android:drawable/ic_menu_edit" />
+            </com.google.android.material.card.MaterialCardView>
         </com.google.android.material.card.MaterialCardView>
 
         <LinearLayout
+            android:id="@+id/reactions_to_phrases_item_linear_layot_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/phrase_name"
+                android:id="@+id/reactions_to_phrases_item_phrase"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -48,23 +62,32 @@
                 android:textAlignment="center"
                 android:textSize="22sp"
                 android:textStyle="bold"
-                tools:text="# Сообщение"
+                tools:text="# Фраза"
                 tools:visibility="visible" />
 
-            <TextView
-                android:id="@+id/phrase_name4"
+            <LinearLayout
+                android:id="@+id/reactions_to_phrases_item_linear_layot_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="sans-serif-light"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                tools:text="# Ответ"
-                tools:visibility="visible" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/reactions_to_phrases_item_response"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="sans-serif-light"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="Ответ"
+                    tools:visibility="visible" />
+
+            </LinearLayout>
 
         </LinearLayout>
+
 
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

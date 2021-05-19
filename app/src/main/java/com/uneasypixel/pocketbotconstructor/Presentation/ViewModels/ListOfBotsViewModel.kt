@@ -7,6 +7,7 @@ import com.uneasypixel.pocketbotconstructor.Domain.Entities.Bot
 import com.uneasypixel.pocketbotconstructor.Presentation.Adapters.IRecyclerViewClickListener
 import com.uneasypixel.pocketbotconstructor.Presentation.Adapters.ListOfBotsItemAdapter
 import com.uneasypixel.pocketbotconstructor.Presentation.Adapters.SimpleItemTouchHelperCallback
+import com.uneasypixel.pocketbotconstructor.Presentation.DTO.BotDTO
 import com.uneasypixel.pocketbotconstructor.Presentation.UI.ListOfBotsMenuFragment
 
 
@@ -40,15 +41,20 @@ class ListOfBotsViewModel() : ViewModel(), IRecyclerViewClickListener {
         _touchHelper = ItemTouchHelper(callback)
     }
 
-    fun addItem(newBot : Bot) {
+    fun addItem(newBot : BotDTO) {
         _adapter.addItem(newBot)
+        saveNewBot(Bot(newBot.name, newBot.imageResourceId))
     }
 
     override fun recyclerViewListClicked(position: Int) {
         saveBots()
     }
 
-    private fun saveBots() {
+    private fun saveNewBot(bot : Bot) {
+        dependencyFactory.provideSaveBotsUseCase().saveBot(owner.requireContext(), bot)
+    }
+
+    fun saveBots() {
         dependencyFactory.provideSaveBotsUseCase().saveBots(owner.requireContext(), adapter.dataset)
     }
 }

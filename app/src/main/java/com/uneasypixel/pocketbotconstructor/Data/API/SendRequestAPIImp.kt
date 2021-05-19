@@ -13,9 +13,11 @@ class SendRequestAPIImp : ISendRequestAPI {
 
     override suspend fun sendRequest(url: URL): JSONObject? {
 
-        val urlConnection = url.openConnection() as? HttpURLConnection
+        var urlConnection : HttpURLConnection? = null
 
         try {
+            urlConnection = url.openConnection() as? HttpURLConnection?
+
             val input = urlConnection?.inputStream
 
             val scanner = Scanner(input)

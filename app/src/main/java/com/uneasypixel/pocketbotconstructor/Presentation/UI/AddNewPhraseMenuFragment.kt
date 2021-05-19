@@ -8,13 +8,14 @@ import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.uneasypixel.pocketbotconstructor.Domain.Entities.Phrase
 import com.uneasypixel.pocketbotconstructor.R
-import com.uneasypixel.pocketbotconstructor.databinding.FragmentAddNewBotMenuBinding
+import com.uneasypixel.pocketbotconstructor.databinding.FragmentAddNewPhraseMenuBinding
 
-class AddNewBotMenuFragment : Fragment() {
+class AddNewPhraseMenuFragment : Fragment() {
 
     // Объект привязки для получения объектов интерфейса
-    private var _binding: FragmentAddNewBotMenuBinding? = null
+    private var _binding: FragmentAddNewPhraseMenuBinding? = null
     private val binding get() = _binding!!
 
     // Создание фрагмента
@@ -22,7 +23,7 @@ class AddNewBotMenuFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         val callback: OnBackPressedCallback =
-            object : OnBackPressedCallback(true) {
+            object : OnBackPressedCallback(true ) {
                 override fun handleOnBackPressed() {
 
                 }
@@ -36,25 +37,19 @@ class AddNewBotMenuFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentAddNewBotMenuBinding.inflate(inflater, container, false)
+        _binding = FragmentAddNewPhraseMenuBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     // Инициализация компонентов макета фрагмента
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.addNewBotButtonAdd.setOnClickListener {
-
-            val name = binding.addNewBotName.text.toString()
-            val image = R.drawable.ic_android_robot_mobile_mood_emoji
-
-            val bundle = bundleOf(
-                "NEW_BOT_NAME_KEY" to name,
-                "NEW_BOT_IMAGE_KEY" to image
-            )
-            findNavController().navigate(
-                R.id.action_addNewBotMenuFragment_to_listOfBotsFragment,
-                bundle
-            )
+        binding.addNewPhraseButtonAdd.setOnClickListener {
+            val phraseName = binding.addNewPhraseName.text.toString()
+            val responseName = binding.addNewResponseName.text.toString()
+            val phrase = Phrase(phraseName)
+            phrase.response.add(responseName)
+            val bundle = bundleOf("NEW_PHRASE_KEY" to phrase)
+            findNavController().navigate(R.id.action_addNewPhraseMenuFragment_to_reactionsToPhrasesMenuFragment, bundle)
         }
     }
 

@@ -10,14 +10,19 @@ class GetConversationsGatewayImp(private val getConversationsApi: IGetConversati
     override suspend fun getConversations(token : String): List<String> {
 
         val response : JSONObject? = getConversationsApi.getConversations(token)
-        val conversationsArray : JSONArray? = response?.getJSONObject("response")?.getJSONArray("items")
 
-        val result : MutableList<String> = mutableListOf()
+        if (response != null) {
+            val conversationsArray : JSONArray? = response.getJSONObject("response").getJSONArray("items")
 
-        for (i in 0 until conversationsArray!!.length())
-            result.add(conversationsArray.getJSONObject(i).getJSONObject("conversation").getJSONObject("peer").getString("id"))
+            val result : MutableList<String> = mutableListOf()
 
-        return result
+            for (i in 0 until conversationsArray!!.length())
+                result.add(conversationsArray.getJSONObject(i).getJSONObject("conversation").getJSONObject("peer").getString("id"))
+
+            return result
+        }
+        else
+            return listOf()
     }
 
 }

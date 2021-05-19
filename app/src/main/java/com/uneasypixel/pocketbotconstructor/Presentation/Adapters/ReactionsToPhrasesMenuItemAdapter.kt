@@ -1,32 +1,26 @@
 package com.uneasypixel.pocketbotconstructor.Presentation.Adapters
 
-import android.content.res.ColorStateList
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.widget.ImageViewCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.uneasypixel.pocketbotconstructor.Presentation.DTO.BotDTO
+import com.uneasypixel.pocketbotconstructor.Domain.Entities.Phrase
 import com.uneasypixel.pocketbotconstructor.R
 import java.util.*
 
 
-class ListOfBotsItemAdapter(
-    val dataset: MutableList<BotDTO>,
+class ReactionsToPhrasesMenuItemAdapter(
+    val dataset: MutableList<Phrase>,
     private val clickListener: IRecyclerViewClickListener,
     private val dataListener: IRecyclerViewClickListener
-) : RecyclerView.Adapter<ListOfBotsItemAdapter.ItemViewHolder>(),
+) : RecyclerView.Adapter<ReactionsToPhrasesMenuItemAdapter.ItemViewHolder>(),
     ItemTouchHelperAdapter{
 
     class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
-        val textView: TextView = view.findViewById(R.id.list_of_bots_item_name)
-        val imageView: ImageView = view.findViewById(R.id.list_of_bots_item_bot_image)
-        val powerText: TextView = view.findViewById(R.id.list_of_bots_item_power_title)
-        val powerView: ImageView = view.findViewById(R.id.list_of_bots_item_power)
+        val textPhrase: TextView = view.findViewById(R.id.reactions_to_phrases_item_phrase)
+        val textResponse: TextView = view.findViewById(R.id.reactions_to_phrases_item_response)
 
         fun onClick(clickListener: IRecyclerViewClickListener) {
             view.setOnClickListener {
@@ -38,7 +32,7 @@ class ListOfBotsItemAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
 
         val adapterLayout = LayoutInflater.from(parent.context)
-            .inflate(R.layout.list_of_bots_item, parent, false)
+            .inflate(R.layout.reactions_to_phrases_item, parent, false)
 
         val itemViewHolder = ItemViewHolder(adapterLayout)
         itemViewHolder.onClick(clickListener)
@@ -48,25 +42,40 @@ class ListOfBotsItemAdapter(
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dataset[position]
-        holder.textView.text = item.name
-        holder.imageView.setImageResource(item.imageResourceId)
 
-        if (dataset[position].isEnabled) {
-            holder.powerText.text = "Включен"
-            ImageViewCompat.setImageTintList(holder.powerView, ColorStateList.valueOf(Color.parseColor("#B5FFA8")));
+        val limit = 8
+        var text = cutString(item.phrase, limit)
+        holder.textPhrase.text = text
 
+        text = cutString(item.response[0], limit)
+        holder.textResponse.text = text
+    }
+
+    private fun cutString(str : String?, limit : Int) : String {
+
+        var result : String = ""
+
+        if (str != null) {
+
+            if (str.length <= limit)
+                return str
+
+            var i = 0
+            for (ch in str) {
+                result += ch
+                ++i
+                if (i == limit)
+                    return "$result.."
+            }
         }
-        else  {
-            holder.powerText.text = "Выключен"
-            ImageViewCompat.setImageTintList(holder.powerView, ColorStateList.valueOf(Color.parseColor("#FF6382")));
 
-        }
+        return result
     }
 
     override fun getItemCount() = dataset.size
 
-    fun addItem(newBot : BotDTO) {
-        dataset.add(dataset.size, newBot)
+    fun addItem(newPhrase : Phrase) {
+        dataset.add(dataset.size, newPhrase)
         notifyItemInserted(dataset.size)
         dataListener.recyclerViewListClicked(dataset.size)
     }

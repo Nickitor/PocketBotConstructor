@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.uneasypixel.pocketbotconstructor.DependencyFactory
 import com.uneasypixel.pocketbotconstructor.Domain.Entities.Bot
 import com.uneasypixel.pocketbotconstructor.Domain.Entities.Server
+import com.uneasypixel.pocketbotconstructor.Presentation.Adapters.BotMenuItemAdapter
 import com.uneasypixel.pocketbotconstructor.Presentation.UI.BotMenuFragment
 import com.uneasypixel.pocketbotconstructor.Presentation.Views.BotMenuButton
 import com.uneasypixel.pocketbotconstructor.R
@@ -20,12 +21,14 @@ class BotMenuViewModel(
     private var _buttons: List<BotMenuButton>
     val buttons get() = _buttons
 
-    var listOfBots: MutableList<Bot> = mutableListOf()
-    var position: Int = 0
-    val bot get() = listOfBots[position]
+    private lateinit var _adapter: BotMenuItemAdapter
+    val adapter get() = _adapter
 
     private lateinit var dependencyFactory: DependencyFactory
     private lateinit var owner: BotMenuFragment
+
+    lateinit var botName : String
+    lateinit var bot : Bot
 
     init {
         _buttons = listOf(
@@ -45,17 +48,17 @@ class BotMenuViewModel(
 
     fun initial(
         DependencyFactory: DependencyFactory,
-        Owner: BotMenuFragment,
-        ListOfBots: MutableList<Bot>,
-        Position: Int
+        Owner: BotMenuFragment
     ) {
         dependencyFactory = DependencyFactory
         owner = Owner
 
-        listOfBots = ListOfBots
-        position = Position
+        bot = dependencyFactory.provideGetBotsUseCase().getBot(owner.requireContext(), botName)
 
-        println(listOfBots.size)
+        _adapter = BotMenuItemAdapter(
+            buttons,
+            owner
+        )
 
         bot.groupID = "193525063"
         bot.token =
@@ -122,7 +125,7 @@ class BotMenuViewModel(
         when (type) {
             // Входящее сообщение
             "message_new" -> {
-                val sendMessageToUserUseCase = dependencyFactory.provideSendMessageToUserUseCase()
+/*                val sendMessageToUserUseCase = dependencyFactory.provideSendMessageToUserUseCase()
 
                 val message = response.getJSONObject("message").getString("text")
 
@@ -136,7 +139,7 @@ class BotMenuViewModel(
                         fromId,
                         bot.token
                     )
-                }
+                }*/
             }
             // Новое исходящее сообщение
             "message_reply" -> {
@@ -294,7 +297,7 @@ class BotMenuViewModel(
         }
     }
 
-    fun saveBots() {
-        dependencyFactory.provideSaveBotsUseCase().saveBots(owner.requireContext(), listOfBots)
+    fun saveBot() {
+        dependencyFactory.provideSaveBotsUseCase().saveBot(owner.requireContext(), bot)
     }
 }

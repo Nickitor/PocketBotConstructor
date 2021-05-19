@@ -8,12 +8,10 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.uneasypixel.pocketbotconstructor.DependencyFactory
-import com.uneasypixel.pocketbotconstructor.Domain.Entities.Bot
-import com.uneasypixel.pocketbotconstructor.Presentation.Adapters.BotMenuItemAdapter
 import com.uneasypixel.pocketbotconstructor.Presentation.Adapters.IRecyclerViewClickListener
 import com.uneasypixel.pocketbotconstructor.Presentation.ViewModels.BotMenuViewModel
 import com.uneasypixel.pocketbotconstructor.ProgApplication
@@ -27,7 +25,7 @@ class BotMenuFragment : Fragment(), IRecyclerViewClickListener {
     private var _binding: FragmentBotMenuBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: BotMenuViewModel by viewModels()
+    val viewModel: BotMenuViewModel by activityViewModels()
     private lateinit var dependencyFactory: DependencyFactory
 
     // Создание фрагмента
@@ -36,19 +34,18 @@ class BotMenuFragment : Fragment(), IRecyclerViewClickListener {
 
         dependencyFactory = (requireActivity().application as ProgApplication).dependencyFactory
 
-        val listOfBots = arguments?.getParcelableArrayList<Bot>("BOTS_KEY") as MutableList<Bot>
-        val position = arguments?.getInt("POS_KEY")
+        val botName = arguments?.getString("BOT_NAME_KEY")
+        if (botName != null)
+            viewModel.botName = botName
 
         viewModel.initial(
             dependencyFactory,
-            this,
-            listOfBots,
-            position!!
+            this
         )
         val callback: OnBackPressedCallback =
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
-                    viewModel.saveBots()
+                    viewModel.saveBot()
                     findNavController().navigate(R.id.action_botMenuFragment_to_listOfBotsFragment)
                 }
             }
@@ -64,13 +61,10 @@ class BotMenuFragment : Fragment(), IRecyclerViewClickListener {
         _binding = FragmentBotMenuBinding.inflate(inflater, container, false)
 
         val recyclerView = binding.botMenuRecyclerView
-        recyclerView.adapter = BotMenuItemAdapter(viewModel.buttons, this)
-
+        recyclerView.adapter = viewModel.adapter
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = GridLayoutManager(context, 3)
-
         binding.botMenuTitle.text = viewModel.bot.name
-
         updateStartServerButton()
 
         return binding.root
@@ -116,16 +110,18 @@ class BotMenuFragment : Fragment(), IRecyclerViewClickListener {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-        viewModel.saveBots()
+        viewModel.saveBot()
     }
 
-    // Переходы к фрагментам по кнопка меню
+    // Переходы к фрагментам по кнопкам меню
     override fun recyclerViewListClicked(position: Int) {
 
+        viewModel.saveBot()
+
         val bundle = bundleOf(
-            "BOTS_KEY" to viewModel.listOfBots,
-            "POS_KEY" to position
+            "BOT_NAME_KEY" to viewModel.botName
         )
+
         when (position) {
             0 -> findNavController().navigate(
                 R.id.action_botMenuFragment_to_createMenuMenuFragment,
