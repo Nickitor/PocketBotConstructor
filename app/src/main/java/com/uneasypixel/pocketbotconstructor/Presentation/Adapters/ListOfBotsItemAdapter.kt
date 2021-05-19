@@ -16,8 +16,7 @@ import java.util.*
 
 class ListOfBotsItemAdapter(
     val dataset: MutableList<BotDTO>,
-    private val clickListener: IRecyclerViewClickListener,
-    private val dataListener: IRecyclerViewClickListener
+    private val clickListener: IRecyclerViewClickListener
 ) : RecyclerView.Adapter<ListOfBotsItemAdapter.ItemViewHolder>(),
     ItemTouchHelperAdapter{
 
@@ -68,13 +67,13 @@ class ListOfBotsItemAdapter(
     fun addItem(newBot : BotDTO) {
         dataset.add(dataset.size, newBot)
         notifyItemInserted(dataset.size)
-        dataListener.recyclerViewListClicked(dataset.size)
+        clickListener.recyclerViewListChanged()
     }
 
     override fun onItemDismiss(position: Int) {
         dataset.removeAt(position)
         notifyItemRemoved(position)
-        dataListener.recyclerViewListClicked(position)
+        clickListener.recyclerViewListChanged()
     }
 
     override fun onItemMove(fromPosition: Int, toPosition: Int): Boolean {
@@ -88,7 +87,7 @@ class ListOfBotsItemAdapter(
             }
         }
         notifyItemMoved(fromPosition, toPosition)
-        dataListener.recyclerViewListClicked(fromPosition)
+        clickListener.recyclerViewListChanged()
         return true
     }
 }

@@ -12,8 +12,7 @@ import java.util.*
 
 class ReactionsToPhrasesMenuItemAdapter(
     val dataset: MutableList<Phrase>,
-    private val clickListener: IRecyclerViewClickListener,
-    private val dataListener: IRecyclerViewClickListener
+    private val clickListener: IRecyclerViewClickListener
 ) : RecyclerView.Adapter<ReactionsToPhrasesMenuItemAdapter.ItemViewHolder>(),
     ItemTouchHelperAdapter{
 
@@ -77,13 +76,13 @@ class ReactionsToPhrasesMenuItemAdapter(
     fun addItem(newPhrase : Phrase) {
         dataset.add(dataset.size, newPhrase)
         notifyItemInserted(dataset.size)
-        dataListener.recyclerViewListClicked(dataset.size)
+        clickListener.recyclerViewListChanged()
     }
 
     override fun onItemDismiss(position: Int) {
         dataset.removeAt(position)
         notifyItemRemoved(position)
-        dataListener.recyclerViewListClicked(position)
+        clickListener.recyclerViewListChanged()
     }
 
     override fun onItemMove(fromPosition: Int, toPosition: Int): Boolean {
@@ -97,7 +96,7 @@ class ReactionsToPhrasesMenuItemAdapter(
             }
         }
         notifyItemMoved(fromPosition, toPosition)
-        dataListener.recyclerViewListClicked(fromPosition)
+        clickListener.recyclerViewListChanged()
         return true
     }
 }
