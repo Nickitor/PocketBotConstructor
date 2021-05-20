@@ -1,18 +1,19 @@
 package com.uneasypixel.pocketbotconstructor.Presentation.ViewModels
 
 import androidx.lifecycle.ViewModel
+import com.uneasypixel.pocketbotconstructor.Domain.Entities.Bot
 import com.uneasypixel.pocketbotconstructor.Presentation.Views.BotMenuButton
 import com.uneasypixel.pocketbotconstructor.R
 
 class BotMenuViewModel : ViewModel() {
 
-    var botName: String? = null
+    var bot: Bot? = null
 
     var buttons: List<BotMenuButton> = listOf(
         BotMenuButton("Создание меню", R.drawable.ic_menu),
         BotMenuButton("Наборы ответов", R.drawable.ic_set_of_phrases),
 
-        BotMenuButton("Реакции", R.drawable.ic_reactions_to_phrases),
+        BotMenuButton("Реакции", R.drawable.ic_dialog_script),
         BotMenuButton("События", R.drawable.ic_reactions_to_events),
 
         BotMenuButton("Диалоги", R.drawable.ic_dialogues),

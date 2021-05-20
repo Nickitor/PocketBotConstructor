@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -15,6 +16,7 @@ import com.uneasypixel.pocketbotconstructor.Presentation.Adapters.BotMenuItemAda
 import com.uneasypixel.pocketbotconstructor.Presentation.Adapters.IRecyclerViewClickListener
 import com.uneasypixel.pocketbotconstructor.Presentation.ViewModels.BotMenuViewModel
 import com.uneasypixel.pocketbotconstructor.Presentation.ViewModels.ListOfBotsViewModel
+import com.uneasypixel.pocketbotconstructor.Presentation.ViewModels.ServerViewModel
 import com.uneasypixel.pocketbotconstructor.ProgApplication
 import com.uneasypixel.pocketbotconstructor.R
 import com.uneasypixel.pocketbotconstructor.databinding.FragmentBotMenuBinding
@@ -28,6 +30,7 @@ class BotMenuFragment : Fragment(), IRecyclerViewClickListener {
     private lateinit var dependencyFactory: DependencyFactory
     private val viewModel: BotMenuViewModel by activityViewModels()
     private val listOfBotsViewModel: ListOfBotsViewModel by activityViewModels()
+    private val server: ServerViewModel by activityViewModels()
 
     private lateinit var adapter: BotMenuItemAdapter
 
@@ -35,7 +38,7 @@ class BotMenuFragment : Fragment(), IRecyclerViewClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         dependencyFactory = (requireActivity().application as ProgApplication).dependencyFactory
-        getBotName()
+        setBotToViewModel()
     }
 
     // Создание макета фрагмента
@@ -53,20 +56,49 @@ class BotMenuFragment : Fragment(), IRecyclerViewClickListener {
         recyclerView.adapter = adapter
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = GridLayoutManager(context, 3)
-        binding.botMenuTitle.text = viewModel.botName
+        binding.botMenuTitle.text = viewModel.bot!!.name
         setOnBackPressedCallback()
+        updateAddButton()
         return binding.root
     }
 
     // Инициализация компонентов макета фрагмента
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.botMenuButtonStart.setOnClickListener {
+            if (!viewModel.bot!!.isEnabled) {
+                server.start(viewModel.bot!!)
+                binding.botMenuButtonStart.text = "Выключить"
+                Toast.makeText(requireContext(), "Чат-бот включен!", Toast.LENGTH_SHORT)
+                    .show()
+            }
+            else {
+                binding.botMenuButtonStart.text = "Включить"
+                server.stop(viewModel.bot!!)
+                Toast.makeText(requireContext(), "Чат-бот выключен!", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
     }
 
 
-    fun getBotName() {
+    override fun onStop() {
+        super.onStop()
+        listOfBotsViewModel.saveBots(dependencyFactory, this.requireContext())
+    }
+
+
+    fun setBotToViewModel() {
         val botName = arguments?.getString("BOT_NAME_KEY")
         if (botName != null)
-            viewModel.botName = botName
+            for (bot in listOfBotsViewModel.listOfBots)
+                if (bot.name == botName)
+                    viewModel.bot = bot
+    }
+
+
+    fun updateAddButton(){
+        if (viewModel.bot!!.isEnabled)
+            binding.botMenuButtonStart.text = "Выключить"
     }
 
 
@@ -85,7 +117,7 @@ class BotMenuFragment : Fragment(), IRecyclerViewClickListener {
     override fun recyclerViewListClicked(position: Int) {
 
         val bundle = bundleOf(
-            "BOT_NAME_KEY" to viewModel.botName
+            "BOT_NAME_KEY" to viewModel.bot!!.name
         )
 
         when (position) {

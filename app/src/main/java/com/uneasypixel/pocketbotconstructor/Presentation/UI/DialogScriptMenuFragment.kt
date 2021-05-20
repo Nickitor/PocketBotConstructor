@@ -11,16 +11,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.uneasypixel.pocketbotconstructor.DependencyFactory
 import com.uneasypixel.pocketbotconstructor.Domain.Entities.DialogScript
+import com.uneasypixel.pocketbotconstructor.Presentation.Adapters.DialogScriptMenuItemAdapter
 import com.uneasypixel.pocketbotconstructor.Presentation.Adapters.IRecyclerViewClickListener
-import com.uneasypixel.pocketbotconstructor.Presentation.Adapters.ReactionsToPhrasesMenuItemAdapter
 import com.uneasypixel.pocketbotconstructor.Presentation.Adapters.SimpleItemTouchHelperCallback
 import com.uneasypixel.pocketbotconstructor.Presentation.ViewModels.ListOfBotsViewModel
 import com.uneasypixel.pocketbotconstructor.Presentation.ViewModels.ReactionsToPhrasesViewModel
 import com.uneasypixel.pocketbotconstructor.ProgApplication
 import com.uneasypixel.pocketbotconstructor.R
 import com.uneasypixel.pocketbotconstructor.databinding.FragmentDialogScriptMenuBinding
-import com.uneasypixel.pocketbotconstructor.databinding.FragmentDialoguesMenuBinding
-import java.util.*
 
 
 class DialogScriptMenuFragment : Fragment(), IRecyclerViewClickListener {
@@ -32,7 +30,7 @@ class DialogScriptMenuFragment : Fragment(), IRecyclerViewClickListener {
     private val viewModel: ReactionsToPhrasesViewModel by activityViewModels()
     private val listOfBotsViewModel: ListOfBotsViewModel by activityViewModels()
 
-    private lateinit var adapter: ReactionsToPhrasesMenuItemAdapter
+    private lateinit var adapter: DialogScriptMenuItemAdapter
     private lateinit var callback: ItemTouchHelper.Callback
     private lateinit var touchHelper: ItemTouchHelper
 
@@ -40,8 +38,7 @@ class DialogScriptMenuFragment : Fragment(), IRecyclerViewClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         dependencyFactory = (requireActivity().application as ProgApplication).dependencyFactory
-        getBot(arguments?.getString("BOT_NAME_KEY"))
-        setOnBackPressedCallback()
+        setBotToViewModel(arguments?.getString("BOT_NAME_KEY"))
     }
 
 
@@ -52,14 +49,9 @@ class DialogScriptMenuFragment : Fragment(), IRecyclerViewClickListener {
     ): View {
         binding = FragmentDialogScriptMenuBinding.inflate(inflater, container, false)
 
-        val listOfPhrases : MutableList<DialogScript> = mutableListOf()
-        for (phrase in listOfBotsViewModel.listOfBots[viewModel.botPosition!!].reactionsToPhrases) {
-            listOfPhrases.add(DialogScript(phrase.phrase))
-        }
-
         val recyclerView = binding.reactionsToPhrasesMenuRecyclerView
-        adapter = ReactionsToPhrasesMenuItemAdapter(
-            listOfPhrases,
+        adapter = DialogScriptMenuItemAdapter(
+            viewModel.bot!!.reactionsToPhrases,
             this
         )
         callback = SimpleItemTouchHelperCallback(adapter)
@@ -69,7 +61,7 @@ class DialogScriptMenuFragment : Fragment(), IRecyclerViewClickListener {
         recyclerView.setHasFixedSize(true)
 
         checkNewPhrase()
-
+        setOnBackPressedCallback()
         return binding.root
     }
 
@@ -99,11 +91,11 @@ class DialogScriptMenuFragment : Fragment(), IRecyclerViewClickListener {
     }
 
 
-    fun getBot(botName : String?) {
+    fun setBotToViewModel(botName : String?) {
         if (botName != null) {
-            for ((index, bot) in listOfBotsViewModel.listOfBotsDTO.withIndex()) {
+            for (bot in listOfBotsViewModel.listOfBots) {
                 if (bot.name == botName) {
-                    viewModel.botPosition = index
+                    viewModel.bot = bot
                     return
                 }
             }
@@ -132,15 +124,19 @@ class DialogScriptMenuFragment : Fragment(), IRecyclerViewClickListener {
     }
 
     override fun recyclerViewListAdd(position: Int) {
-        val phrase = adapter.dataset[position]
-        listOfBotsViewModel.listOfBots[viewModel.botPosition!!].reactionsToPhrases.add(position, phrase)
+/*        val phrase = adapter.dataset[position]
+        listOfBotsViewModel.listOfBots[viewModel.botPosition!!].reactionsToPhrases.add(position, phrase)*/
     }
 
     override fun recyclerViewListDelete(position: Int) {
+/*
         listOfBotsViewModel.listOfBots[viewModel.botPosition!!].reactionsToPhrases.removeAt(position)
+*/
     }
 
     override fun recyclerViewListMove(fromPosition: Int, toPosition: Int) {
+/*
         Collections.swap(listOfBotsViewModel.listOfBots[viewModel.botPosition!!].reactionsToPhrases, fromPosition, toPosition)
+*/
     }
 }

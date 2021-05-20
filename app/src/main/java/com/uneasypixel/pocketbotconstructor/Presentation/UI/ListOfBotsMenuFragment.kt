@@ -17,7 +17,6 @@ import com.uneasypixel.pocketbotconstructor.Presentation.Adapters.ListOfBotsItem
 import com.uneasypixel.pocketbotconstructor.Presentation.Adapters.SimpleItemTouchHelperCallback
 import com.uneasypixel.pocketbotconstructor.Presentation.DTO.BotDTO
 import com.uneasypixel.pocketbotconstructor.Presentation.ViewModels.ListOfBotsViewModel
-import com.uneasypixel.pocketbotconstructor.Presentation.ViewModels.ServerViewModel
 import com.uneasypixel.pocketbotconstructor.ProgApplication
 import com.uneasypixel.pocketbotconstructor.R
 import com.uneasypixel.pocketbotconstructor.databinding.FragmentListOfBotsMenuBinding
@@ -30,7 +29,6 @@ class ListOfBotsMenuFragment : Fragment(), IRecyclerViewClickListener {
 
     private lateinit var dependencyFactory: DependencyFactory
     private val listOfBotsViewModel: ListOfBotsViewModel by activityViewModels()
-    private val server: ServerViewModel by activityViewModels()
 
     private lateinit var adapter: ListOfBotsItemAdapter
     private lateinit var callback: ItemTouchHelper.Callback
@@ -119,7 +117,11 @@ class ListOfBotsMenuFragment : Fragment(), IRecyclerViewClickListener {
     override fun recyclerViewListAdd(position: Int) {
         val botDTO = adapter.dataset[position].copy()
         listOfBotsViewModel.listOfBotsDTO.add(botDTO)
-        listOfBotsViewModel.listOfBots.add(Bot(botDTO.name, botDTO.imageResourceId))
+
+        val bot = Bot(botDTO.name, botDTO.imageResourceId)
+        bot.token = "88a1d21f807fe5a534ebd62721612411fe5e2fcdd6d15a65fb879b84754f91d60d25f68b0cc116b9c3f78"
+        bot.groupID = "193525063"
+        listOfBotsViewModel.listOfBots.add(bot)
     }
 
 

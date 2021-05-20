@@ -1,93 +1,122 @@
 package com.uneasypixel.pocketbotconstructor.Presentation.ViewModels
 
 import androidx.lifecycle.ViewModel
+import com.uneasypixel.pocketbotconstructor.DependencyFactory
+import com.uneasypixel.pocketbotconstructor.Domain.Entities.Bot
 import com.uneasypixel.pocketbotconstructor.Domain.Entities.Server
+import com.uneasypixel.pocketbotconstructor.Presentation.DTO.BotDTO
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import org.json.JSONArray
+import org.json.JSONObject
 
 class ServerViewModel() : ViewModel() {
 
-    private var server: Server = Server(waitTimeResponse = "25")
+    private lateinit var listOfBotsViewModel: ListOfBotsViewModel
+    private lateinit var dependencyFactory: DependencyFactory
 
-    private lateinit var name: String
-
-    fun start(BotName : String, viewModel: ListOfBotsViewModel) {
-        name = BotName
-        println(viewModel.listOfBots[0].name)
+    fun initServer(viewModel: ListOfBotsViewModel, DependencyFactory: DependencyFactory) {
+        listOfBotsViewModel = viewModel
+        dependencyFactory = DependencyFactory
     }
 
+    fun start(Bot: Bot) {
 
-   /* private fun startLongPollServer(botName : String) {
+        if (!Bot.isRunning) {
+            Bot.isEnabled = true
+            Bot.isRunning = true
 
+            val botDTO = getBotDTO(Bot)
+            if (botDTO != null) {
+                botDTO.isEnabled = true
+                botDTO.isRunning = true
+            }
 
-        GlobalScope.launch {
-
-            val getLongPollServerUseCase = dependencyFactory.provideGetLongPollServerUseCase()
-            val getResponseLongPollServerUseCase =
-                dependencyFactory.provideGetResponseLongPollServerUseCase()
-
-            val longPollServer = getLongPollServerUseCase.getLongPollServer(bot.groupID, bot.token)
-
-            server.key = longPollServer.key
-            server.server = longPollServer.server
-            server.ts = longPollServer.ts
-
-            while (bot.isEnabled) {
-
-                var response = getResponseLongPollServerUseCase.getResponseLongPollServer(server)
-                var updates: JSONArray
-
-                if (!response!!.has("failed")) {
-
-                    updates = response.getJSONArray("updates")
-
-                    if (updates.length() != 0) {
-
-                        server.ts = response.getString("ts")
-
-                        for (i in 0 until updates.length()) {
-                            response = updates.getJSONObject(i)
-                            responseToEvents(
-                                response.getJSONObject("object"),
-                                response.getString("type")
-                            )
-                        }
-                    }
-                }
+            GlobalScope.launch {
+                startLongPollServer(Bot)
             }
         }
     }
 
+    fun getBotDTO(Bot : Bot) : BotDTO? {
+        for (bot in listOfBotsViewModel.listOfBotsDTO)
+            if (bot.name == Bot.name)
+                return bot
 
-    private fun stopLongPollServer() {
-        bot.isEnabled = false
+        return null
     }
 
 
-*
-     * Реакции на события группы
-     * response - ответ Long Poll сервера
-     * type
+    fun stop(Bot: Bot) {
+        Bot.isEnabled = false
+        Bot.isRunning = false
+
+        val botDTO = getBotDTO(Bot)
+        if (botDTO != null) {
+            botDTO.isEnabled = false
+            botDTO.isRunning = false
+        }
+    }
+
+    private suspend fun startLongPollServer(Bot: Bot) {
+
+        val server: Server = Server(waitTimeResponse = "40")
+
+        val longPollServer = dependencyFactory.provideGetLongPollServerUseCase()
+            .getLongPollServer(Bot.groupID, Bot.token)
+
+        server.key = longPollServer.key
+        server.server = longPollServer.server
+        server.ts = longPollServer.ts
+
+        val getResponseLongPollServerUseCase = dependencyFactory.provideGetResponseLongPollServerUseCase()
+
+        while (Bot.isEnabled) {
+
+            var response = getResponseLongPollServerUseCase.getResponseLongPollServer(server)
+            var updates: JSONArray
+
+            if (!response!!.has("failed")) {
+
+                updates = response.getJSONArray("updates")
+
+                if (updates.length() != 0) {
+
+                    server.ts = response.getString("ts")
+
+                    for (i in 0 until updates.length()) {
+                        response = updates.getJSONObject(i)
+                        responseToEvents(
+                            Bot,
+                            response.getJSONObject("object"),
+                            response.getString("type")
+                        )
+                    }
+                }
+            }
+
+            if (getBotDTO(Bot) == null)
+                Bot.isEnabled = false
+        }
+    }
 
 
-    private suspend fun responseToEvents(response: JSONObject, type: String?) {
+    private suspend fun responseToEvents(Bot : Bot, response: JSONObject, type: String?) {
         when (type) {
             // Входящее сообщение
             "message_new" -> {
-
                 val sendMessageToUserUseCase = dependencyFactory.provideSendMessageToUserUseCase()
                 val message = response.getJSONObject("message").getString("text")
-
-                for (phrase in bot.reactionsToPhrases)
-                {
-                    if (message == phrase.phrase)
-                    {
+                for (phrase in Bot.reactionsToPhrases) {
+                    if (message == phrase.phrase) {
                         val fromId = response.getJSONObject("message").getString("from_id")
-                        val answerList = bot.reactionsToPhrases
-                        val answer = phrase.response[(0 until answerList.size).random()]
-
+                        val answerList = phrase.response
+                        val ind = (0 until answerList.size).random()
+                        val answer = phrase.response[ind]
                         sendMessageToUserUseCase.sendMessageToUser(
                             answer,
                             fromId,
-                            bot.token
+                            Bot.token
                         )
                     }
                 }
@@ -246,5 +275,5 @@ class ServerViewModel() : ViewModel() {
             "donut_money_withdraw_error" -> {
             }
         }
-    }*/
+    }
 }

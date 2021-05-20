@@ -10,10 +10,10 @@ import com.uneasypixel.pocketbotconstructor.R
 import java.util.*
 
 
-class ReactionsToPhrasesMenuItemAdapter(
+class DialogScriptMenuItemAdapter(
     val dataset: MutableList<DialogScript>,
     private val clickListener: IRecyclerViewClickListener
-) : RecyclerView.Adapter<ReactionsToPhrasesMenuItemAdapter.ItemViewHolder>(),
+) : RecyclerView.Adapter<DialogScriptMenuItemAdapter.ItemViewHolder>(),
     ItemTouchHelperAdapter{
 
     class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {

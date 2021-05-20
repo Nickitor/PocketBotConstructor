@@ -5,5 +5,5 @@ import com.uneasypixel.pocketbotconstructor.Domain.Entities.Bot
 
 class ReactionsToPhrasesViewModel() : ViewModel() {
 
-    var botPosition: Int? = null
+    var bot: Bot? = null
 }

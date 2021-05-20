@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.uneasypixel.pocketbotconstructor.Presentation.ViewModels.ListOfBotsViewModel
+import com.uneasypixel.pocketbotconstructor.Presentation.ViewModels.ServerViewModel
 import com.uneasypixel.pocketbotconstructor.ProgApplication
 import com.uneasypixel.pocketbotconstructor.R
 import com.uneasypixel.pocketbotconstructor.databinding.FragmentSplashScreenBinding
@@ -21,6 +22,7 @@ class SplashScreenFragment : Fragment() {
     private lateinit var binding: FragmentSplashScreenBinding
 
     private val listOfBotsViewModel: ListOfBotsViewModel by activityViewModels()
+    private val server: ServerViewModel by activityViewModels()
 
 
     // Создание фрагмента
@@ -53,12 +55,14 @@ class SplashScreenFragment : Fragment() {
 
             listOfBotsViewModel.getBots(dependencyFactory, this@SplashScreenFragment.requireContext())
 
-
             for (bot in listOfBotsViewModel.listOfBotsDTO)
                 bot.isRunning = false
 
             for (bot in listOfBotsViewModel.listOfBots)
                 bot.isRunning = false
+
+            server.initServer(listOfBotsViewModel, dependencyFactory)
+            startEnabledBots()
 
             if (listOfBotsViewModel.listOfBotsDTO.isEmpty())
                 findNavController().navigate(R.id.action_splashScreenFragment_to_firstStartStepOneFragment)
@@ -66,6 +70,14 @@ class SplashScreenFragment : Fragment() {
                 findNavController().navigate(R.id.action_splashScreenFragment_to_listOfBotsFragment)
 
         }, 500)
+    }
+
+
+    private fun startEnabledBots() {
+        for (bot in listOfBotsViewModel.listOfBots) {
+            if (bot.isEnabled)
+                server.start(bot)
+        }
     }
 
 
