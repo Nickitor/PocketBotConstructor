@@ -65,15 +65,16 @@ class ListOfBotsItemAdapter(
     override fun getItemCount() = dataset.size
 
     fun addItem(newBot : BotDTO) {
-        dataset.add(dataset.size, newBot)
-        notifyItemInserted(dataset.size)
-        clickListener.recyclerViewListChanged()
+        val position = dataset.size
+        dataset.add(position, newBot)
+        notifyItemInserted(position)
+        clickListener.recyclerViewListAdd(position)
     }
 
     override fun onItemDismiss(position: Int) {
         dataset.removeAt(position)
         notifyItemRemoved(position)
-        clickListener.recyclerViewListChanged()
+        clickListener.recyclerViewListDelete(position)
     }
 
     override fun onItemMove(fromPosition: Int, toPosition: Int): Boolean {
@@ -87,7 +88,7 @@ class ListOfBotsItemAdapter(
             }
         }
         notifyItemMoved(fromPosition, toPosition)
-        clickListener.recyclerViewListChanged()
+        clickListener.recyclerViewListMove(fromPosition, toPosition)
         return true
     }
 }

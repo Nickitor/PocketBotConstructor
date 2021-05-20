@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/firstStartStepOneFragment">
+    app:startDestination="@id/splashScreenFragment">
     <fragment
         android:id="@+id/firstStartStepOneFragment"
         android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.FirstStartStepOneMenuFragment"
@@ -87,9 +87,9 @@
         tools:layout="@layout/fragment_set_of_phrases_menu" />
     <fragment
         android:id="@+id/reactionsToPhrasesMenuFragment"
-        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.ReactionsToPhrasesMenuFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.DialogScriptMenuFragment"
         android:label="fragment_reactions_to_phrases_menu"
-        tools:layout="@layout/fragment_reactions_to_phrases_menu" >
+        tools:layout="@layout/fragment_dialog_script_menu" >
         <action
             android:id="@+id/action_reactionsToPhrasesMenuFragment_to_botMenuFragment"
             app:destination="@id/botMenuFragment" />
@@ -128,11 +128,23 @@
     </fragment>
     <fragment
         android:id="@+id/addNewPhraseMenuFragment"
-        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.AddNewPhraseMenuFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.AddNewDialogScriptMenuFragment"
         android:label="fragment_add_new_phrase_menu"
-        tools:layout="@layout/fragment_add_new_phrase_menu" >
+        tools:layout="@layout/fragment_add_new_dialog_script_menu" >
         <action
             android:id="@+id/action_addNewPhraseMenuFragment_to_reactionsToPhrasesMenuFragment"
             app:destination="@id/reactionsToPhrasesMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.SplashScreenFragment"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/action_splashScreenFragment_to_firstStartStepOneFragment"
+            app:destination="@id/firstStartStepOneFragment" />
+        <action
+            android:id="@+id/action_splashScreenFragment_to_listOfBotsFragment"
+            app:destination="@id/listOfBotsFragment" />
     </fragment>
 </navigation>

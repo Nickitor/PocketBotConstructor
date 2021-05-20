@@ -9,7 +9,7 @@
     android:layout_marginTop="20dp"
     android:layout_marginRight="20dp"
     android:layout_marginBottom="20dp"
-    tools:context=".Presentation.UI.AddNewPhraseMenuFragment">
+    tools:context=".Presentation.UI.AddNewDialogScriptMenuFragment">
 
     <Button
         android:id="@+id/add_new_phrase_button_add"

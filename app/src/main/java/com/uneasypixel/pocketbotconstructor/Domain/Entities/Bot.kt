@@ -7,7 +7,7 @@ class Bot(
     override var isRunning: Boolean = false
 ) : BotDAO {
 
-    var reactionsToPhrases: MutableList<Phrase> = mutableListOf()
+    var reactionsToPhrases: MutableList<DialogScript> = mutableListOf()
     lateinit var groupID : String
     lateinit var token : String
 }

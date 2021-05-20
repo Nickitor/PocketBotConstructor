@@ -1,38 +1,21 @@
-/*
 package com.uneasypixel.pocketbotconstructor.Presentation.ViewModels
 
-import android.app.Application
-import android.content.Context
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.ViewModel
-import com.uneasypixel.pocketbotconstructor.DependencyFactory
-import com.uneasypixel.pocketbotconstructor.Domain.Entities.Bot
 import com.uneasypixel.pocketbotconstructor.Domain.Entities.Server
-import com.uneasypixel.pocketbotconstructor.Domain.UseCases.GetBotsUseCase
-import com.uneasypixel.pocketbotconstructor.Domain.UseCases.SaveBotsUseCase
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import org.json.JSONArray
-import org.json.JSONObject
 
 class ServerViewModel() : ViewModel() {
 
     private var server: Server = Server(waitTimeResponse = "25")
 
     private lateinit var name: String
-    private lateinit var getBots: GetBotsUseCase
-    private lateinit var saveBots: SaveBotsUseCase
 
-    fun start(BotName : String, getBotSUseCase: GetBotsUseCase, saveBotsUseCase : SaveBotsUseCase,
-    context: Context) {
+    fun start(BotName : String, viewModel: ListOfBotsViewModel) {
         name = BotName
-        getBots = getBotSUseCase
-        saveBots = saveBotsUseCase
+        println(viewModel.listOfBots[0].name)
     }
 
-    fun getBot() : Bot = getBots.getBot()
 
-    private fun startLongPollServer(botName : String) {
+   /* private fun startLongPollServer(botName : String) {
 
 
         GlobalScope.launch {
@@ -79,12 +62,11 @@ class ServerViewModel() : ViewModel() {
     }
 
 
-    */
-/**
+*
      * Реакции на события группы
      * response - ответ Long Poll сервера
      * type
-     *//*
+
 
     private suspend fun responseToEvents(response: JSONObject, type: String?) {
         when (type) {
@@ -264,5 +246,5 @@ class ServerViewModel() : ViewModel() {
             "donut_money_withdraw_error" -> {
             }
         }
-    }
-}*/
+    }*/
+}

@@ -5,13 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.uneasypixel.pocketbotconstructor.Domain.Entities.Phrase
+import com.uneasypixel.pocketbotconstructor.Domain.Entities.DialogScript
 import com.uneasypixel.pocketbotconstructor.R
 import java.util.*
 
 
 class ReactionsToPhrasesMenuItemAdapter(
-    val dataset: MutableList<Phrase>,
+    val dataset: MutableList<DialogScript>,
     private val clickListener: IRecyclerViewClickListener
 ) : RecyclerView.Adapter<ReactionsToPhrasesMenuItemAdapter.ItemViewHolder>(),
     ItemTouchHelperAdapter{
@@ -31,7 +31,7 @@ class ReactionsToPhrasesMenuItemAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
 
         val adapterLayout = LayoutInflater.from(parent.context)
-            .inflate(R.layout.reactions_to_phrases_item, parent, false)
+            .inflate(R.layout.reactions_to_dialog_script_item, parent, false)
 
         val itemViewHolder = ItemViewHolder(adapterLayout)
         itemViewHolder.onClick(clickListener)
@@ -73,16 +73,17 @@ class ReactionsToPhrasesMenuItemAdapter(
 
     override fun getItemCount() = dataset.size
 
-    fun addItem(newPhrase : Phrase) {
-        dataset.add(dataset.size, newPhrase)
-        notifyItemInserted(dataset.size)
-        clickListener.recyclerViewListChanged()
+    fun addItem(newPhrase : DialogScript) {
+        val position = dataset.size
+        dataset.add(position, newPhrase)
+        notifyItemInserted(position)
+        clickListener.recyclerViewListAdd(position)
     }
 
     override fun onItemDismiss(position: Int) {
         dataset.removeAt(position)
         notifyItemRemoved(position)
-        clickListener.recyclerViewListChanged()
+        clickListener.recyclerViewListDelete(position)
     }
 
     override fun onItemMove(fromPosition: Int, toPosition: Int): Boolean {
@@ -96,7 +97,7 @@ class ReactionsToPhrasesMenuItemAdapter(
             }
         }
         notifyItemMoved(fromPosition, toPosition)
-        clickListener.recyclerViewListChanged()
+        clickListener.recyclerViewListMove(fromPosition, toPosition)
         return true
     }
 }

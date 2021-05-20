@@ -1,6 +1,6 @@
 package com.uneasypixel.pocketbotconstructor.Domain.DAO
 
-interface PhraseDAO {
+interface DialogScriptDAO {
     var phrase : String?
     var response : MutableList<String>
 }

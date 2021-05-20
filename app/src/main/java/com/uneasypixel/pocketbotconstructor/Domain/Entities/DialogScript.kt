@@ -2,9 +2,9 @@ package com.uneasypixel.pocketbotconstructor.Domain.Entities
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.uneasypixel.pocketbotconstructor.Domain.DAO.PhraseDAO
+import com.uneasypixel.pocketbotconstructor.Domain.DAO.DialogScriptDAO
 
-class Phrase(override var phrase: String?) : PhraseDAO, Parcelable {
+class DialogScript(override var phrase: String?) : DialogScriptDAO, Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()
     ) {
@@ -18,12 +18,12 @@ class Phrase(override var phrase: String?) : PhraseDAO, Parcelable {
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<Phrase> {
-        override fun createFromParcel(parcel: Parcel): Phrase {
-            return Phrase(parcel)
+    companion object CREATOR : Parcelable.Creator<DialogScript> {
+        override fun createFromParcel(parcel: Parcel): DialogScript {
+            return DialogScript(parcel)
         }
 
-        override fun newArray(size: Int): Array<Phrase?> {
+        override fun newArray(size: Int): Array<DialogScript?> {
             return arrayOfNulls(size)
         }
     }

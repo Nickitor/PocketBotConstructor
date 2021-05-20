@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.uneasypixel.pocketbotconstructor.DependencyFactory
@@ -15,9 +16,12 @@ import com.uneasypixel.pocketbotconstructor.Presentation.Adapters.IRecyclerViewC
 import com.uneasypixel.pocketbotconstructor.Presentation.Adapters.ListOfBotsItemAdapter
 import com.uneasypixel.pocketbotconstructor.Presentation.Adapters.SimpleItemTouchHelperCallback
 import com.uneasypixel.pocketbotconstructor.Presentation.DTO.BotDTO
+import com.uneasypixel.pocketbotconstructor.Presentation.ViewModels.ListOfBotsViewModel
+import com.uneasypixel.pocketbotconstructor.Presentation.ViewModels.ServerViewModel
 import com.uneasypixel.pocketbotconstructor.ProgApplication
 import com.uneasypixel.pocketbotconstructor.R
 import com.uneasypixel.pocketbotconstructor.databinding.FragmentListOfBotsMenuBinding
+import java.util.*
 
 
 class ListOfBotsMenuFragment : Fragment(), IRecyclerViewClickListener {
@@ -25,6 +29,8 @@ class ListOfBotsMenuFragment : Fragment(), IRecyclerViewClickListener {
     private lateinit var binding: FragmentListOfBotsMenuBinding
 
     private lateinit var dependencyFactory: DependencyFactory
+    private val listOfBotsViewModel: ListOfBotsViewModel by activityViewModels()
+    private val server: ServerViewModel by activityViewModels()
 
     private lateinit var adapter: ListOfBotsItemAdapter
     private lateinit var callback: ItemTouchHelper.Callback
@@ -33,7 +39,6 @@ class ListOfBotsMenuFragment : Fragment(), IRecyclerViewClickListener {
     // Создание фрагмента
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         dependencyFactory = (requireActivity().application as ProgApplication).dependencyFactory
     }
 
@@ -45,9 +50,14 @@ class ListOfBotsMenuFragment : Fragment(), IRecyclerViewClickListener {
     ): View {
         binding = FragmentListOfBotsMenuBinding.inflate(inflater, container, false)
 
+        val listOfBotsDTO : MutableList<BotDTO> = mutableListOf()
+        for (botDTO in listOfBotsViewModel.listOfBotsDTO)
+            listOfBotsDTO.add(botDTO.copy())
+
+        listOfBotsViewModel.listOfBotsDTO
         val recyclerView = binding.listOfBotsRecyclerView
         adapter = ListOfBotsItemAdapter(
-            getBotsDTO(),
+            listOfBotsDTO,
             this
         )
         callback = SimpleItemTouchHelperCallback(adapter)
@@ -58,7 +68,6 @@ class ListOfBotsMenuFragment : Fragment(), IRecyclerViewClickListener {
 
         checkNewBot()
         setOnBackPressedCallback()
-
         return binding.root
     }
 
@@ -71,6 +80,12 @@ class ListOfBotsMenuFragment : Fragment(), IRecyclerViewClickListener {
     }
 
 
+    override fun onStop() {
+        super.onStop()
+        listOfBotsViewModel.saveBots(dependencyFactory, this.requireContext())
+    }
+
+
     private fun setOnBackPressedCallback() {
         val callback: OnBackPressedCallback =
             object : OnBackPressedCallback(true) {
@@ -78,23 +93,7 @@ class ListOfBotsMenuFragment : Fragment(), IRecyclerViewClickListener {
 
                 }
             }
-        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
-    }
-
-
-    private fun getBotsDTO(): MutableList<BotDTO> =
-        dependencyFactory.provideGetBotsUseCase().getBots(this.requireContext())
-
-
-    private fun saveBotsDTO() {
-        dependencyFactory.provideSaveBotsUseCase().saveBots(this.requireContext(), adapter.dataset)
-    }
-
-
-    private fun createBot(bot: BotDTO) {
-        saveBotsDTO()
-        dependencyFactory.provideSaveBotsUseCase()
-            .saveBot(this.requireContext(), Bot(bot.name, bot.imageResourceId))
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
     }
 
 
@@ -102,25 +101,37 @@ class ListOfBotsMenuFragment : Fragment(), IRecyclerViewClickListener {
         val newBotName = arguments?.getString("NEW_BOT_NAME_KEY")
         val newBotImage = arguments?.getInt("NEW_BOT_IMAGE_KEY")
         if (newBotName != null)
-            addBot(BotDTO(newBotName, newBotImage!!))
+            addBotToAdapter(BotDTO(newBotName, newBotImage!!))
     }
 
 
-    private fun addBot(newBot: BotDTO) {
-        adapter.addItem(newBot)
-        createBot(newBot)
+    private fun addBotToAdapter(newBotDTO: BotDTO) {
+        adapter.addItem(newBotDTO)
     }
 
 
     override fun recyclerViewListClicked(position: Int) {
-
         val bundle = bundleOf("BOT_NAME_KEY" to adapter.dataset[position].name)
         findNavController().navigate(R.id.action_listOfBotsFragment_to_botMenuFragment, bundle)
     }
 
 
-    override fun recyclerViewListChanged() {
-        saveBotsDTO()
+    override fun recyclerViewListAdd(position: Int) {
+        val botDTO = adapter.dataset[position].copy()
+        listOfBotsViewModel.listOfBotsDTO.add(botDTO)
+        listOfBotsViewModel.listOfBots.add(Bot(botDTO.name, botDTO.imageResourceId))
+    }
+
+
+    override fun recyclerViewListDelete(position: Int) {
+        listOfBotsViewModel.listOfBotsDTO.removeAt(position)
+        listOfBotsViewModel.listOfBots.removeAt(position)
+    }
+
+
+    override fun recyclerViewListMove(fromPosition: Int, toPosition: Int) {
+        Collections.swap(listOfBotsViewModel.listOfBotsDTO, fromPosition, toPosition)
+        Collections.swap(listOfBotsViewModel.listOfBots, fromPosition, toPosition)
     }
 
 

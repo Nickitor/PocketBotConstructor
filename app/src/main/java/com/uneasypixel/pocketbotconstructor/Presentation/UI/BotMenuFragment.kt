@@ -14,6 +14,7 @@ import com.uneasypixel.pocketbotconstructor.DependencyFactory
 import com.uneasypixel.pocketbotconstructor.Presentation.Adapters.BotMenuItemAdapter
 import com.uneasypixel.pocketbotconstructor.Presentation.Adapters.IRecyclerViewClickListener
 import com.uneasypixel.pocketbotconstructor.Presentation.ViewModels.BotMenuViewModel
+import com.uneasypixel.pocketbotconstructor.Presentation.ViewModels.ListOfBotsViewModel
 import com.uneasypixel.pocketbotconstructor.ProgApplication
 import com.uneasypixel.pocketbotconstructor.R
 import com.uneasypixel.pocketbotconstructor.databinding.FragmentBotMenuBinding
@@ -26,17 +27,16 @@ class BotMenuFragment : Fragment(), IRecyclerViewClickListener {
 
     private lateinit var dependencyFactory: DependencyFactory
     private val viewModel: BotMenuViewModel by activityViewModels()
+    private val listOfBotsViewModel: ListOfBotsViewModel by activityViewModels()
 
     private lateinit var adapter: BotMenuItemAdapter
 
     // Создание фрагмента
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         dependencyFactory = (requireActivity().application as ProgApplication).dependencyFactory
         getBotName()
     }
-
 
     // Создание макета фрагмента
     override fun onCreateView(
@@ -54,15 +54,12 @@ class BotMenuFragment : Fragment(), IRecyclerViewClickListener {
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = GridLayoutManager(context, 3)
         binding.botMenuTitle.text = viewModel.botName
-
         setOnBackPressedCallback()
-
         return binding.root
     }
 
     // Инициализация компонентов макета фрагмента
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
     }
 
 
@@ -80,7 +77,7 @@ class BotMenuFragment : Fragment(), IRecyclerViewClickListener {
                     findNavController().navigate(R.id.action_botMenuFragment_to_listOfBotsFragment)
                 }
             }
-        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
     }
 
 
@@ -127,9 +124,11 @@ class BotMenuFragment : Fragment(), IRecyclerViewClickListener {
         }
     }
 
+    override fun recyclerViewListAdd(position: Int) {}
 
-    override fun recyclerViewListChanged() {}
+    override fun recyclerViewListDelete(position: Int) {}
 
+    override fun recyclerViewListMove(fromPosition: Int, toPosition: Int) {}
 
     // Удаление компнентов внутри фрагмента
     override fun onDestroyView() {

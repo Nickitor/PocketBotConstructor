@@ -9,7 +9,7 @@
     android:layout_marginTop="20dp"
     android:layout_marginRight="20dp"
     android:layout_marginBottom="20dp"
-    tools:context=".Presentation.UI.ReactionsToPhrasesMenuFragment">
+    tools:context=".Presentation.UI.DialogScriptMenuFragment">
 
     <TextView
         android:id="@+id/reactions_to_phrases_menu_title"
@@ -57,7 +57,7 @@
         app:layout_constraintTop_toBottomOf="@+id/reactions_to_phrases_menu_subtitle"
         app:layout_constraintVertical_bias="0.0"
         tools:itemCount="10"
-        tools:listitem="@layout/reactions_to_phrases_item" />
+        tools:listitem="@layout/reactions_to_dialog_script_item" />
 
     <Button
         android:id="@+id/reactions_to_phrases_menubutton_add"
