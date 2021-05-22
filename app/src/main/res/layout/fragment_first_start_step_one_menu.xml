@@ -1,106 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/first_start_step_one_constraint_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="20sp"
-    android:paddingTop="20sp"
-    android:paddingRight="20sp"
-    android:paddingBottom="20sp"
-    tools:context=".Presentation.UI.FirstStartStepOneMenuFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <Button
-        android:id="@+id/first_start_step_one_button_next"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="15dp"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"
-        android:text="@string/next_step"
-        android:textSize="22sp"
-        android:translationZ="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/first_start_step_one_constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="20sp"
+        android:paddingTop="20sp"
+        android:paddingRight="20sp"
+        android:paddingBottom="20sp"
+        tools:context=".presentation.ui.FirstStartStepOneMenuFragment">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/first_start_step_one_materialCardView"
-        android:layout_width="wrap_content"
-        android:layout_height="150dp"
-        android:backgroundTint="@color/colorOnPrimary"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3">
-
-        <ImageView
-            android:id="@+id/first_start_step_one_ic_pocket_bot"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+        <Button
+            android:id="@+id/first_start_step_one_button_next"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="15dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:text="@string/next_step"
+            android:textSize="22sp"
+            android:translationZ="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/first_start_step_one_materialCardView"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:backgroundTint="@color/colorOnPrimary"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_android_robot_mobile_mood_emoji_happy_smile"
-            tools:ignore="ContentDescription" />
+            app:layout_constraintVertical_bias="0.3">
 
-    </com.google.android.material.card.MaterialCardView>
+            <ImageView
+                android:id="@+id/first_start_step_one_ic_pocket_bot"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_android_robot_mobile_mood_emoji_happy_smile"
+                tools:ignore="ContentDescription" />
 
-    <TextView
-        android:id="@+id/first_start_step_one_textView_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:fontFamily="sans-serif-light"
-        android:text="@string/welcome_title"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/first_start_step_one_materialCardView" />
+        </com.google.android.material.card.MaterialCardView>
 
-    <TextView
-        android:id="@+id/first_start_step_one_textView_subtitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-light"
-        android:text="@string/welcome_subtitle"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.375"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/first_start_step_one_textView_title" />
-
-    <RadioGroup
-        android:id="@+id/first_start_step_one_radioGroup"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:baselineAligned="false"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/first_start_step_one_button_next"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <RadioButton
-            android:id="@+id/first_start_step_one_radioButton_step_one"
-            android:layout_width="32dp"
+        <TextView
+            android:id="@+id/first_start_step_one_textView_title"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:checked="true" />
+            android:layout_marginTop="36dp"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/welcome_title"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/first_start_step_one_materialCardView" />
 
-        <RadioButton
-            android:id="@+id/first_start_step_one_radioButton_step_two"
-            android:layout_width="32dp"
-            android:layout_height="wrap_content" />
-    </RadioGroup>
+        <TextView
+            android:id="@+id/first_start_step_one_textView_subtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/welcome_subtitle"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.375"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/first_start_step_one_textView_title" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <RadioGroup
+            android:id="@+id/first_start_step_one_radioGroup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/first_start_step_one_button_next"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <RadioButton
+                android:id="@+id/first_start_step_one_radioButton_step_one"
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:checked="true" />
+
+            <RadioButton
+                android:id="@+id/first_start_step_one_radioButton_step_two"
+                android:layout_width="32dp"
+                android:layout_height="wrap_content" />
+        </RadioGroup>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

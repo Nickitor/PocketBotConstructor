@@ -35,7 +35,7 @@ android {
     }
 
     buildFeatures {
-        viewBinding = true
+        dataBinding = true
     }
 }
 
@@ -59,5 +59,9 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
+    // Библиотека для JSON файлов
     implementation 'com.google.code.gson:gson:2.8.6'
+
+    // Библиотека для скачивания изображений
+    implementation 'com.squareup.picasso:picasso:2.8'
 }

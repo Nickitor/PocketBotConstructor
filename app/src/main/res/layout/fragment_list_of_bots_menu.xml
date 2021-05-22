@@ -1,81 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/list_of_bots_constraint_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginLeft="20dp"
-    android:layout_marginTop="20dp"
-    android:layout_marginRight="20dp"
-    android:layout_marginBottom="20dp"
-    tools:context=".Presentation.UI.ListOfBotsMenuFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <Button
-        android:id="@+id/list_of_bots_button_add"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="15dp"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"
-        android:text="@string/list_of_bots_button_add"
-        android:textSize="22sp"
-        android:translationZ="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/list_of_bots_constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        tools:context=".presentation.ui.ListOfBotsMenuFragment">
 
-    <TextView
-        android:id="@+id/list_of_bots_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginRight="40dp"
-        android:fontFamily="sans-serif-light"
-        android:text="@string/list_of_bots_title"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/list_of_bots_button_add"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="15dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:text="@string/list_of_bots_button_add"
+            android:textSize="22sp"
+            android:translationZ="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list_of_bots_recycler_view"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="12dp"
-        android:scrollbars="vertical"
-        app:layoutManager="LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/list_of_bots_button_add"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/list_of_bots_subtitle"
-        app:layout_constraintVertical_bias="0.0"
-        tools:itemCount="10"
-        tools:listitem="@layout/list_of_bots_item" />
+        <TextView
+            android:id="@+id/list_of_bots_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="40dp"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/list_of_bots_title"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/list_of_bots_subtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:fontFamily="sans-serif-light"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
-        android:text="@string/list_of_bots_subtitle"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/list_of_bots_title"
-        app:layout_goneMarginRight="40dp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_of_bots_recycler_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="12dp"
+            android:scrollbars="vertical"
+            app:layoutManager="LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/list_of_bots_button_add"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/list_of_bots_subtitle"
+            app:layout_constraintVertical_bias="0.0"
+            tools:itemCount="10"
+            tools:listitem="@layout/list_of_bots_item" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/list_of_bots_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="sans-serif-light"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:text="@string/list_of_bots_subtitle"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/list_of_bots_title"
+            app:layout_goneMarginRight="40dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

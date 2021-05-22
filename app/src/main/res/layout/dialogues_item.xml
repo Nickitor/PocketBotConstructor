@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialogues_item_material_card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="40dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginRight="40dp"
+    android:layout_marginBottom="5dp"
+    android:backgroundTint="@color/colorPrimary"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="10dp">
+
+    <LinearLayout
+        android:id="@+id/dialogues_item_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/dialogues_item_material_card_view_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimary"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="10dp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/dialogues_item_material_card_view_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:backgroundTint="@color/colorPrimary"
+                app:cardCornerRadius="20dp">
+
+                <ImageView
+                    android:id="@+id/dialogues_item_user_image"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="@color/colorOnPrimary"
+                    android:importantForAccessibility="no"
+                    android:scaleType="centerCrop"
+                    tools:srcCompat="@tools:sample/avatars" />
+            </com.google.android.material.card.MaterialCardView>
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:id="@+id/dialogues_item_linear_layot_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/dialogues_item_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif-light"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="Имя"
+                tools:visibility="visible" />
+
+            <LinearLayout
+                android:id="@+id/dialogues_item_linear_layot_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/dialogues_item_online"
+                    android:layout_width="0dp"
+                    android:layout_height="10sp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@android:drawable/radiobutton_off_background"
+                    app:tint="@color/colorOff" />
+
+                <TextView
+                    android:id="@+id/dialogues_item_online_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2sp"
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Не в сети"
+                    android:textAlignment="center"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    tools:text="Не в сети"
+                    tools:visibility="visible" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

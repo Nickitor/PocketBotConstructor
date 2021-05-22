@@ -1,94 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/add_new_bot_menu_constraint_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginLeft="20dp"
-    android:layout_marginTop="20dp"
-    android:layout_marginRight="20dp"
-    android:layout_marginBottom="20dp"
-    tools:context=".Presentation.UI.AddNewBotMenuFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <Button
-        android:id="@+id/add_new_bot_button_add"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="15dp"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"
-        android:text="@string/list_of_bots_button_add"
-        android:textSize="22sp"
-        android:translationZ="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/add_new_bot_menu_constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        tools:context=".presentation.ui.AddNewBotMenuFragment">
 
-    <TextView
-        android:id="@+id/add_new_bot_menu_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:fontFamily="sans-serif-light"
-        android:text="@string/add_new_bot_menu_title"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/add_new_bot_button_add"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="15dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:text="@string/list_of_bots_button_add"
+            android:textSize="22sp"
+            android:translationZ="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/add_new_bot_menu_subtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:fontFamily="sans-serif-light"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
-        android:text="@string/add_new_bot_menu_subtitle"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_new_bot_menu_title"
-        app:layout_goneMarginRight="40dp" />
+        <TextView
+            android:id="@+id/add_new_bot_menu_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/add_new_bot_menu_title"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/add_new_bot_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_new_bot_name_title" />
+        <TextView
+            android:id="@+id/add_new_bot_menu_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="sans-serif-light"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:text="@string/add_new_bot_menu_subtitle"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_new_bot_menu_title"
+            app:layout_goneMarginRight="40dp" />
 
-    <TextView
-        android:id="@+id/add_new_bot_name_title"
-        android:layout_width="60dp"
-        android:layout_height="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/add_new_bot_name_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_new_bot_menu_subtitle" />
+        <EditText
+            android:id="@+id/add_new_bot_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_new_bot_name_title" />
 
-    <ImageView
-        android:id="@+id/add_new_bot_image"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:src="@drawable/ic_android_robot_mobile_mood_emoji"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_new_bot_name" />
+        <TextView
+            android:id="@+id/add_new_bot_name_title"
+            android:layout_width="60dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/add_new_bot_name_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_new_bot_menu_subtitle" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/add_new_bot_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/ic_android_robot_mobile_mood_emoji"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_new_bot_name" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

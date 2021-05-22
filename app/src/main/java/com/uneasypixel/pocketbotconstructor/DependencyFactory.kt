@@ -1,12 +1,12 @@
 package com.uneasypixel.pocketbotconstructor
 
-import com.uneasypixel.pocketbotconstructor.Data.API.*
-import com.uneasypixel.pocketbotconstructor.Data.Gateway.*
-import com.uneasypixel.pocketbotconstructor.Data.Interfaces.*
-import com.uneasypixel.pocketbotconstructor.Data.Storage.GetBotsStorageImp
-import com.uneasypixel.pocketbotconstructor.Data.Storage.SaveBotsStorageImp
-import com.uneasypixel.pocketbotconstructor.Domain.Interfaces.*
-import com.uneasypixel.pocketbotconstructor.Domain.UseCases.*
+import com.uneasypixel.pocketbotconstructor.data.api.*
+import com.uneasypixel.pocketbotconstructor.data.gateway.*
+import com.uneasypixel.pocketbotconstructor.data.interfaces.*
+import com.uneasypixel.pocketbotconstructor.data.storage.GetBotsStorageImp
+import com.uneasypixel.pocketbotconstructor.data.storage.SaveBotsStorageImp
+import com.uneasypixel.pocketbotconstructor.domain.interfaces.*
+import com.uneasypixel.pocketbotconstructor.domain.usecases.*
 
 class DependencyFactory {
 
@@ -45,7 +45,7 @@ class DependencyFactory {
         return SendRequestAPIImp()
     }
 
-    // GetConversationsUseCase
+    // SendMessageToConversations
     fun provideSendMessageToConversationsUseCase() : SendMessageToConversationsUseCase {
         return SendMessageToConversationsUseCase(
             provideGetConversationsUseCase(),

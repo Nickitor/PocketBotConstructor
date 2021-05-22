@@ -6,7 +6,7 @@
     app:startDestination="@id/splashScreenFragment">
     <fragment
         android:id="@+id/firstStartStepOneFragment"
-        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.FirstStartStepOneMenuFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.FirstStartStepOneMenuFragment"
         android:label="fragment_first_start_step_one"
         tools:layout="@layout/fragment_first_start_step_one_menu" >
         <action
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/firstStartStepTwoFragment"
-        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.FirstStartStepTwoMenuFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.FirstStartStepTwoMenuFragment"
         android:label="fragment_first_start_step_two"
         tools:layout="@layout/fragment_first_start_step_two_menu" >
         <action
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/listOfBotsFragment"
-        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.ListOfBotsMenuFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.ListOfBotsMenuFragment"
         android:label="fragment_list_of_bots"
         tools:layout="@layout/fragment_list_of_bots_menu" >
         <action
@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/botMenuFragment"
-        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.BotMenuFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.BotMenuFragment"
         android:label="BotMenuFragment"
         tools:layout="@layout/fragment_bot_menu" >
         <action
@@ -72,22 +72,22 @@
     </fragment>
     <fragment
         android:id="@+id/sendingMenuFragment"
-        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.SendingMenuFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.SendingMenuFragment"
         android:label="SendingMenuFragment"
         tools:layout="@layout/fragment_sending_menu"/>
     <fragment
         android:id="@+id/createMenuMenuFragment"
-        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.CreateMenuMenuFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.CreateMenuMenuFragment"
         android:label="CreateMenuMenuFragment"
         tools:layout="@layout/fragment_create_menu_menu"/>
     <fragment
         android:id="@+id/setOfPhrasesMenuFragment"
-        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.SetOfPhrasesMenuFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.SetOfPhrasesMenuFragment"
         android:label="fragment_set_of_phrases_menu"
         tools:layout="@layout/fragment_set_of_phrases_menu" />
     <fragment
         android:id="@+id/reactionsToPhrasesMenuFragment"
-        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.DialogScriptMenuFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.DialogScriptMenuFragment"
         android:label="fragment_reactions_to_phrases_menu"
         tools:layout="@layout/fragment_dialog_script_menu" >
         <action
@@ -99,27 +99,31 @@
     </fragment>
     <fragment
         android:id="@+id/reactionsToEventsMenuFragment"
-        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.ReactionsToEventsMenuFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.ReactionsToEventsMenuFragment"
         android:label="fragment_reactions_to_events_menu"
         tools:layout="@layout/fragment_reactions_to_events_menu" />
     <fragment
         android:id="@+id/dialoguesMenuFragment"
-        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.DialoguesMenuFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.DialoguesMenuFragment"
         android:label="fragment_dialogues_menu"
-        tools:layout="@layout/fragment_dialogues_menu" />
+        tools:layout="@layout/fragment_dialogues_menu" >
+        <action
+            android:id="@+id/action_dialoguesMenuFragment_to_botMenuFragment"
+            app:destination="@id/botMenuFragment" />
+    </fragment>
     <fragment
         android:id="@+id/statisticsMenuFragment"
-        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.StatisticsMenuFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.StatisticsMenuFragment"
         android:label="fragment_statistics_menu"
         tools:layout="@layout/fragment_statistics_menu" />
     <fragment
         android:id="@+id/variablesMenuFragment"
-        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.VariablesMenuFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.VariablesMenuFragment"
         android:label="fragment_variables_menu"
         tools:layout="@layout/fragment_variables_menu" />
     <fragment
         android:id="@+id/addNewBotMenuFragment"
-        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.AddNewBotMenuFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.AddNewBotMenuFragment"
         android:label="fragment_add_new_bot_menu"
         tools:layout="@layout/fragment_add_new_bot_menu" >
         <action
@@ -128,7 +132,7 @@
     </fragment>
     <fragment
         android:id="@+id/addNewPhraseMenuFragment"
-        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.AddNewDialogScriptMenuFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.AddNewDialogScriptMenuFragment"
         android:label="fragment_add_new_phrase_menu"
         tools:layout="@layout/fragment_add_new_dialog_script_menu" >
         <action
@@ -137,7 +141,7 @@
     </fragment>
     <fragment
         android:id="@+id/splashScreenFragment"
-        android:name="com.uneasypixel.pocketbotconstructor.Presentation.UI.SplashScreenFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.SplashScreenFragment"
         android:label="fragment_splash_screen"
         tools:layout="@layout/fragment_splash_screen" >
         <action
