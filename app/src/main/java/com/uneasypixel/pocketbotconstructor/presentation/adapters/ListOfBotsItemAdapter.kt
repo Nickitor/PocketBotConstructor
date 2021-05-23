@@ -9,8 +9,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.widget.ImageViewCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.uneasypixel.pocketbotconstructor.presentation.dto.BotDTO
 import com.uneasypixel.pocketbotconstructor.R
+import com.uneasypixel.pocketbotconstructor.presentation.dto.BotDTO
 import java.util.*
 
 
@@ -47,7 +47,10 @@ class ListOfBotsItemAdapter(
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dataset[position]
-        holder.textView.text = item.name
+
+        val limit = 10
+        val title = cutString(item.name, limit)
+        holder.textView.text = title
         holder.imageView.setImageResource(item.imageResourceId)
 
         if (dataset[position].isEnabled) {
@@ -90,5 +93,26 @@ class ListOfBotsItemAdapter(
         notifyItemMoved(fromPosition, toPosition)
         clickListener.recyclerViewListMove(fromPosition, toPosition)
         return true
+    }
+
+    private fun cutString(str: String?, limit: Int): String {
+
+        var result: String = ""
+
+        if (str != null) {
+
+            if (str.length <= limit)
+                return str
+
+            var i = 0
+            for (ch in str) {
+                result += ch
+                ++i
+                if (i == limit)
+                    return "$result.."
+            }
+        }
+
+        return result
     }
 }

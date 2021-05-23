@@ -125,7 +125,7 @@ class ServerViewModel() : ViewModel() {
                         }
                     }
                 } catch (e: JSONException) {
-                    
+
                 }
             }
             // Новое исходящее сообщение
