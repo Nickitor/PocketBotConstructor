@@ -115,7 +115,11 @@
         android:id="@+id/statisticsMenuFragment"
         android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.StatisticsMenuFragment"
         android:label="fragment_statistics_menu"
-        tools:layout="@layout/fragment_statistics_menu" />
+        tools:layout="@layout/fragment_statistics_menu" >
+        <action
+            android:id="@+id/action_statisticsMenuFragment_to_botMenuFragment"
+            app:destination="@id/botMenuFragment" />
+    </fragment>
     <fragment
         android:id="@+id/variablesMenuFragment"
         android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.VariablesMenuFragment"

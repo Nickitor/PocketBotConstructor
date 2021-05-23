@@ -21,22 +21,11 @@ import com.uneasypixel.pocketbotconstructor.databinding.FragmentFirstStartStepOn
 class FirstStartStepOneMenuFragment : Fragment() {
 
     // Объект привязки для получения объектов интерфейса
-    private var _binding: FragmentFirstStartStepOneMenuBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentFirstStartStepOneMenuBinding
 
     // Создание фрагмента
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
-        val callback: OnBackPressedCallback =
-            object : OnBackPressedCallback(true ) {
-                override fun handleOnBackPressed() {
-
-                }
-            }
-
-        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
     }
 
     // Создание макета фрагмента
@@ -44,7 +33,9 @@ class FirstStartStepOneMenuFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentFirstStartStepOneMenuBinding.inflate(inflater, container, false)
+        binding = FragmentFirstStartStepOneMenuBinding.inflate(inflater, container, false)
+
+        setOnBackPressedCallback()
         return binding.root
     }
 
@@ -69,9 +60,20 @@ class FirstStartStepOneMenuFragment : Fragment() {
         binding.firstStartStepOneRadioButtonStepOne.isChecked = true
     }
 
+
+    private fun setOnBackPressedCallback() {
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+
+                }
+            }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
+    }
+
+
     // Удаление компнентов внутри фрагмента
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
     }
 }

@@ -54,6 +54,25 @@ class DependencyFactory {
     }
 
 
+    // GetStatsUseCase
+    fun provideGetStatsUseCase() : GetStatsUseCase {
+        return GetStatsUseCase(provideGetStatsGateWay())
+    }
+
+    private fun provideGetStatsGateWay() : IGetStatsGateway {
+        return GetStatsGatewayImp(provideGetConversationsGateWay(), provideGetHistoryApi())
+    }
+
+    private fun provideGetHistoryApi() : IGetHistoryAPI {
+        return GetHistoryAPIImp(provideGetHistoryApiIml())
+    }
+
+    private fun provideGetHistoryApiIml() : ISendRequestAPI {
+        return SendRequestAPIImp()
+    }
+
+
+
     // GetLongPollServer
     fun provideGetLongPollServerUseCase() : GetLongPollServerUseCase {
         return GetLongPollServerUseCase(provideGetLongPollServerGateWay())
