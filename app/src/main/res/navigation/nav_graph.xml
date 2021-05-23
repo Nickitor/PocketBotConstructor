@@ -74,7 +74,11 @@
         android:id="@+id/sendingMenuFragment"
         android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.SendingMenuFragment"
         android:label="SendingMenuFragment"
-        tools:layout="@layout/fragment_sending_menu"/>
+        tools:layout="@layout/fragment_sending_menu">
+        <action
+            android:id="@+id/action_sendingMenuFragment_to_botMenuFragment"
+            app:destination="@id/botMenuFragment" />
+    </fragment>
     <fragment
         android:id="@+id/createMenuMenuFragment"
         android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.CreateMenuMenuFragment"
