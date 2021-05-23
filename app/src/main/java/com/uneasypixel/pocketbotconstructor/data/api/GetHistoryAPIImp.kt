@@ -13,8 +13,6 @@ class GetHistoryAPIImp(private val sendRequestApi: ISendRequestAPI) : IGetHistor
     ): JSONObject? {
         val url = URLBuilder.getUrlGetHistory(peerId, startMessageId, offset, token)
 
-        println(url)
-
         var response: JSONObject? = null
 
         if (url != null)

@@ -14,7 +14,7 @@ class GetConversationsGatewayImp(private val getConversationsApi: IGetConversati
 
         val response: JSONObject? = getConversationsApi.getConversations(token)
 
-        if (response != null) {
+        if (response != null  && !response.has("error")) {
             val conversationsArray: JSONArray? =
                 response.getJSONObject("response").getJSONArray("items")
 
@@ -37,7 +37,7 @@ class GetConversationsGatewayImp(private val getConversationsApi: IGetConversati
     ): MutableList<Conversation> {
         val response: JSONObject? = getConversationsApi.getConversationsById(peerIds, token)
 
-        if (response != null) {
+        if (response != null  && !response.has("error")) {
             try {
                 val conversationsArray: JSONArray? =
                     response.getJSONObject("response").getJSONArray("items")

@@ -8,6 +8,7 @@ import com.uneasypixel.pocketbotconstructor.presentation.dto.BotDTO
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.json.JSONArray
+import org.json.JSONException
 import org.json.JSONObject
 
 class ServerViewModel() : ViewModel() {
@@ -38,7 +39,7 @@ class ServerViewModel() : ViewModel() {
         }
     }
 
-    fun getBotDTO(Bot : Bot) : BotDTO? {
+    fun getBotDTO(Bot: Bot): BotDTO? {
         for (bot in listOfBotsViewModel.listOfBotsDTO)
             if (bot.name == Bot.name)
                 return bot
@@ -69,7 +70,8 @@ class ServerViewModel() : ViewModel() {
         server.server = longPollServer.server
         server.ts = longPollServer.ts
 
-        val getResponseLongPollServerUseCase = dependencyFactory.provideGetResponseLongPollServerUseCase()
+        val getResponseLongPollServerUseCase =
+            dependencyFactory.provideGetResponseLongPollServerUseCase()
 
         while (Bot.isEnabled) {
 
@@ -101,24 +103,29 @@ class ServerViewModel() : ViewModel() {
     }
 
 
-    private suspend fun responseToEvents(Bot : Bot, response: JSONObject, type: String?) {
+    private suspend fun responseToEvents(Bot: Bot, response: JSONObject, type: String?) {
         when (type) {
             // Входящее сообщение
             "message_new" -> {
                 val sendMessageToUserUseCase = dependencyFactory.provideSendMessageToUserUseCase()
-                val message = response.getJSONObject("message").getString("text")
-                for (phrase in Bot.reactionsToPhrases) {
-                    if (message == phrase.phrase) {
-                        val fromId = response.getJSONObject("message").getString("from_id")
-                        val answerList = phrase.response
-                        val ind = (0 until answerList.size).random()
-                        val answer = phrase.response[ind]
-                        sendMessageToUserUseCase.sendMessageToUser(
-                            answer,
-                            fromId,
-                            Bot.token
-                        )
+
+                try {
+                    val message = response.getJSONObject("message").getString("text")
+                    for (phrase in Bot.reactionsToPhrases) {
+                        if (message == phrase.phrase) {
+                            val fromId = response.getJSONObject("message").getString("from_id")
+                            val answerList = phrase.response
+                            val ind = (0 until answerList.size).random()
+                            val answer = phrase.response[ind]
+                            sendMessageToUserUseCase.sendMessageToUser(
+                                answer,
+                                fromId,
+                                Bot.token
+                            )
+                        }
                     }
+                } catch (e: JSONException) {
+                    
                 }
             }
             // Новое исходящее сообщение

@@ -11,15 +11,15 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.uneasypixel.pocketbotconstructor.DependencyFactory
+import com.uneasypixel.pocketbotconstructor.ProgApplication
+import com.uneasypixel.pocketbotconstructor.R
+import com.uneasypixel.pocketbotconstructor.databinding.FragmentListOfBotsMenuBinding
 import com.uneasypixel.pocketbotconstructor.domain.entities.Bot
 import com.uneasypixel.pocketbotconstructor.presentation.adapters.IRecyclerViewClickListener
 import com.uneasypixel.pocketbotconstructor.presentation.adapters.ListOfBotsItemAdapter
 import com.uneasypixel.pocketbotconstructor.presentation.adapters.SimpleItemTouchHelperCallback
 import com.uneasypixel.pocketbotconstructor.presentation.dto.BotDTO
 import com.uneasypixel.pocketbotconstructor.presentation.viewmodels.ListOfBotsViewModel
-import com.uneasypixel.pocketbotconstructor.ProgApplication
-import com.uneasypixel.pocketbotconstructor.R
-import com.uneasypixel.pocketbotconstructor.databinding.FragmentListOfBotsMenuBinding
 import java.util.*
 
 
@@ -118,9 +118,12 @@ class ListOfBotsMenuFragment : Fragment(), IRecyclerViewClickListener {
         val botDTO = adapter.dataset[position].copy()
         listOfBotsViewModel.listOfBotsDTO.add(botDTO)
 
+        val newBotId = arguments?.getString("NEW_BOT_ID_KEY")
+        val newBotToken = arguments?.getString("NEW_BOT_TOKEN_KEY")
+
         val bot = Bot(botDTO.name, botDTO.imageResourceId)
-        bot.token = "88a1d21f807fe5a534ebd62721612411fe5e2fcdd6d15a65fb879b84754f91d60d25f68b0cc116b9c3f78"
-        bot.groupID = "193525063"
+        bot.token = newBotToken!!
+        bot.groupID = newBotId!!
         listOfBotsViewModel.listOfBots.add(bot)
     }
 

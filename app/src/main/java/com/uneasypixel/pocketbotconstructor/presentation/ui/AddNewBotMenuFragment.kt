@@ -40,7 +40,23 @@ class AddNewBotMenuFragment : Fragment() {
         binding.addNewBotButtonAdd.setOnClickListener {
 
             val name = binding.addNewBotName.text.toString()
-            val image = R.drawable.ic_android_robot_mobile_mood_emoji
+            val id = binding.addNewBotId.text.toString()
+            val token = binding.addNewBotToken.text.toString()
+            val ic = listOf(R.drawable.ic_android_robot_mobile_mood_emoji,
+            R.drawable.ic_android_robot_mobile_mood_emoji_angry_upset,
+                R.drawable.ic_android_robot_mobile_mood_emoji_crash_bug_dead,
+                R.drawable.ic_android_robot_mobile_mood_emoji_happy_joke_tounge,
+                R.drawable.ic_android_robot_mobile_mood_emoji_happy_smile,
+                R.drawable.ic_android_robot_mobile_mood_emoji_happy_smile_successful,
+                R.drawable.ic_android_robot_mobile_mood_emoji_love_lovely,
+                R.drawable.ic_android_robot_mobile_mood_emoji_sad,
+                R.drawable.ic_android_robot_mobile_mood_emoji_sad_crying,
+                R.drawable.ic_android_robot_mobile_mood_emoji_sad_tear,
+                R.drawable.ic_android_robot_mobile_mood_emoji_sick_ill_trouble,
+                R.drawable.ic_android_robot_mobile_mood_emoji_smile_happy_successful,
+                R.drawable.ic_android_robot_mobile_sleeping_tired)
+
+            val image = ic.random()
 
             if (name == "") {
 
@@ -49,9 +65,27 @@ class AddNewBotMenuFragment : Fragment() {
                 return@setOnClickListener
             }
 
+            if (id == "") {
+
+                Toast.makeText(requireContext(), "Поле id не должно быть пустым!", Toast.LENGTH_SHORT)
+                    .show()
+                return@setOnClickListener
+            }
+
+            if (token == "") {
+
+                Toast.makeText(requireContext(), "Поле token не должно быть пустым!", Toast.LENGTH_SHORT)
+                    .show()
+                return@setOnClickListener
+            }
+
             for (bot in listOfBotsViewModel.listOfBotsDTO) {
                 if (name == bot.name) {
-                    Toast.makeText(requireContext(), "Бот с таким именем уже создан!", Toast.LENGTH_SHORT)
+                    Toast.makeText(
+                        requireContext(),
+                        "Бот с таким именем уже создан!",
+                        Toast.LENGTH_SHORT
+                    )
                         .show()
                     return@setOnClickListener
                 }
@@ -59,6 +93,8 @@ class AddNewBotMenuFragment : Fragment() {
 
             val bundle = bundleOf(
                 "NEW_BOT_NAME_KEY" to name,
+                "NEW_BOT_ID_KEY" to id,
+                "NEW_BOT_TOKEN_KEY" to token,
                 "NEW_BOT_IMAGE_KEY" to image
             )
             findNavController().navigate(
@@ -73,12 +109,11 @@ class AddNewBotMenuFragment : Fragment() {
         val callback: OnBackPressedCallback =
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
-
+                    findNavController().navigate(R.id.action_addNewBotMenuFragment_to_listOfBotsFragment)
                 }
             }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
     }
-
 
 
     // Удаление компнентов внутри фрагмента
