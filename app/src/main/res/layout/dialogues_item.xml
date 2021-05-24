@@ -43,31 +43,43 @@
                     android:scaleType="centerCrop"
                     tools:srcCompat="@tools:sample/avatars" />
 
+
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/dialogues_item_unread_material_card_view"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="bottom|right"
-                    android:layout_margin="3dp"
-                    android:backgroundTint="@color/colorOnPrimary"
+                    android:backgroundTint="@color/colorPrimary"
                     android:visibility="visible"
+                    app:cardElevation="5dp"
                     app:cardCornerRadius="20dp">
 
-
-                    <TextView
-                        android:id="@+id/dialogues_item_unread"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/dialogues_item_unread_material_card_view_2"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:layout_gravity="center"
-                        android:fontFamily="sans-serif-light"
-                        android:text="2"
-                        android:textAlignment="center"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        tools:visibility="visible" />
+                        android:layout_margin="5dp"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:visibility="visible"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="5dp">
 
+
+                        <TextView
+                            android:id="@+id/dialogues_item_unread"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="sans-serif-light"
+                            android:text="2"
+                            android:textAlignment="center"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            tools:visibility="visible" />
+
+                    </com.google.android.material.card.MaterialCardView>
                 </com.google.android.material.card.MaterialCardView>
-
             </com.google.android.material.card.MaterialCardView>
         </com.google.android.material.card.MaterialCardView>
 

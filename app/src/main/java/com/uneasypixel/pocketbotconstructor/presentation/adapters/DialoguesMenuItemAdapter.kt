@@ -32,7 +32,6 @@ class DialoguesMenuItemAdapter(
 
         init {
             unreadCountCard.isVisible = false
-            unreadCountText.isVisible = false
         }
 
         fun onClick(clickListener: IRecyclerViewClickListener) {
@@ -84,14 +83,7 @@ class DialoguesMenuItemAdapter(
 
         holder.unreadCountText.text = item.unreadCount.toString()
 
-        if (item.unreadCount > 0) {
-            holder.unreadCountCard.isVisible = true
-            holder.unreadCountText.isVisible = true
-        }
-        else {
-            holder.unreadCountCard.isVisible = false
-            holder.unreadCountText.isVisible = false
-        }
+        holder.unreadCountCard.isVisible = item.unreadCount > 0
     }
 
     private fun cutString(str: String?, limit: Int): String {
