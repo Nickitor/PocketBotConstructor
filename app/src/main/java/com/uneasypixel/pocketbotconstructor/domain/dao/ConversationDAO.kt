@@ -10,7 +10,7 @@ interface ConversationDAO {
 
     var photo : String?
 
-    var unreadCount : Int?
+    var unreadCount : Int
 
     var isOnline : Boolean?
 

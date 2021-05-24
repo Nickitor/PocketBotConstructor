@@ -7,12 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.core.view.isVisible
 import androidx.core.widget.ImageViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import com.uneasypixel.pocketbotconstructor.domain.entities.Conversation
 import com.uneasypixel.pocketbotconstructor.R
+import com.uneasypixel.pocketbotconstructor.domain.entities.Conversation
 
 class DialoguesMenuItemAdapter(
     private val clickListener: IRecyclerViewClickListener
@@ -26,6 +27,13 @@ class DialoguesMenuItemAdapter(
         val photo: ImageView = view.findViewById(R.id.dialogues_item_user_image)
         val isOnlineIndicator: ImageView = view.findViewById(R.id.dialogues_item_online)
         val isOnlineText: TextView = view.findViewById(R.id.dialogues_item_online_title)
+        val unreadCountCard: CardView = view.findViewById(R.id.dialogues_item_unread_material_card_view)
+        val unreadCountText: TextView = view.findViewById(R.id.dialogues_item_unread)
+
+        init {
+            unreadCountCard.isVisible = false
+            unreadCountText.isVisible = false
+        }
 
         fun onClick(clickListener: IRecyclerViewClickListener) {
             view.setOnClickListener {
@@ -72,6 +80,17 @@ class DialoguesMenuItemAdapter(
                 holder.isOnlineText.isVisible = false
                 holder.isOnlineIndicator.isVisible = false
             }
+        }
+
+        holder.unreadCountText.text = item.unreadCount.toString()
+
+        if (item.unreadCount > 0) {
+            holder.unreadCountCard.isVisible = true
+            holder.unreadCountText.isVisible = true
+        }
+        else {
+            holder.unreadCountCard.isVisible = false
+            holder.unreadCountText.isVisible = false
         }
     }
 
