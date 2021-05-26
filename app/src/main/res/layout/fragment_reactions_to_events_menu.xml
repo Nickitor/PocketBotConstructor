@@ -46,5 +46,20 @@
             app:layout_constraintTop_toBottomOf="@+id/reactions_to_events_menu_title"
             app:layout_goneMarginRight="40dp" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/reactions_to_events_menu_recycler_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scrollbars="vertical"
+            app:layoutManager="LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/reactions_to_events_menu_subtitle"
+            tools:itemCount="10"
+            tools:listitem="@layout/reactions_to_events_item" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

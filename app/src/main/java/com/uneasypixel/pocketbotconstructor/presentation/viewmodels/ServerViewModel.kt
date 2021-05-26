@@ -136,6 +136,28 @@ class ServerViewModel() : ViewModel() {
             }
             // Подписка на сообщения от сообщества
             "message_allow" -> {
+                try {
+                    if (Bot.reactionsToEvents[0].response.isNotEmpty()) {
+
+                        val sendMessageToUserUseCase =
+                            dependencyFactory.provideSendMessageToUserUseCase()
+                        val fromId = response.getString("user_id")
+
+                        val answerList = Bot.reactionsToEvents[0].response
+
+                        val ind = (0 until answerList.size).random()
+
+                        val answer = answerList[ind]
+
+                        sendMessageToUserUseCase.sendMessageToUser(
+                            answer,
+                            fromId,
+                            Bot.token
+                        )
+                    }
+                } catch (e: JSONException) {
+
+                }
             }
             // Новый запрет сообщений от сообщества
             "message_deny" -> {
@@ -184,9 +206,53 @@ class ServerViewModel() : ViewModel() {
             }
             // Репост записи из сообщества
             "wall_repost" -> {
+                try {
+                    if (Bot.reactionsToEvents[1].response.isNotEmpty()) {
+
+                        val sendMessageToUserUseCase =
+                            dependencyFactory.provideSendMessageToUserUseCase()
+                        val fromId = response.getString("from_id")
+
+                        val answerList = Bot.reactionsToEvents[1].response
+
+                        val ind = (0 until answerList.size).random()
+
+                        val answer = answerList[ind]
+
+                        sendMessageToUserUseCase.sendMessageToUser(
+                            answer,
+                            fromId,
+                            Bot.token
+                        )
+                    }
+                } catch (e: JSONException) {
+
+                }
             }
             // Добавление комментария на стене
             "wall_reply_new" -> {
+                try {
+                    if (Bot.reactionsToEvents[2].response.isNotEmpty()) {
+
+                        val sendMessageToUserUseCase =
+                            dependencyFactory.provideSendMessageToUserUseCase()
+                        val fromId = response.getString("from_id")
+
+                        val answerList = Bot.reactionsToEvents[2].response
+
+                        val ind = (0 until answerList.size).random()
+
+                        val answer = answerList[ind]
+
+                        sendMessageToUserUseCase.sendMessageToUser(
+                            answer,
+                            fromId,
+                            Bot.token
+                        )
+                    }
+                } catch (e: JSONException) {
+
+                }
             }
             // Редактирование комментария на стене
             "wall_reply_edit" -> {
@@ -199,6 +265,28 @@ class ServerViewModel() : ViewModel() {
             }
             // Событие о новой отметке "Мне нравится"
             "like_add" -> {
+                try {
+                    if (Bot.reactionsToEvents[3].response.isNotEmpty()) {
+
+                        val sendMessageToUserUseCase =
+                            dependencyFactory.provideSendMessageToUserUseCase()
+                        val fromId = response.getString("liker_id")
+
+                        val answerList = Bot.reactionsToEvents[3].response
+
+                        val ind = (0 until answerList.size).random()
+
+                        val answer = answerList[ind]
+
+                        sendMessageToUserUseCase.sendMessageToUser(
+                            answer,
+                            fromId,
+                            Bot.token
+                        )
+                    }
+                } catch (e: JSONException) {
+
+                }
             }
             // Событие о снятии отметки "Мне нравится"
             "like_remove" -> {

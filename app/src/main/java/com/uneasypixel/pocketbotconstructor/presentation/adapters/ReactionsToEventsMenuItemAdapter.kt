@@ -7,19 +7,16 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.uneasypixel.pocketbotconstructor.R
 import com.uneasypixel.pocketbotconstructor.domain.entities.DialogScript
-import java.util.*
 
-
-class DialogScriptMenuItemAdapter(
+class ReactionsToEventsMenuItemAdapter(
     val dataset: MutableList<DialogScript>,
     private val clickListener: IRecyclerViewClickListener
-) : RecyclerView.Adapter<DialogScriptMenuItemAdapter.ItemViewHolder>(),
-    ItemTouchHelperAdapter{
+) : RecyclerView.Adapter<ReactionsToEventsMenuItemAdapter.ItemViewHolder>() {
 
     class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
-        val textPhrase: TextView = view.findViewById(R.id.reactions_to_phrases_item_phrase)
-        val textResponse: TextView = view.findViewById(R.id.reactions_to_phrases_item_response)
+        val textPhrase: TextView = view.findViewById(R.id.reactions_to_events_item_phrase)
+        val textResponse: TextView = view.findViewById(R.id.reactions_to_events_item_response)
 
         fun onClick(clickListener: IRecyclerViewClickListener) {
             view.setOnClickListener {
@@ -31,7 +28,7 @@ class DialogScriptMenuItemAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
 
         val adapterLayout = LayoutInflater.from(parent.context)
-            .inflate(R.layout.dialog_script_item, parent, false)
+            .inflate(R.layout.reactions_to_events_item, parent, false)
 
         val itemViewHolder = ItemViewHolder(adapterLayout)
         itemViewHolder.onClick(clickListener)
@@ -46,13 +43,15 @@ class DialogScriptMenuItemAdapter(
         var text = cutString(item.phrase, limit)
         holder.textPhrase.text = text
 
-        text = cutString(item.response[0], limit)
-        holder.textResponse.text = text
+        if (item.response.isNotEmpty()) {
+            text = cutString(item.response[0], limit)
+            holder.textResponse.text = text
+        }
     }
 
-    private fun cutString(str : String?, limit : Int) : String {
+    private fun cutString(str: String?, limit: Int): String {
 
-        var result : String = ""
+        var result: String = ""
 
         if (str != null) {
 
@@ -72,32 +71,4 @@ class DialogScriptMenuItemAdapter(
     }
 
     override fun getItemCount() = dataset.size
-
-    fun addItem(newPhrase : DialogScript) {
-        val position = dataset.size
-        dataset.add(position, newPhrase)
-        notifyItemInserted(position)
-        clickListener.recyclerViewListAdd(position)
-    }
-
-    override fun onItemDismiss(position: Int) {
-        dataset.removeAt(position)
-        notifyItemRemoved(position)
-        clickListener.recyclerViewListDelete(position)
-    }
-
-    override fun onItemMove(fromPosition: Int, toPosition: Int): Boolean {
-        if (fromPosition < toPosition) {
-            for (i in fromPosition until toPosition) {
-                Collections.swap(dataset, i, i + 1)
-            }
-        } else {
-            for (i in fromPosition downTo toPosition + 1) {
-                Collections.swap(dataset, i, i - 1)
-            }
-        }
-        notifyItemMoved(fromPosition, toPosition)
-        clickListener.recyclerViewListMove(fromPosition, toPosition)
-        return true
-    }
 }

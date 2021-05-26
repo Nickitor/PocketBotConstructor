@@ -105,7 +105,14 @@
         android:id="@+id/reactionsToEventsMenuFragment"
         android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.ReactionsToEventsMenuFragment"
         android:label="fragment_reactions_to_events_menu"
-        tools:layout="@layout/fragment_reactions_to_events_menu" />
+        tools:layout="@layout/fragment_reactions_to_events_menu" >
+        <action
+            android:id="@+id/action_reactionsToEventsMenuFragment_to_botMenuFragment"
+            app:destination="@id/botMenuFragment" />
+        <action
+            android:id="@+id/action_reactionsToEventsMenuFragment_to_addNewReactionToEventMenuFragment"
+            app:destination="@id/addNewReactionToEventMenuFragment" />
+    </fragment>
     <fragment
         android:id="@+id/dialoguesMenuFragment"
         android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.DialoguesMenuFragment"
@@ -158,5 +165,13 @@
         <action
             android:id="@+id/action_splashScreenFragment_to_listOfBotsFragment"
             app:destination="@id/listOfBotsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNewReactionToEventMenuFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.AddNewReactionToEventMenuFragment"
+        android:label="AddNewReactionToEventMenuFragment" >
+        <action
+            android:id="@+id/action_addNewReactionToEventMenuFragment_to_reactionsToEventsMenuFragment"
+            app:destination="@id/reactionsToEventsMenuFragment" />
     </fragment>
 </navigation>

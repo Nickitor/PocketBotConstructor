@@ -59,35 +59,26 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif-light"
-                android:textAlignment="center"
-                android:textSize="22sp"
+                android:textAlignment="viewStart"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 tools:text="# Фраза"
                 tools:visibility="visible" />
 
-            <LinearLayout
-                android:id="@+id/reactions_to_phrases_item_linear_layot_3"
+
+            <TextView
+                android:id="@+id/reactions_to_phrases_item_response"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/reactions_to_phrases_item_response"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="6dp"
-                    android:fontFamily="sans-serif-light"
-                    android:textAlignment="center"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    tools:text="Ответ"
-                    tools:visibility="visible" />
-
-            </LinearLayout>
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="6dp"
+                android:fontFamily="sans-serif-light"
+                android:textAlignment="viewStart"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:text="Ответ" />
 
         </LinearLayout>
-
 
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

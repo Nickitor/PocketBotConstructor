@@ -55,7 +55,7 @@ class DialoguesMenuItemAdapter(
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dataset[position]
 
-        val limit = 25
+        val limit = 40
         val title = if (item.type == "user") cutString(
             item.firstName + " " + item.lastName,
             limit

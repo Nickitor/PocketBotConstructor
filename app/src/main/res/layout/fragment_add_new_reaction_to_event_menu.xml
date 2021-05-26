@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/add_new_bot_menu_constraint_layout"
+        android:id="@+id/add_new_reaction_to_event_menu_constraint_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
-        tools:context=".presentation.ui.AddNewDialogScriptMenuFragment">
+        tools:context=".presentation.ui.AddNewReactionToEventMenuFragment">
 
         <Button
-            android:id="@+id/add_new_phrase_button_add"
+            android:id="@+id/add_new_reaction_to_event_menu_button_add"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -30,7 +30,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/add_new_phrase_menu_title"
+            android:id="@+id/add_new_reaction_to_event_menu_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -41,51 +41,62 @@
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/add_new_phrase_name"
+        <TextView
+            android:id="@+id/add_new_reaction_to_event_menu_name_event_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
+            android:layout_marginTop="4dp"
+            android:fontFamily="sans-serif-light"
+            android:text="Событие"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_new_phrase_name_title" />
-
-        <EditText
-            android:id="@+id/add_new_response_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_new_response_name_title" />
+            app:layout_constraintTop_toBottomOf="@+id/add_new_reaction_to_event_menu_title" />
 
         <TextView
-            android:id="@+id/add_new_phrase_name_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/add_new_phrase_name_title"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_new_phrase_menu_title" />
-
-        <TextView
-            android:id="@+id/add_new_response_name_title"
+            android:id="@+id/add_new_reaction_to_event_menu_name_response_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
+            android:fontFamily="sans-serif-light"
             android:text="@string/add_new_response_name_title"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_new_phrase_name" />
+            app:layout_constraintTop_toBottomOf="@+id/add_new_reaction_to_event_menu_name_event_subtitle" />
+
+        <TextView
+            android:id="@+id/add_new_reaction_to_event_menu_name_event_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="sans-serif-light"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_new_reaction_to_event_menu_name_event_title"
+            tools:text="Событие" />
+
+        <EditText
+            android:id="@+id/add_new_reaction_to_event_menu_name_response_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ems="10"
+            android:fontFamily="sans-serif-light"
+            android:inputType="textPersonName"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_new_reaction_to_event_menu_name_response_title" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

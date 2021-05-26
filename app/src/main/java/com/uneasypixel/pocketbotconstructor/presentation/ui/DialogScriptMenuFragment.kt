@@ -91,7 +91,7 @@ class DialogScriptMenuFragment : Fragment(), IRecyclerViewClickListener {
     }
 
 
-    fun setBotToViewModel(botName : String?) {
+    private fun setBotToViewModel(botName : String?) {
         if (botName != null) {
             for (bot in listOfBotsViewModel.listOfBots) {
                 if (bot.name == botName) {

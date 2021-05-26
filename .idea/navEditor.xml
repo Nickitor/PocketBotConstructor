@@ -50,6 +50,27 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="addNewReactionToEventMenuFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="1325" />
+                            <option name="y" value="-215" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_addNewReactionToEventMenuFragment_to_reactionsToEventsMenuFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="botMenuFragment">
                     <value>
                       <LayoutPositions>
@@ -226,6 +247,20 @@
                             <option name="y" value="-203" />
                           </Point>
                         </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_reactionsToEventsMenuFragment_to_addNewReactionToEventMenuFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_reactionsToEventsMenuFragment_to_botMenuFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
                       </LayoutPositions>
                     </value>
                   </entry>
@@ -263,6 +298,15 @@
                             <option name="x" value="850" />
                             <option name="y" value="707" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_sendingMenuFragment_to_botMenuFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -313,6 +357,15 @@
                             <option name="x" value="1050" />
                             <option name="y" value="415" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_statisticsMenuFragment_to_botMenuFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
