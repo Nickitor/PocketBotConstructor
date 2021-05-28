@@ -17,8 +17,8 @@ import com.uneasypixel.pocketbotconstructor.domain.entities.DialogScript
 import com.uneasypixel.pocketbotconstructor.presentation.adapters.DialogScriptMenuItemAdapter
 import com.uneasypixel.pocketbotconstructor.presentation.adapters.IRecyclerViewClickListener
 import com.uneasypixel.pocketbotconstructor.presentation.adapters.SimpleItemTouchHelperCallback
+import com.uneasypixel.pocketbotconstructor.presentation.viewmodels.DialogScriptViewModel
 import com.uneasypixel.pocketbotconstructor.presentation.viewmodels.ListOfBotsViewModel
-import com.uneasypixel.pocketbotconstructor.presentation.viewmodels.ReactionsToPhrasesViewModel
 
 
 class DialogScriptMenuFragment : Fragment(), IRecyclerViewClickListener {
@@ -27,7 +27,7 @@ class DialogScriptMenuFragment : Fragment(), IRecyclerViewClickListener {
     private lateinit var binding: FragmentDialogScriptMenuBinding
 
     private lateinit var dependencyFactory: DependencyFactory
-    private val viewModel: ReactionsToPhrasesViewModel by activityViewModels()
+    private val viewModel: DialogScriptViewModel by activityViewModels()
     private val listOfBotsViewModel: ListOfBotsViewModel by activityViewModels()
 
     private lateinit var adapter: DialogScriptMenuItemAdapter

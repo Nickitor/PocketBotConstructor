@@ -16,6 +16,7 @@ class Bot(
         DialogScript("Добавление комментария на стене"),
         DialogScript("Событие о новой отметке \"Мне нравится\"")
     )
+    var setsOfPhrases: MutableList<SetOfPhrases> = mutableListOf()
     lateinit var groupID: String
     lateinit var token: String
 }

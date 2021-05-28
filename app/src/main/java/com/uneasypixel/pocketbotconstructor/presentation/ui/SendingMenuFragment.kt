@@ -12,8 +12,8 @@ import androidx.navigation.fragment.findNavController
 import com.uneasypixel.pocketbotconstructor.ProgApplication
 import com.uneasypixel.pocketbotconstructor.R
 import com.uneasypixel.pocketbotconstructor.databinding.FragmentSendingMenuBinding
-import com.uneasypixel.pocketbotconstructor.domain.entities.Bot
 import com.uneasypixel.pocketbotconstructor.presentation.viewmodels.ListOfBotsViewModel
+import com.uneasypixel.pocketbotconstructor.presentation.viewmodels.SendingViewModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -23,7 +23,7 @@ class SendingMenuFragment : Fragment() {
     private lateinit var binding: FragmentSendingMenuBinding
 
     private val listOfBotsViewModel: ListOfBotsViewModel by activityViewModels()
-    var bot: Bot? = null
+    private val viewModel: SendingViewModel by activityViewModels()
 
     // Создание фрагмента
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,7 +54,7 @@ class SendingMenuFragment : Fragment() {
 
                 sendMessageToConversations.sendMessageToConversations(
                     binding.sendingMenuSendingTextEditTextTextMultiLine.text.toString(),
-                    bot!!.token)
+                    viewModel.bot!!.token)
             }
 
             Toast.makeText(requireContext(), "Сообщения отправлены пользователям!", Toast.LENGTH_SHORT).show()
@@ -73,11 +73,11 @@ class SendingMenuFragment : Fragment() {
     }
 
 
-    fun setBotToViewModel(botName : String?) {
+    private fun setBotToViewModel(botName : String?) {
         if (botName != null) {
             for (bot in listOfBotsViewModel.listOfBots) {
                 if (bot.name == botName) {
-                    this.bot = bot
+                    viewModel.bot = bot
                     return
                 }
             }

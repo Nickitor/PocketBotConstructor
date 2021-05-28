@@ -80,6 +80,8 @@ class ListOfBotsItemAdapter(
         clickListener.recyclerViewListDelete(position)
     }
 
+    override fun onItemChanged(position: Int, text: String) {}
+
     override fun onItemMove(fromPosition: Int, toPosition: Int): Boolean {
         if (fromPosition < toPosition) {
             for (i in fromPosition until toPosition) {

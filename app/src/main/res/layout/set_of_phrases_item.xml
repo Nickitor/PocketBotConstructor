@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/set_of_phrases_item_material_card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="40dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginRight="40dp"
+    android:layout_marginBottom="5dp"
+    android:backgroundTint="@color/colorPrimary"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="10dp">
+
+    <LinearLayout
+        android:id="@+id/set_of_phrases_item_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/set_of_phrases_item_material_card_view_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimary"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="10dp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/set_of_phrases_item_material_card_view_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:backgroundTint="@color/colorPrimary"
+                app:cardCornerRadius="20dp">
+
+                <ImageView
+                    android:id="@+id/set_of_phrases_item_image"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="@color/colorOff"
+                    android:importantForAccessibility="no"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/ic_set_of_phrases" />
+            </com.google.android.material.card.MaterialCardView>
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:id="@+id/set_of_phrases_item_linear_layot_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/set_of_phrases_set_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="sans-serif-light"
+                android:textAlignment="viewStart"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:text="# Набор"
+                tools:visibility="visible" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

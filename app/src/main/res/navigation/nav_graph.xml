@@ -88,7 +88,14 @@
         android:id="@+id/setOfPhrasesMenuFragment"
         android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.SetOfPhrasesMenuFragment"
         android:label="fragment_set_of_phrases_menu"
-        tools:layout="@layout/fragment_set_of_phrases_menu" />
+        tools:layout="@layout/fragment_set_of_phrases_menu" >
+        <action
+            android:id="@+id/action_setOfPhrasesMenuFragment_to_addNewSetOfPhrasesMenuFragment"
+            app:destination="@id/addNewSetOfPhrasesMenuFragment" />
+        <action
+            android:id="@+id/action_setOfPhrasesMenuFragment_to_botMenuFragment"
+            app:destination="@id/botMenuFragment" />
+    </fragment>
     <fragment
         android:id="@+id/reactionsToPhrasesMenuFragment"
         android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.DialogScriptMenuFragment"
@@ -169,9 +176,19 @@
     <fragment
         android:id="@+id/addNewReactionToEventMenuFragment"
         android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.AddNewReactionToEventMenuFragment"
-        android:label="AddNewReactionToEventMenuFragment" >
+        android:label="AddNewReactionToEventMenuFragment"
+        tools:layout="@layout/fragment_add_new_reaction_to_event_menu">
         <action
             android:id="@+id/action_addNewReactionToEventMenuFragment_to_reactionsToEventsMenuFragment"
             app:destination="@id/reactionsToEventsMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNewSetOfPhrasesMenuFragment"
+        android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.AddNewSetOfPhrasesMenuFragment"
+        android:label="AddNewSetOfPhrasesMenuFragment"
+        tools:layout="@layout/fragment_add_new_set_of_phrases_menu">
+        <action
+            android:id="@+id/action_addNewSetOfPhrasesMenuFragment_to_setOfPhrasesMenuFragment"
+            app:destination="@id/setOfPhrasesMenuFragment" />
     </fragment>
 </navigation>
