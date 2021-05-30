@@ -44,7 +44,7 @@ class ReactionsToEventsMenuItemAdapter(
         holder.textPhrase.text = text
 
         if (item.response.isNotEmpty()) {
-            text = cutString(item.response[0], limit)
+            text = cutString(item.response, limit)
             holder.textResponse.text = text
         }
     }

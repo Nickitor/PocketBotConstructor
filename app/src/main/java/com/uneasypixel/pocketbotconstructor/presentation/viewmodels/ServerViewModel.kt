@@ -114,14 +114,61 @@ class ServerViewModel() : ViewModel() {
                     for (phrase in Bot.reactionsToPhrases) {
                         if (message == phrase.phrase) {
                             val fromId = response.getJSONObject("message").getString("from_id")
-                            val answerList = phrase.response
-                            val ind = (0 until answerList.size).random()
-                            val answer = phrase.response[ind]
-                            sendMessageToUserUseCase.sendMessageToUser(
-                                answer,
-                                fromId,
-                                Bot.token
-                            )
+                            var answer: String = ""
+                            var attachment: String = ""
+
+                            if (phrase.response.isNotEmpty())
+                                answer = phrase.response
+                            else {
+                                if (phrase.setOfPhrases.textSources.isNotEmpty())
+                                    answer =
+                                        phrase.setOfPhrases.textSources[(0 until phrase.setOfPhrases.textSources.size).random()]
+
+                                if (phrase.setOfPhrases.groupSources.isNotEmpty()) {
+                                    val randGroupID =
+                                        phrase.setOfPhrases.groupSources[(0 until phrase.setOfPhrases.groupSources.size).random()]
+
+                                    val getWallUseCase = dependencyFactory.provideGetWallUseCase()
+                                    var wall = getWallUseCase.getWall(
+                                        "-$randGroupID",
+                                        "0",
+                                        "1",
+                                        Bot.serviceToken
+                                    )
+
+                                    try {
+                                        val count = wall!!.getJSONObject("response").getInt("count")
+
+                                        val randPostID = (1..count).random()
+
+                                        wall = getWallUseCase.getWall(
+                                            "-$randGroupID",
+                                            randPostID.toString(),
+                                            "1",
+                                            Bot.serviceToken
+                                        )
+
+                                        val post =
+                                            wall!!.getJSONObject("response").getJSONArray("items")
+                                                .getJSONObject(0)
+
+                                        val ownerID = post.getString("owner_id")
+                                        val mediaID = post.getString("id")
+                                        attachment = "wall" + ownerID + "_" + mediaID
+
+                                    } catch (e: JSONException) {
+
+                                    }
+                                }
+                            }
+
+                            if (answer.isNotEmpty() || attachment.isNotEmpty())
+                                sendMessageToUserUseCase.sendMessageToUser(
+                                    answer,
+                                    fromId,
+                                    Bot.token,
+                                    attachment
+                                )
                         }
                     }
                 } catch (e: JSONException) {
@@ -143,11 +190,7 @@ class ServerViewModel() : ViewModel() {
                             dependencyFactory.provideSendMessageToUserUseCase()
                         val fromId = response.getString("user_id")
 
-                        val answerList = Bot.reactionsToEvents[0].response
-
-                        val ind = (0 until answerList.size).random()
-
-                        val answer = answerList[ind]
+                        val answer = Bot.reactionsToEvents[0].response
 
                         sendMessageToUserUseCase.sendMessageToUser(
                             answer,
@@ -213,11 +256,7 @@ class ServerViewModel() : ViewModel() {
                             dependencyFactory.provideSendMessageToUserUseCase()
                         val fromId = response.getString("from_id")
 
-                        val answerList = Bot.reactionsToEvents[1].response
-
-                        val ind = (0 until answerList.size).random()
-
-                        val answer = answerList[ind]
+                        val answer = Bot.reactionsToEvents[1].response
 
                         sendMessageToUserUseCase.sendMessageToUser(
                             answer,
@@ -238,11 +277,7 @@ class ServerViewModel() : ViewModel() {
                             dependencyFactory.provideSendMessageToUserUseCase()
                         val fromId = response.getString("from_id")
 
-                        val answerList = Bot.reactionsToEvents[2].response
-
-                        val ind = (0 until answerList.size).random()
-
-                        val answer = answerList[ind]
+                        val answer = Bot.reactionsToEvents[2].response
 
                         sendMessageToUserUseCase.sendMessageToUser(
                             answer,
@@ -272,11 +307,7 @@ class ServerViewModel() : ViewModel() {
                             dependencyFactory.provideSendMessageToUserUseCase()
                         val fromId = response.getString("liker_id")
 
-                        val answerList = Bot.reactionsToEvents[3].response
-
-                        val ind = (0 until answerList.size).random()
-
-                        val answer = answerList[ind]
+                        val answer = Bot.reactionsToEvents[3].response
 
                         sendMessageToUserUseCase.sendMessageToUser(
                             answer,

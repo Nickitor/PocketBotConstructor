@@ -28,5 +28,6 @@ class DialogScript(override var phrase: String?) : DialogScriptDAO, Parcelable {
         }
     }
 
-    override var response: MutableList<String> = mutableListOf()
+    override var response: String = ""
+    override var setOfPhrases: SetOfPhrases = SetOfPhrases()
 }

@@ -19,4 +19,5 @@ class Bot(
     var setsOfPhrases: MutableList<SetOfPhrases> = mutableListOf()
     lateinit var groupID: String
     lateinit var token: String
+    lateinit var serviceToken: String
 }

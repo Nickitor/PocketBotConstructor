@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -69,7 +70,8 @@ class DialogScriptMenuFragment : Fragment(), IRecyclerViewClickListener {
     // Инициализация компонентов макета фрагмента
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.reactionsToPhrasesMenubuttonAdd.setOnClickListener {
-            findNavController().navigate(R.id.action_reactionsToPhrasesMenuFragment_to_addNewPhraseMenuFragment)
+            val bundle = bundleOf("BOT_NAME_KEY" to viewModel.bot!!.name)
+            findNavController().navigate(R.id.action_reactionsToPhrasesMenuFragment_to_addNewPhraseMenuFragment, bundle)
         }
     }
 

@@ -46,7 +46,10 @@ class DialogScriptMenuItemAdapter(
         var text = cutString(item.phrase, limit)
         holder.textPhrase.text = text
 
-        text = cutString(item.response[0], limit)
+        if (item.response.isEmpty())
+            text = cutString(item.setOfPhrases.name, limit)
+        else
+            text = cutString(item.response, limit)
         holder.textResponse.text = text
     }
 

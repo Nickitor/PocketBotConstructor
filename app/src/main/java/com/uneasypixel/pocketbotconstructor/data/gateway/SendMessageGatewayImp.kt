@@ -6,7 +6,7 @@ import org.json.JSONObject
 
 class SendMessageGatewayImp(private val sendMessageApi : ISendMessageAPI) : ISendMessageGateway {
 
-    override suspend fun sendMessageToUser(message: String, userID: String, token : String) {
-        val response : JSONObject? = sendMessageApi.sendMessageToUser(message, userID, token)
+    override suspend fun sendMessageToUser(message: String, userID: String, token : String, attachment: String) {
+        val response : JSONObject? = sendMessageApi.sendMessageToUser(message, userID, token, attachment)
     }
 }

@@ -9,10 +9,11 @@ class SendMessageAPIImp(private val sendRequestApi: ISendRequestAPI) : ISendMess
     override suspend fun sendMessageToUser(
         message: String,
         userID: String,
-        token: String
+        token: String,
+        attachment: String
     ): JSONObject? {
 
-        val url = URLBuilder.getUrlSendMessageToID(message, userID, token)
+        val url = URLBuilder.getUrlSendMessageToID(message, userID, token, attachment)
 
         var response: JSONObject? = null
 

@@ -42,6 +42,7 @@ class AddNewBotMenuFragment : Fragment() {
             val name = binding.addNewBotName.text.toString()
             val id = binding.addNewBotId.text.toString()
             val token = binding.addNewBotToken.text.toString()
+            val serviceToken = binding.addNewBotServiceToken.text.toString()
             val ic = listOf(R.drawable.ic_android_robot_mobile_mood_emoji,
             R.drawable.ic_android_robot_mobile_mood_emoji_angry_upset,
                 R.drawable.ic_android_robot_mobile_mood_emoji_crash_bug_dead,
@@ -79,6 +80,13 @@ class AddNewBotMenuFragment : Fragment() {
                 return@setOnClickListener
             }
 
+            if (serviceToken == "") {
+
+                Toast.makeText(requireContext(), "Поле сервисного ключа не должно быть пустым!", Toast.LENGTH_SHORT)
+                    .show()
+                return@setOnClickListener
+            }
+
             for (bot in listOfBotsViewModel.listOfBotsDTO) {
                 if (name == bot.name) {
                     Toast.makeText(
@@ -95,6 +103,7 @@ class AddNewBotMenuFragment : Fragment() {
                 "NEW_BOT_NAME_KEY" to name,
                 "NEW_BOT_ID_KEY" to id,
                 "NEW_BOT_TOKEN_KEY" to token,
+                "NEW_BOT_SERVICE_TOKEN" to serviceToken,
                 "NEW_BOT_IMAGE_KEY" to image
             )
             findNavController().navigate(

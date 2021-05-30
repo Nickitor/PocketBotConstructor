@@ -97,6 +97,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/add_new_bot_token_title" />
 
+        <EditText
+            android:id="@+id/add_new_bot_service_token"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:fontFamily="sans-serif-light"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_new_bot_service_token_title" />
+
         <TextView
             android:id="@+id/add_new_bot_name_title"
             android:layout_width="wrap_content"
@@ -132,6 +144,18 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/add_new_bot_token"
             app:layout_constraintTop_toBottomOf="@+id/add_new_bot_id" />
+
+        <TextView
+            android:id="@+id/add_new_bot_service_token_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/add_new_bot_service_token_title"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/add_new_bot_token"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/add_new_bot_token"
+            app:layout_constraintTop_toBottomOf="@+id/add_new_bot_token" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

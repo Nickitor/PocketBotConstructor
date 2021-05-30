@@ -17,15 +17,18 @@ import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_METHOD_GET_CONVERSATION
 import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_METHOD_GET_HISTORY
 import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_METHOD_GET_LONG_POLL_SERVER
 import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_METHOD_GET_STATS
+import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_METHOD_GET_WALL
 import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_METHOD_MESSAGES_SEND
 import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_PARAM_ACCESS_TOKEN
 import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_PARAM_APP_ID
+import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_PARAM_ATTACHMENT
 import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_PARAM_COUNT
 import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_PARAM_EXTENDED
 import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_PARAM_GROUP_ID
 import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_PARAM_INTERVAL
 import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_PARAM_MESSAGE
 import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_PARAM_OFFSET
+import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_PARAM_OWNER_ID
 import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_PARAM_PEER_ID
 import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_PARAM_PEER_IDS
 import com.uneasypixel.pocketbotconstructor.CONSTANTS.VK_PARAM_RANDOM_ID
@@ -96,18 +99,20 @@ object URLBuilder {
      * Получение URL запроса на отправку сообщения пользователю по ID
      * message - текст сообщения
      * userID - ID пользователя
-     * versionAPI - версия VK API
+     * attachment - список вложений
      * token - токен
      */
     fun getUrlSendMessageToID(
         message: String,
         userID: String,
-        token: String
+        token: String,
+        attachment: String = ""
     ): URL? = getURLFromUri(
         getURIWithVersionAndToken(method = VK_METHOD_MESSAGES_SEND, token = token)
             .buildUpon()
             .appendQueryParameter(VK_PARAM_MESSAGE, message)
             .appendQueryParameter(VK_PARAM_USER_ID, userID)
+            .appendQueryParameter(VK_PARAM_ATTACHMENT, attachment)
             .appendQueryParameter(VK_PARAM_RANDOM_ID, getRandomID())
             .build()
     )
@@ -128,6 +133,7 @@ object URLBuilder {
 
     /**
      * Получение URL запроса на получение статистики группы
+     * groupID - ID группы
      * token - токен
      */
     fun getUrlGetStats(
@@ -140,6 +146,26 @@ object URLBuilder {
             .appendQueryParameter(VK_PARAM_INTERVAL, VK_VALUE_INTERVAL)
             .appendQueryParameter(VK_PARAM_EXTENDED, "1")
             .appendQueryParameter(VK_PARAM_APP_ID, VK_VALUE_APP_ID)
+            .build()
+    )
+
+
+    /**
+     * Получение URL запроса на получение записей со стены
+     * группы или пользователя
+     * token - токен
+     */
+    fun getUrlGetWall(
+        groupID: String,
+        offset: String,
+        count: String,
+        token: String
+    ): URL? = getURLFromUri(
+        getURIWithVersionAndToken(method = VK_METHOD_GET_WALL, token = token)
+            .buildUpon()
+            .appendQueryParameter(VK_PARAM_OWNER_ID, groupID)
+            .appendQueryParameter(VK_PARAM_OFFSET, offset)
+            .appendQueryParameter(VK_PARAM_COUNT, count)
             .build()
     )
 
@@ -166,7 +192,8 @@ object URLBuilder {
                 .appendQueryParameter(vk_param_start_message_id, startMessageId)
                 .appendQueryParameter(VK_PARAM_PEER_ID, peerId)
                 .appendQueryParameter(VK_PARAM_COUNT, "200")
-                .build())
+                .build()
+        )
     }
 
 

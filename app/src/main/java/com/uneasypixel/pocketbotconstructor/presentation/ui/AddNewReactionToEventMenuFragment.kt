@@ -48,14 +48,14 @@ class AddNewReactionToEventMenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.addNewReactionToEventMenuNameEventSubtitle.text = viewModel.event!!.phrase.toString()
         if (viewModel.event!!.response.isNotEmpty())
-            binding.addNewReactionToEventMenuNameResponseValue.setText(viewModel.event!!.response[0])
+            binding.addNewReactionToEventMenuNameResponseValue.setText(viewModel.event!!.response)
 
         binding.addNewReactionToEventMenuButtonAdd.setOnClickListener {
             val event = binding.addNewReactionToEventMenuNameEventSubtitle.text.toString()
             val response = binding.addNewReactionToEventMenuNameResponseValue.text.toString()
 
             val dialogScript = DialogScript(event)
-            dialogScript.response.add(response)
+            dialogScript.response = response
             val bundle = bundleOf("EVENT_KEY" to dialogScript, "EVENT_POS_KEY" to viewModel.eventPos)
             findNavController().navigate(R.id.action_addNewReactionToEventMenuFragment_to_reactionsToEventsMenuFragment, bundle)
         }

@@ -120,10 +120,12 @@ class ListOfBotsMenuFragment : Fragment(), IRecyclerViewClickListener {
 
         val newBotId = arguments?.getString("NEW_BOT_ID_KEY")
         val newBotToken = arguments?.getString("NEW_BOT_TOKEN_KEY")
+        val newBotServiceToken = arguments?.getString("NEW_BOT_SERVICE_TOKEN")
 
         val bot = Bot(botDTO.name, botDTO.imageResourceId)
         bot.token = newBotToken!!
         bot.groupID = newBotId!!
+        bot.serviceToken = newBotServiceToken!!
         listOfBotsViewModel.listOfBots.add(bot)
     }
 

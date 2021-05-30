@@ -4,5 +4,5 @@ import org.json.JSONObject
 
 interface ISendMessageAPI {
 
-    suspend fun sendMessageToUser(message: String, userID: String, token : String) : JSONObject?
+    suspend fun sendMessageToUser(message: String, userID: String, token : String, attachment: String) : JSONObject?
 }

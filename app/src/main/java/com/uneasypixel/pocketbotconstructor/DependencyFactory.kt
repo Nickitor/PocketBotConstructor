@@ -20,10 +20,10 @@ class DependencyFactory {
     }
 
     private fun provideSendMessageApi() : ISendMessageAPI {
-        return SendMessageAPIImp(provideSendRequestApiIml())
+        return SendMessageAPIImp(provideSendRequestApi())
     }
 
-    private fun provideSendRequestApiIml() : ISendRequestAPI {
+    private fun provideSendRequestApi() : ISendRequestAPI {
         return SendRequestAPIImp()
     }
 
@@ -38,12 +38,9 @@ class DependencyFactory {
     }
 
     private fun provideGetConversationsApi() : IGetConversationsAPI {
-        return GetConversationsAPIImp(provideGetConversationsApiIml())
+        return GetConversationsAPIImp(provideSendRequestApi())
     }
 
-    private fun provideGetConversationsApiIml() : ISendRequestAPI {
-        return SendRequestAPIImp()
-    }
 
     // SendMessageToConversations
     fun provideSendMessageToConversationsUseCase() : SendMessageToConversationsUseCase {
@@ -64,13 +61,22 @@ class DependencyFactory {
     }
 
     private fun provideGetHistoryApi() : IGetHistoryAPI {
-        return GetHistoryAPIImp(provideGetHistoryApiIml())
+        return GetHistoryAPIImp(provideSendRequestApi())
     }
 
-    private fun provideGetHistoryApiIml() : ISendRequestAPI {
-        return SendRequestAPIImp()
+
+    // GetWallUseCase
+    fun provideGetWallUseCase() : GetWallUseCase {
+        return GetWallUseCase(provideGetWallGateWay())
     }
 
+    private fun provideGetWallGateWay() : IGetWallGateway {
+        return GetWallGatewayImp(provideGetWallApi())
+    }
+
+    private fun provideGetWallApi() : IGetWallAPI {
+        return GetWallAPIImp(provideSendRequestApi())
+    }
 
 
     // GetLongPollServer
