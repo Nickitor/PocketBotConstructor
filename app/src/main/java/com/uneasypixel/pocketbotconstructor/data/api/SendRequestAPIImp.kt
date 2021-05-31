@@ -10,7 +10,7 @@ class SendRequestAPIImp : ISendRequestAPI {
 
     override suspend fun sendRequest(url: URL): JSONObject? {
 
-        var urlConnection : HttpURLConnection? = null
+        var urlConnection: HttpURLConnection? = null
         try {
             urlConnection = url.openConnection() as? HttpURLConnection?
             val input = urlConnection?.inputStream
@@ -31,10 +31,9 @@ class SendRequestAPIImp : ISendRequestAPI {
 
         } catch (e: IOException) {
 
-        } catch (e : UnknownServiceException) {
+        } catch (e: UnknownServiceException) {
 
-        }
-        finally {
+        } finally {
             urlConnection?.disconnect()
         }
 

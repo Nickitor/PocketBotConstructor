@@ -5,5 +5,5 @@ import org.json.JSONObject
 
 interface IGetResponseLongPollServerAPI {
 
-    suspend fun getResponseLongPollServer(server : ServerDAO) : JSONObject?
+    suspend fun getResponseLongPollServer(server: ServerDAO): JSONObject?
 }

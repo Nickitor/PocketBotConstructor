@@ -4,5 +4,5 @@ import com.uneasypixel.pocketbotconstructor.domain.entities.Stats
 
 interface IGetStatsGateway {
 
-    suspend fun getStats(groupID : String, token : String) : Stats
+    suspend fun getStats(groupID: String, token: String): Stats
 }

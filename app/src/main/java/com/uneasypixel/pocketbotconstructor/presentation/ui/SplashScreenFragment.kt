@@ -51,9 +51,13 @@ class SplashScreenFragment : Fragment() {
         super.onStart()
 
         Handler().postDelayed(Runnable {
-            val dependencyFactory = (requireActivity().application as ProgApplication).dependencyFactory
+            val dependencyFactory =
+                (requireActivity().application as ProgApplication).dependencyFactory
 
-            listOfBotsViewModel.getBots(dependencyFactory, this@SplashScreenFragment.requireContext())
+            listOfBotsViewModel.getBots(
+                dependencyFactory,
+                this@SplashScreenFragment.requireContext()
+            )
 
             for (bot in listOfBotsViewModel.listOfBotsDTO)
                 bot.isRunning = false

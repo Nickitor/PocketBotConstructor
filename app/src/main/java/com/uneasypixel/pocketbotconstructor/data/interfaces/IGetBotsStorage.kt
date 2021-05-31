@@ -6,7 +6,7 @@ import org.json.JSONObject
 
 interface IGetBotsStorage {
 
-    fun getBots(context: Context) : JSONArray?
+    fun getBots(context: Context): JSONArray?
 
-    fun getBot(context: Context, name : String) : JSONObject?
+    fun getBot(context: Context, name: String): JSONObject?
 }

@@ -43,8 +43,9 @@ class AddNewBotMenuFragment : Fragment() {
             val id = binding.addNewBotId.text.toString()
             val token = binding.addNewBotToken.text.toString()
             val serviceToken = binding.addNewBotServiceToken.text.toString()
-            val ic = listOf(R.drawable.ic_android_robot_mobile_mood_emoji,
-            R.drawable.ic_android_robot_mobile_mood_emoji_angry_upset,
+            val ic = listOf(
+                R.drawable.ic_android_robot_mobile_mood_emoji,
+                R.drawable.ic_android_robot_mobile_mood_emoji_angry_upset,
                 R.drawable.ic_android_robot_mobile_mood_emoji_crash_bug_dead,
                 R.drawable.ic_android_robot_mobile_mood_emoji_happy_joke_tounge,
                 R.drawable.ic_android_robot_mobile_mood_emoji_happy_smile,
@@ -55,7 +56,8 @@ class AddNewBotMenuFragment : Fragment() {
                 R.drawable.ic_android_robot_mobile_mood_emoji_sad_tear,
                 R.drawable.ic_android_robot_mobile_mood_emoji_sick_ill_trouble,
                 R.drawable.ic_android_robot_mobile_mood_emoji_smile_happy_successful,
-                R.drawable.ic_android_robot_mobile_sleeping_tired)
+                R.drawable.ic_android_robot_mobile_sleeping_tired
+            )
 
             val image = ic.random()
 
@@ -68,21 +70,33 @@ class AddNewBotMenuFragment : Fragment() {
 
             if (id == "") {
 
-                Toast.makeText(requireContext(), "Поле id не должно быть пустым!", Toast.LENGTH_SHORT)
+                Toast.makeText(
+                    requireContext(),
+                    "Поле id не должно быть пустым!",
+                    Toast.LENGTH_SHORT
+                )
                     .show()
                 return@setOnClickListener
             }
 
             if (token == "") {
 
-                Toast.makeText(requireContext(), "Поле token не должно быть пустым!", Toast.LENGTH_SHORT)
+                Toast.makeText(
+                    requireContext(),
+                    "Поле token не должно быть пустым!",
+                    Toast.LENGTH_SHORT
+                )
                     .show()
                 return@setOnClickListener
             }
 
             if (serviceToken == "") {
 
-                Toast.makeText(requireContext(), "Поле сервисного ключа не должно быть пустым!", Toast.LENGTH_SHORT)
+                Toast.makeText(
+                    requireContext(),
+                    "Поле сервисного ключа не должно быть пустым!",
+                    Toast.LENGTH_SHORT
+                )
                     .show()
                 return@setOnClickListener
             }

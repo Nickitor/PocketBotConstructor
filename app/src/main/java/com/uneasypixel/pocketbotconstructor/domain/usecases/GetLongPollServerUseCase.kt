@@ -5,5 +5,6 @@ import com.uneasypixel.pocketbotconstructor.domain.interfaces.IGetLongPollServer
 
 class GetLongPollServerUseCase(private val getLongPollServerGateway: IGetLongPollServerGateway) {
 
-    suspend fun getLongPollServer(groupID : String, token : String) : ServerDAO = getLongPollServerGateway.getLongPollServer(groupID, token)
+    suspend fun getLongPollServer(groupID: String, token: String): ServerDAO =
+        getLongPollServerGateway.getLongPollServer(groupID, token)
 }

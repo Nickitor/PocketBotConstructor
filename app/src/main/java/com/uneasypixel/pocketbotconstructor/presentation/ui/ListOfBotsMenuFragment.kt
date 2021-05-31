@@ -48,7 +48,7 @@ class ListOfBotsMenuFragment : Fragment(), IRecyclerViewClickListener {
     ): View {
         binding = FragmentListOfBotsMenuBinding.inflate(inflater, container, false)
 
-        val listOfBotsDTO : MutableList<BotDTO> = mutableListOf()
+        val listOfBotsDTO: MutableList<BotDTO> = mutableListOf()
         for (botDTO in listOfBotsViewModel.listOfBotsDTO)
             listOfBotsDTO.add(botDTO.copy())
 

@@ -14,7 +14,8 @@ class GetStatsGatewayImp(
 ) : IGetStatsGateway {
     override suspend fun getStats(groupID: String, token: String): Stats {
 
-        val conversationIDs: MutableList<String> = getConversationsGateway.getConversationsIds(token)
+        val conversationIDs: MutableList<String> =
+            getConversationsGateway.getConversationsIds(token)
         val stats: Stats = Stats()
 
         if (conversationIDs != null) {
@@ -27,7 +28,8 @@ class GetStatsGatewayImp(
                 ++stats.numberOfDialogues
 
                 do {
-                    val response: JSONObject? = getHistoryAPI.getHistory(id, startMessageId, offset.toString(), token)
+                    val response: JSONObject? =
+                        getHistoryAPI.getHistory(id, startMessageId, offset.toString(), token)
 
                     println(response)
 
@@ -57,8 +59,7 @@ class GetStatsGatewayImp(
                         } catch (e: JSONException) {
 
                         }
-                    }
-                    else
+                    } else
                         break
                 } while (true)
             }

@@ -4,7 +4,8 @@ import com.uneasypixel.pocketbotconstructor.domain.dao.ServerDAO
 import com.uneasypixel.pocketbotconstructor.domain.interfaces.IGetResponseLongPollServerGateway
 import org.json.JSONObject
 
-class GetResponseLongPollServerUseCase (private val getResponseLongPollServerGateway: IGetResponseLongPollServerGateway) {
+class GetResponseLongPollServerUseCase(private val getResponseLongPollServerGateway: IGetResponseLongPollServerGateway) {
 
-    suspend fun getResponseLongPollServer(server : ServerDAO) : JSONObject? = getResponseLongPollServerGateway.getResponseLongPollServer(server)
+    suspend fun getResponseLongPollServer(server: ServerDAO): JSONObject? =
+        getResponseLongPollServerGateway.getResponseLongPollServer(server)
 }

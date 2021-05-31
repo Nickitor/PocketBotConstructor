@@ -5,5 +5,5 @@ import java.net.URL
 
 interface ISendRequestAPI {
 
-    suspend fun sendRequest(url : URL) : JSONObject?
+    suspend fun sendRequest(url: URL): JSONObject?
 }

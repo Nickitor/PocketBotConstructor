@@ -12,7 +12,7 @@ import android.app.Application
 
 class ProgApplication : Application() {
 
-    lateinit var  dependencyFactory: DependencyFactory
+    lateinit var dependencyFactory: DependencyFactory
         private set
 
     override fun onCreate() {

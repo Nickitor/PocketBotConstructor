@@ -50,14 +50,20 @@ class SendingMenuFragment : Fragment() {
 
             GlobalScope.launch {
 
-                val sendMessageToConversations = (requireActivity().application as ProgApplication).dependencyFactory.provideSendMessageToConversationsUseCase()
+                val sendMessageToConversations =
+                    (requireActivity().application as ProgApplication).dependencyFactory.provideSendMessageToConversationsUseCase()
 
                 sendMessageToConversations.sendMessageToConversations(
                     binding.sendingMenuSendingTextEditTextTextMultiLine.text.toString(),
-                    viewModel.bot!!.token)
+                    viewModel.bot!!.token
+                )
             }
 
-            Toast.makeText(requireContext(), "Сообщения отправлены пользователям!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                "Сообщения отправлены пользователям!",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
@@ -73,7 +79,7 @@ class SendingMenuFragment : Fragment() {
     }
 
 
-    private fun setBotToViewModel(botName : String?) {
+    private fun setBotToViewModel(botName: String?) {
         if (botName != null) {
             for (bot in listOfBotsViewModel.listOfBots) {
                 if (bot.name == botName) {

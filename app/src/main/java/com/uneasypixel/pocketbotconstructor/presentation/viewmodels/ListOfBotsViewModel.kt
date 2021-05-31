@@ -8,8 +8,8 @@ import com.uneasypixel.pocketbotconstructor.presentation.dto.BotDTO
 
 class ListOfBotsViewModel : ViewModel() {
 
-    var listOfBots : MutableList<Bot> = mutableListOf()
-    var listOfBotsDTO : MutableList<BotDTO> = mutableListOf()
+    var listOfBots: MutableList<Bot> = mutableListOf()
+    var listOfBotsDTO: MutableList<BotDTO> = mutableListOf()
 
     fun getBots(dependencyFactory: DependencyFactory, context: Context) {
         listOfBotsDTO = dependencyFactory.provideGetBotsUseCase().getBots(context)

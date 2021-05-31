@@ -98,14 +98,22 @@ class AddNewSetOfPhrasesMenuFragment : Fragment() {
         binding.addNewSetOfPhrasesMenuButtonAdd.setOnClickListener {
 
             if (binding.addNewSetOfPhrasesMenuSetNameValue.text.isEmpty()) {
-                Toast.makeText(requireContext(), "Поле с названием набора не должно быть пустым!", Toast.LENGTH_SHORT)
+                Toast.makeText(
+                    requireContext(),
+                    "Поле с названием набора не должно быть пустым!",
+                    Toast.LENGTH_SHORT
+                )
                     .show()
                 return@setOnClickListener
             }
 
             for (item in adapter.dataset.textSources) {
-                if (item.isEmpty()){
-                    Toast.makeText(requireContext(), "Поля с текстом сообщения не должны быть пустыми!", Toast.LENGTH_SHORT)
+                if (item.isEmpty()) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Поля с текстом сообщения не должны быть пустыми!",
+                        Toast.LENGTH_SHORT
+                    )
                         .show()
                     return@setOnClickListener
                 }
@@ -113,14 +121,22 @@ class AddNewSetOfPhrasesMenuFragment : Fragment() {
 
             for (item in adapter.dataset.groupSources) {
                 if (item.isEmpty()) {
-                    Toast.makeText(requireContext(), "Поля с id групп не должны быть пустыми!", Toast.LENGTH_SHORT)
+                    Toast.makeText(
+                        requireContext(),
+                        "Поля с id групп не должны быть пустыми!",
+                        Toast.LENGTH_SHORT
+                    )
                         .show()
                     return@setOnClickListener
                 }
             }
 
             if (adapter.dataset.textSources.isEmpty() && adapter.dataset.groupSources.isEmpty()) {
-                Toast.makeText(requireContext(), "Создайте хотя бы один вариант ответа!", Toast.LENGTH_SHORT)
+                Toast.makeText(
+                    requireContext(),
+                    "Создайте хотя бы один вариант ответа!",
+                    Toast.LENGTH_SHORT
+                )
                     .show()
                 return@setOnClickListener
             }
@@ -135,14 +151,22 @@ class AddNewSetOfPhrasesMenuFragment : Fragment() {
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
                     if (binding.addNewSetOfPhrasesMenuSetNameValue.text.isEmpty()) {
-                        Toast.makeText(requireContext(), "Поле с названием набора не должно быть пустым!", Toast.LENGTH_SHORT)
+                        Toast.makeText(
+                            requireContext(),
+                            "Поле с названием набора не должно быть пустым!",
+                            Toast.LENGTH_SHORT
+                        )
                             .show()
                         return
                     }
 
                     for (item in adapter.dataset.textSources) {
-                        if (item.isEmpty()){
-                            Toast.makeText(requireContext(), "Поля с текстом сообщения не должны быть пустыми!", Toast.LENGTH_SHORT)
+                        if (item.isEmpty()) {
+                            Toast.makeText(
+                                requireContext(),
+                                "Поля с текстом сообщения не должны быть пустыми!",
+                                Toast.LENGTH_SHORT
+                            )
                                 .show()
                             return
                         }
@@ -150,14 +174,22 @@ class AddNewSetOfPhrasesMenuFragment : Fragment() {
 
                     for (item in adapter.dataset.groupSources) {
                         if (item.isEmpty()) {
-                            Toast.makeText(requireContext(), "Поля с id групп не должны быть пустыми!", Toast.LENGTH_SHORT)
+                            Toast.makeText(
+                                requireContext(),
+                                "Поля с id групп не должны быть пустыми!",
+                                Toast.LENGTH_SHORT
+                            )
                                 .show()
                             return
                         }
                     }
 
                     if (adapter.dataset.textSources.isEmpty() && adapter.dataset.groupSources.isEmpty()) {
-                        Toast.makeText(requireContext(), "Создайте хотя бы один вариант ответа!", Toast.LENGTH_SHORT)
+                        Toast.makeText(
+                            requireContext(),
+                            "Создайте хотя бы один вариант ответа!",
+                            Toast.LENGTH_SHORT
+                        )
                             .show()
                         return
                     }

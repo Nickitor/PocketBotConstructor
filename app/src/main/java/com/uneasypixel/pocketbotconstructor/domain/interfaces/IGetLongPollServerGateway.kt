@@ -4,5 +4,5 @@ import com.uneasypixel.pocketbotconstructor.domain.dao.ServerDAO
 
 interface IGetLongPollServerGateway {
 
-    suspend fun getLongPollServer(groupID : String, token : String) : ServerDAO
+    suspend fun getLongPollServer(groupID: String, token: String): ServerDAO
 }

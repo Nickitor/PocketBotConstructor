@@ -4,5 +4,5 @@ import org.json.JSONObject
 
 interface IGetStatsAPI {
 
-    suspend fun getStats(groupID : String, token : String) : JSONObject?
+    suspend fun getStats(groupID: String, token: String): JSONObject?
 }

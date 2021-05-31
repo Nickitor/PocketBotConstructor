@@ -113,7 +113,10 @@ class ReactionsToEventsMenuFragment : Fragment(), IRecyclerViewClickListener {
             "EVENT_KEY" to viewModel.bot!!.reactionsToEvents[position],
             "EVENT_POS_KEY" to position
         )
-        findNavController().navigate(R.id.action_reactionsToEventsMenuFragment_to_addNewReactionToEventMenuFragment, bundle)
+        findNavController().navigate(
+            R.id.action_reactionsToEventsMenuFragment_to_addNewReactionToEventMenuFragment,
+            bundle
+        )
     }
 
     override fun recyclerViewListAdd(position: Int) {}

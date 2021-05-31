@@ -5,7 +5,7 @@ interface SetOfPhrasesDAO {
     var name: String
 
     var groupSources: MutableList<String>
-    var textSources : MutableList<String>
+    var textSources: MutableList<String>
 
-    var isTextResource : Boolean
+    var isTextResource: Boolean
 }

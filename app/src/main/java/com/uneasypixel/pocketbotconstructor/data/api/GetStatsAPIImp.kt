@@ -6,7 +6,7 @@ import org.json.JSONObject
 
 class GetStatsAPIImp(private val sendRequestApi: ISendRequestAPI) : IGetStatsAPI {
 
-    override suspend fun getStats(groupID: String, token : String): JSONObject? {
+    override suspend fun getStats(groupID: String, token: String): JSONObject? {
         val url = URLBuilder.getUrlGetStats(groupID, token)
 
         var response: JSONObject? = null

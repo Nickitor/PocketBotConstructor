@@ -11,39 +11,39 @@ import com.uneasypixel.pocketbotconstructor.domain.usecases.*
 class DependencyFactory {
 
     // SendMessageToUserUseCase
-    fun provideSendMessageToUserUseCase() : SendMessageToUserUseCase {
+    fun provideSendMessageToUserUseCase(): SendMessageToUserUseCase {
         return SendMessageToUserUseCase(provideSendMessageGateWay())
     }
 
-    private fun provideSendMessageGateWay() : ISendMessageGateway {
+    private fun provideSendMessageGateWay(): ISendMessageGateway {
         return SendMessageGatewayImp(provideSendMessageApi())
     }
 
-    private fun provideSendMessageApi() : ISendMessageAPI {
+    private fun provideSendMessageApi(): ISendMessageAPI {
         return SendMessageAPIImp(provideSendRequestApi())
     }
 
-    private fun provideSendRequestApi() : ISendRequestAPI {
+    private fun provideSendRequestApi(): ISendRequestAPI {
         return SendRequestAPIImp()
     }
 
 
     // GetConversationsUseCase
-    fun provideGetConversationsUseCase() : GetConversationsUseCase {
+    fun provideGetConversationsUseCase(): GetConversationsUseCase {
         return GetConversationsUseCase(provideGetConversationsGateWay())
     }
 
-    private fun provideGetConversationsGateWay() : IGetConversationsGateway {
+    private fun provideGetConversationsGateWay(): IGetConversationsGateway {
         return GetConversationsGatewayImp(provideGetConversationsApi())
     }
 
-    private fun provideGetConversationsApi() : IGetConversationsAPI {
+    private fun provideGetConversationsApi(): IGetConversationsAPI {
         return GetConversationsAPIImp(provideSendRequestApi())
     }
 
 
     // SendMessageToConversations
-    fun provideSendMessageToConversationsUseCase() : SendMessageToConversationsUseCase {
+    fun provideSendMessageToConversationsUseCase(): SendMessageToConversationsUseCase {
         return SendMessageToConversationsUseCase(
             provideGetConversationsUseCase(),
             provideSendMessageToUserUseCase()
@@ -52,89 +52,89 @@ class DependencyFactory {
 
 
     // GetStatsUseCase
-    fun provideGetStatsUseCase() : GetStatsUseCase {
+    fun provideGetStatsUseCase(): GetStatsUseCase {
         return GetStatsUseCase(provideGetStatsGateWay())
     }
 
-    private fun provideGetStatsGateWay() : IGetStatsGateway {
+    private fun provideGetStatsGateWay(): IGetStatsGateway {
         return GetStatsGatewayImp(provideGetConversationsGateWay(), provideGetHistoryApi())
     }
 
-    private fun provideGetHistoryApi() : IGetHistoryAPI {
+    private fun provideGetHistoryApi(): IGetHistoryAPI {
         return GetHistoryAPIImp(provideSendRequestApi())
     }
 
 
     // GetWallUseCase
-    fun provideGetWallUseCase() : GetWallUseCase {
+    fun provideGetWallUseCase(): GetWallUseCase {
         return GetWallUseCase(provideGetWallGateWay())
     }
 
-    private fun provideGetWallGateWay() : IGetWallGateway {
+    private fun provideGetWallGateWay(): IGetWallGateway {
         return GetWallGatewayImp(provideGetWallApi())
     }
 
-    private fun provideGetWallApi() : IGetWallAPI {
+    private fun provideGetWallApi(): IGetWallAPI {
         return GetWallAPIImp(provideSendRequestApi())
     }
 
 
     // GetLongPollServer
-    fun provideGetLongPollServerUseCase() : GetLongPollServerUseCase {
+    fun provideGetLongPollServerUseCase(): GetLongPollServerUseCase {
         return GetLongPollServerUseCase(provideGetLongPollServerGateWay())
     }
 
-    private fun provideGetLongPollServerGateWay() : IGetLongPollServerGateway {
+    private fun provideGetLongPollServerGateWay(): IGetLongPollServerGateway {
         return GetLongPollServerGatewayImp(provideGetLongPollServerApi())
     }
 
-    private fun provideGetLongPollServerApi() : IGetLongPollServerAPI {
+    private fun provideGetLongPollServerApi(): IGetLongPollServerAPI {
         return GetLongPollServerAPIImp(provideGetLongPollServerApiIml())
     }
 
-    private fun provideGetLongPollServerApiIml() : ISendRequestAPI {
+    private fun provideGetLongPollServerApiIml(): ISendRequestAPI {
         return SendRequestAPIImp()
     }
 
 
     // GetResponseLongPollServer
-    fun provideGetResponseLongPollServerUseCase() : GetResponseLongPollServerUseCase {
+    fun provideGetResponseLongPollServerUseCase(): GetResponseLongPollServerUseCase {
         return GetResponseLongPollServerUseCase(provideGetResponseLongPollServerGateWay())
     }
 
-    private fun provideGetResponseLongPollServerGateWay() : IGetResponseLongPollServerGateway {
+    private fun provideGetResponseLongPollServerGateWay(): IGetResponseLongPollServerGateway {
         return GetResponseLongPollServerGatewayImp(provideGetResponseLongPollServerApi())
     }
 
-    private fun provideGetResponseLongPollServerApi() : IGetResponseLongPollServerAPI {
+    private fun provideGetResponseLongPollServerApi(): IGetResponseLongPollServerAPI {
         return GetResponseLongPollServerAPIImp()
     }
 
 
     // GetBotsUseCase
-    fun provideGetBotsUseCase() : GetBotsUseCase {
+    fun provideGetBotsUseCase(): GetBotsUseCase {
         return GetBotsUseCase(provideGetBotsGateWay())
     }
 
-    private fun provideGetBotsGateWay() : IGetBotsGateway {
+    private fun provideGetBotsGateWay(): IGetBotsGateway {
         return GetBotsGatewayImp(provideGetBotsStorage())
     }
 
-    private fun provideGetBotsStorage() : IGetBotsStorage {
+    private fun provideGetBotsStorage(): IGetBotsStorage {
         return GetBotsStorageImp()
     }
 
 
     // SaveBotsUseCase
-    fun provideSaveBotsUseCase() : SaveBotsUseCase {
+    fun provideSaveBotsUseCase(): SaveBotsUseCase {
         return SaveBotsUseCase(provideSaveBotsGateWay())
     }
 
-    private fun provideSaveBotsGateWay() : ISaveBotsGateway {
+    private fun provideSaveBotsGateWay(): ISaveBotsGateway {
         return SaveBotsGatewayImp(provideSaveBotsStorage())
     }
 
-    private fun provideSaveBotsStorage() : ISaveBotsStorage {
+    private fun provideSaveBotsStorage(): ISaveBotsStorage {
         return SaveBotsStorageImp()
     }
 }

@@ -27,7 +27,8 @@ class DialoguesMenuItemAdapter(
         val photo: ImageView = view.findViewById(R.id.dialogues_item_user_image)
         val isOnlineIndicator: ImageView = view.findViewById(R.id.dialogues_item_online)
         val isOnlineText: TextView = view.findViewById(R.id.dialogues_item_online_title)
-        val unreadCountCard: CardView = view.findViewById(R.id.dialogues_item_unread_material_card_view)
+        val unreadCountCard: CardView =
+            view.findViewById(R.id.dialogues_item_unread_material_card_view)
         val unreadCountText: TextView = view.findViewById(R.id.dialogues_item_unread)
 
         init {
@@ -68,11 +69,16 @@ class DialoguesMenuItemAdapter(
             "user" -> {
                 if (item.isOnline!!) {
                     holder.isOnlineText.text = "Онлайн"
-                    ImageViewCompat.setImageTintList(holder.isOnlineIndicator, ColorStateList.valueOf(Color.parseColor("#B5FFA8")))
-                }
-                else  {
+                    ImageViewCompat.setImageTintList(
+                        holder.isOnlineIndicator,
+                        ColorStateList.valueOf(Color.parseColor("#B5FFA8"))
+                    )
+                } else {
                     holder.isOnlineText.text = "Оффлайн"
-                    ImageViewCompat.setImageTintList(holder.isOnlineIndicator, ColorStateList.valueOf(Color.parseColor("#FF6382")))
+                    ImageViewCompat.setImageTintList(
+                        holder.isOnlineIndicator,
+                        ColorStateList.valueOf(Color.parseColor("#FF6382"))
+                    )
                 }
             }
             "chat" -> {

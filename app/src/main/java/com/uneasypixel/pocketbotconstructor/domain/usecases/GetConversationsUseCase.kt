@@ -5,7 +5,8 @@ import com.uneasypixel.pocketbotconstructor.domain.interfaces.IGetConversationsG
 
 class GetConversationsUseCase(private val getConversationsGateway: IGetConversationsGateway) {
 
-    suspend fun getConversationsIds(token: String): MutableList<String> = getConversationsGateway.getConversationsIds(token)
+    suspend fun getConversationsIds(token: String): MutableList<String> =
+        getConversationsGateway.getConversationsIds(token)
 
     suspend fun getConversationsById(
         peerIds: List<String>,

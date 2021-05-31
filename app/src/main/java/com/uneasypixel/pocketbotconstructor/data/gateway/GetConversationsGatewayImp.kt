@@ -57,7 +57,7 @@ class GetConversationsGatewayImp(private val getConversationsApi: IGetConversati
                     try {
                         val unread = conversationsArray.getJSONObject(i).getInt("unread_count")
                         conversation.unreadCount = unread
-                    } catch (e : JSONException ) {
+                    } catch (e: JSONException) {
 
                     }
 

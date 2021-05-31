@@ -6,7 +6,7 @@ import com.uneasypixel.pocketbotconstructor.presentation.dto.BotDTO
 
 interface IGetBotsGateway {
 
-    fun getBots(context: Context) : MutableList<BotDTO>
+    fun getBots(context: Context): MutableList<BotDTO>
 
-    fun getBot(context: Context, name : String) : Bot
+    fun getBot(context: Context, name: String): Bot
 }

@@ -1,6 +1,6 @@
 package com.uneasypixel.pocketbotconstructor.presentation.views
 
 class BotMenuButton(
-    var title : String?,
+    var title: String?,
     val imageResourceId: Int
 )

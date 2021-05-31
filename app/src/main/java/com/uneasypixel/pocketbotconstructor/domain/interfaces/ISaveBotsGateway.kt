@@ -6,7 +6,7 @@ import com.uneasypixel.pocketbotconstructor.presentation.dto.BotDTO
 
 interface ISaveBotsGateway {
 
-    fun saveBots(context: Context, bots : List<BotDTO>)
+    fun saveBots(context: Context, bots: List<BotDTO>)
 
-    fun saveBot(context: Context, bot : Bot)
+    fun saveBot(context: Context, bot: Bot)
 }

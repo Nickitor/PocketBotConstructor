@@ -12,14 +12,14 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.uneasypixel.pocketbotconstructor.DependencyFactory
+import com.uneasypixel.pocketbotconstructor.ProgApplication
+import com.uneasypixel.pocketbotconstructor.R
+import com.uneasypixel.pocketbotconstructor.databinding.FragmentBotMenuBinding
 import com.uneasypixel.pocketbotconstructor.presentation.adapters.BotMenuItemAdapter
 import com.uneasypixel.pocketbotconstructor.presentation.adapters.IRecyclerViewClickListener
 import com.uneasypixel.pocketbotconstructor.presentation.viewmodels.BotMenuViewModel
 import com.uneasypixel.pocketbotconstructor.presentation.viewmodels.ListOfBotsViewModel
 import com.uneasypixel.pocketbotconstructor.presentation.viewmodels.ServerViewModel
-import com.uneasypixel.pocketbotconstructor.ProgApplication
-import com.uneasypixel.pocketbotconstructor.R
-import com.uneasypixel.pocketbotconstructor.databinding.FragmentBotMenuBinding
 
 
 class BotMenuFragment : Fragment(), IRecyclerViewClickListener {
@@ -70,8 +70,7 @@ class BotMenuFragment : Fragment(), IRecyclerViewClickListener {
                 binding.botMenuButtonStart.text = "Выключить"
                 Toast.makeText(requireContext(), "Чат-бот включен!", Toast.LENGTH_SHORT)
                     .show()
-            }
-            else {
+            } else {
                 binding.botMenuButtonStart.text = "Включить"
                 server.stop(viewModel.bot!!)
                 Toast.makeText(requireContext(), "Чат-бот выключен!", Toast.LENGTH_SHORT)
@@ -96,7 +95,7 @@ class BotMenuFragment : Fragment(), IRecyclerViewClickListener {
     }
 
 
-    fun updateAddButton(){
+    fun updateAddButton() {
         if (viewModel.bot!!.isEnabled)
             binding.botMenuButtonStart.text = "Выключить"
     }

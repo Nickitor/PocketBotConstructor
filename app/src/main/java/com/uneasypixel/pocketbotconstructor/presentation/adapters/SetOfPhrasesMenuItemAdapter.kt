@@ -13,7 +13,7 @@ class SetOfPhrasesMenuItemAdapter(
     val dataset: MutableList<SetOfPhrases>,
     private val clickListener: IRecyclerViewClickListener
 ) : RecyclerView.Adapter<SetOfPhrasesMenuItemAdapter.ItemViewHolder>(),
-    ItemTouchHelperAdapter{
+    ItemTouchHelperAdapter {
 
     class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
@@ -45,9 +45,9 @@ class SetOfPhrasesMenuItemAdapter(
         holder.setName.text = text
     }
 
-    private fun cutString(str : String?, limit : Int) : String {
+    private fun cutString(str: String?, limit: Int): String {
 
-        var result : String = ""
+        var result: String = ""
 
         if (str != null) {
 
@@ -68,7 +68,7 @@ class SetOfPhrasesMenuItemAdapter(
 
     override fun getItemCount() = dataset.size
 
-    fun addItem(newSet : SetOfPhrases) {
+    fun addItem(newSet: SetOfPhrases) {
         val position = dataset.size
         dataset.add(position, newSet)
         notifyItemInserted(position)

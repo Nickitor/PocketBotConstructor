@@ -13,7 +13,7 @@ class SaveBotsStorageImp : ISaveBotsStorage {
 
         val outputJson: String = Gson().toJson(bots)
 
-        val sharedPreference =  context.getSharedPreferences("bots", Context.MODE_PRIVATE)
+        val sharedPreference = context.getSharedPreferences("bots", Context.MODE_PRIVATE)
         val editor = sharedPreference.edit()
         editor.putString("list_of_bots", outputJson)
         editor.apply()
@@ -22,7 +22,7 @@ class SaveBotsStorageImp : ISaveBotsStorage {
     override fun saveBot(context: Context, bot: Bot) {
         val outputJson: String = Gson().toJson(bot)
 
-        val sharedPreference =  context.getSharedPreferences("bots", Context.MODE_PRIVATE)
+        val sharedPreference = context.getSharedPreferences("bots", Context.MODE_PRIVATE)
         val editor = sharedPreference.edit()
         editor.putString(bot.name, outputJson)
         editor.apply()

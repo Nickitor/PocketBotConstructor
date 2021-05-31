@@ -18,7 +18,7 @@ class ListOfBotsItemAdapter(
     val dataset: MutableList<BotDTO>,
     private val clickListener: IRecyclerViewClickListener
 ) : RecyclerView.Adapter<ListOfBotsItemAdapter.ItemViewHolder>(),
-    ItemTouchHelperAdapter{
+    ItemTouchHelperAdapter {
 
     class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
@@ -55,19 +55,24 @@ class ListOfBotsItemAdapter(
 
         if (dataset[position].isEnabled) {
             holder.powerText.text = "Включен"
-            ImageViewCompat.setImageTintList(holder.powerView, ColorStateList.valueOf(Color.parseColor("#B5FFA8")))
+            ImageViewCompat.setImageTintList(
+                holder.powerView,
+                ColorStateList.valueOf(Color.parseColor("#B5FFA8"))
+            )
 
-        }
-        else  {
+        } else {
             holder.powerText.text = "Выключен"
-            ImageViewCompat.setImageTintList(holder.powerView, ColorStateList.valueOf(Color.parseColor("#FF6382")))
+            ImageViewCompat.setImageTintList(
+                holder.powerView,
+                ColorStateList.valueOf(Color.parseColor("#FF6382"))
+            )
 
         }
     }
 
     override fun getItemCount() = dataset.size
 
-    fun addItem(newBot : BotDTO) {
+    fun addItem(newBot: BotDTO) {
         val position = dataset.size
         dataset.add(position, newBot)
         notifyItemInserted(position)

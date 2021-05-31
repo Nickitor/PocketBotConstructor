@@ -5,5 +5,6 @@ import com.uneasypixel.pocketbotconstructor.domain.interfaces.IGetStatsGateway
 
 class GetStatsUseCase(private val getStatsGateway: IGetStatsGateway) {
 
-    suspend fun getStats(groupID : String, token : String) : Stats = getStatsGateway.getStats(groupID, token)
+    suspend fun getStats(groupID: String, token: String): Stats =
+        getStatsGateway.getStats(groupID, token)
 }

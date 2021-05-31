@@ -71,7 +71,10 @@ class DialogScriptMenuFragment : Fragment(), IRecyclerViewClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.reactionsToPhrasesMenubuttonAdd.setOnClickListener {
             val bundle = bundleOf("BOT_NAME_KEY" to viewModel.bot!!.name)
-            findNavController().navigate(R.id.action_reactionsToPhrasesMenuFragment_to_addNewPhraseMenuFragment, bundle)
+            findNavController().navigate(
+                R.id.action_reactionsToPhrasesMenuFragment_to_addNewPhraseMenuFragment,
+                bundle
+            )
         }
     }
 
@@ -93,7 +96,7 @@ class DialogScriptMenuFragment : Fragment(), IRecyclerViewClickListener {
     }
 
 
-    private fun setBotToViewModel(botName : String?) {
+    private fun setBotToViewModel(botName: String?) {
         if (botName != null) {
             for (bot in listOfBotsViewModel.listOfBots) {
                 if (bot.name == botName) {

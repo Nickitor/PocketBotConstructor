@@ -74,7 +74,10 @@ class SetOfPhrasesMenuFragment : Fragment(), IRecyclerViewClickListener {
             val bundle = bundleOf(
                 "SET_KEY" to newSet
             )
-            findNavController().navigate(R.id.action_setOfPhrasesMenuFragment_to_addNewSetOfPhrasesMenuFragment, bundle)
+            findNavController().navigate(
+                R.id.action_setOfPhrasesMenuFragment_to_addNewSetOfPhrasesMenuFragment,
+                bundle
+            )
         }
     }
 
@@ -96,7 +99,7 @@ class SetOfPhrasesMenuFragment : Fragment(), IRecyclerViewClickListener {
     }
 
 
-    private fun setBotToViewModel(botName : String?) {
+    private fun setBotToViewModel(botName: String?) {
         if (botName != null) {
             for (bot in listOfBotsViewModel.listOfBots) {
                 if (bot.name == botName) {
@@ -122,7 +125,10 @@ class SetOfPhrasesMenuFragment : Fragment(), IRecyclerViewClickListener {
         val bundle = bundleOf(
             "SET_KEY" to viewModel.bot!!.setsOfPhrases[position]
         )
-        findNavController().navigate(R.id.action_setOfPhrasesMenuFragment_to_addNewSetOfPhrasesMenuFragment, bundle)
+        findNavController().navigate(
+            R.id.action_setOfPhrasesMenuFragment_to_addNewSetOfPhrasesMenuFragment,
+            bundle
+        )
     }
 
     override fun recyclerViewListAdd(position: Int) {}

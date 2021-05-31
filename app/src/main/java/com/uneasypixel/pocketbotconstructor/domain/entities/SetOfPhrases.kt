@@ -8,7 +8,7 @@ class SetOfPhrases() : SetOfPhrasesDAO, Parcelable {
 
     override var name: String = ""
 
-    override var groupSources: MutableList<String>  = mutableListOf()
+    override var groupSources: MutableList<String> = mutableListOf()
     override var textSources: MutableList<String> = mutableListOf()
 
     override var isTextResource: Boolean = true

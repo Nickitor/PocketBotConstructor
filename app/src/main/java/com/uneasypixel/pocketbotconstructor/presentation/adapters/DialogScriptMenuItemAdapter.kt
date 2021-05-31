@@ -14,7 +14,7 @@ class DialogScriptMenuItemAdapter(
     val dataset: MutableList<DialogScript>,
     private val clickListener: IRecyclerViewClickListener
 ) : RecyclerView.Adapter<DialogScriptMenuItemAdapter.ItemViewHolder>(),
-    ItemTouchHelperAdapter{
+    ItemTouchHelperAdapter {
 
     class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
@@ -53,9 +53,9 @@ class DialogScriptMenuItemAdapter(
         holder.textResponse.text = text
     }
 
-    private fun cutString(str : String?, limit : Int) : String {
+    private fun cutString(str: String?, limit: Int): String {
 
-        var result : String = ""
+        var result: String = ""
 
         if (str != null) {
 
@@ -76,7 +76,7 @@ class DialogScriptMenuItemAdapter(
 
     override fun getItemCount() = dataset.size
 
-    fun addItem(newPhrase : DialogScript) {
+    fun addItem(newPhrase: DialogScript) {
         val position = dataset.size
         dataset.add(position, newPhrase)
         notifyItemInserted(position)

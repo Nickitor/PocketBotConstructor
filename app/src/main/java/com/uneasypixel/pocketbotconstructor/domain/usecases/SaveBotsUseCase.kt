@@ -7,11 +7,11 @@ import com.uneasypixel.pocketbotconstructor.presentation.dto.BotDTO
 
 class SaveBotsUseCase(private val saveBotsGateway: ISaveBotsGateway) {
 
-    fun saveBots(context: Context, bots : List<BotDTO>) {
+    fun saveBots(context: Context, bots: List<BotDTO>) {
         saveBotsGateway.saveBots(context, bots)
     }
 
-    fun saveBot(context: Context, bot : Bot) {
+    fun saveBot(context: Context, bot: Bot) {
         saveBotsGateway.saveBot(context, bot)
     }
 }

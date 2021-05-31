@@ -6,7 +6,7 @@ import com.uneasypixel.pocketbotconstructor.domain.entities.Bot
 import com.uneasypixel.pocketbotconstructor.domain.interfaces.ISaveBotsGateway
 import com.uneasypixel.pocketbotconstructor.presentation.dto.BotDTO
 
-class SaveBotsGatewayImp (private val saveBotsStorage: ISaveBotsStorage) : ISaveBotsGateway {
+class SaveBotsGatewayImp(private val saveBotsStorage: ISaveBotsStorage) : ISaveBotsGateway {
     override fun saveBots(context: Context, bots: List<BotDTO>) {
         saveBotsStorage.saveBots(context, bots)
     }

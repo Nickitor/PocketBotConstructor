@@ -51,8 +51,8 @@
                     android:layout_gravity="bottom|right"
                     android:backgroundTint="@color/colorPrimary"
                     android:visibility="visible"
-                    app:cardElevation="5dp"
-                    app:cardCornerRadius="20dp">
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="5dp">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/dialogues_item_unread_material_card_view_2"

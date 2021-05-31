@@ -8,7 +8,7 @@
         android:id="@+id/firstStartStepOneFragment"
         android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.FirstStartStepOneMenuFragment"
         android:label="fragment_first_start_step_one"
-        tools:layout="@layout/fragment_first_start_step_one_menu" >
+        tools:layout="@layout/fragment_first_start_step_one_menu">
         <action
             android:id="@+id/action_firstStartStepOneFragment_to_firstStartStepTwoFragment"
             app:destination="@id/firstStartStepTwoFragment" />
@@ -17,7 +17,7 @@
         android:id="@+id/firstStartStepTwoFragment"
         android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.FirstStartStepTwoMenuFragment"
         android:label="fragment_first_start_step_two"
-        tools:layout="@layout/fragment_first_start_step_two_menu" >
+        tools:layout="@layout/fragment_first_start_step_two_menu">
         <action
             android:id="@+id/action_firstStartStepTwoFragment_to_firstStartStepOneFragment"
             app:destination="@id/firstStartStepOneFragment" />
@@ -29,7 +29,7 @@
         android:id="@+id/listOfBotsFragment"
         android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.ListOfBotsMenuFragment"
         android:label="fragment_list_of_bots"
-        tools:layout="@layout/fragment_list_of_bots_menu" >
+        tools:layout="@layout/fragment_list_of_bots_menu">
         <action
             android:id="@+id/action_listOfBotsFragment_to_botMenuFragment"
             app:destination="@id/botMenuFragment" />
@@ -41,7 +41,7 @@
         android:id="@+id/botMenuFragment"
         android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.BotMenuFragment"
         android:label="BotMenuFragment"
-        tools:layout="@layout/fragment_bot_menu" >
+        tools:layout="@layout/fragment_bot_menu">
         <action
             android:id="@+id/action_botMenuFragment_to_sendingMenuFragment"
             app:destination="@id/sendingMenuFragment" />
@@ -83,12 +83,12 @@
         android:id="@+id/createMenuMenuFragment"
         android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.CreateMenuMenuFragment"
         android:label="CreateMenuMenuFragment"
-        tools:layout="@layout/fragment_create_menu_menu"/>
+        tools:layout="@layout/fragment_create_menu_menu" />
     <fragment
         android:id="@+id/setOfPhrasesMenuFragment"
         android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.SetOfPhrasesMenuFragment"
         android:label="fragment_set_of_phrases_menu"
-        tools:layout="@layout/fragment_set_of_phrases_menu" >
+        tools:layout="@layout/fragment_set_of_phrases_menu">
         <action
             android:id="@+id/action_setOfPhrasesMenuFragment_to_addNewSetOfPhrasesMenuFragment"
             app:destination="@id/addNewSetOfPhrasesMenuFragment" />
@@ -100,7 +100,7 @@
         android:id="@+id/reactionsToPhrasesMenuFragment"
         android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.DialogScriptMenuFragment"
         android:label="fragment_reactions_to_phrases_menu"
-        tools:layout="@layout/fragment_dialog_script_menu" >
+        tools:layout="@layout/fragment_dialog_script_menu">
         <action
             android:id="@+id/action_reactionsToPhrasesMenuFragment_to_botMenuFragment"
             app:destination="@id/botMenuFragment" />
@@ -112,7 +112,7 @@
         android:id="@+id/reactionsToEventsMenuFragment"
         android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.ReactionsToEventsMenuFragment"
         android:label="fragment_reactions_to_events_menu"
-        tools:layout="@layout/fragment_reactions_to_events_menu" >
+        tools:layout="@layout/fragment_reactions_to_events_menu">
         <action
             android:id="@+id/action_reactionsToEventsMenuFragment_to_botMenuFragment"
             app:destination="@id/botMenuFragment" />
@@ -124,7 +124,7 @@
         android:id="@+id/dialoguesMenuFragment"
         android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.DialoguesMenuFragment"
         android:label="fragment_dialogues_menu"
-        tools:layout="@layout/fragment_dialogues_menu" >
+        tools:layout="@layout/fragment_dialogues_menu">
         <action
             android:id="@+id/action_dialoguesMenuFragment_to_botMenuFragment"
             app:destination="@id/botMenuFragment" />
@@ -133,7 +133,7 @@
         android:id="@+id/statisticsMenuFragment"
         android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.StatisticsMenuFragment"
         android:label="fragment_statistics_menu"
-        tools:layout="@layout/fragment_statistics_menu" >
+        tools:layout="@layout/fragment_statistics_menu">
         <action
             android:id="@+id/action_statisticsMenuFragment_to_botMenuFragment"
             app:destination="@id/botMenuFragment" />
@@ -147,7 +147,7 @@
         android:id="@+id/addNewBotMenuFragment"
         android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.AddNewBotMenuFragment"
         android:label="fragment_add_new_bot_menu"
-        tools:layout="@layout/fragment_add_new_bot_menu" >
+        tools:layout="@layout/fragment_add_new_bot_menu">
         <action
             android:id="@+id/action_addNewBotMenuFragment_to_listOfBotsFragment"
             app:destination="@id/listOfBotsFragment" />
@@ -156,7 +156,7 @@
         android:id="@+id/addNewPhraseMenuFragment"
         android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.AddNewDialogScriptMenuFragment"
         android:label="fragment_add_new_phrase_menu"
-        tools:layout="@layout/fragment_add_new_dialog_script_menu" >
+        tools:layout="@layout/fragment_add_new_dialog_script_menu">
         <action
             android:id="@+id/action_addNewPhraseMenuFragment_to_reactionsToPhrasesMenuFragment"
             app:destination="@id/reactionsToPhrasesMenuFragment" />
@@ -165,7 +165,7 @@
         android:id="@+id/splashScreenFragment"
         android:name="com.uneasypixel.pocketbotconstructor.presentation.ui.SplashScreenFragment"
         android:label="fragment_splash_screen"
-        tools:layout="@layout/fragment_splash_screen" >
+        tools:layout="@layout/fragment_splash_screen">
         <action
             android:id="@+id/action_splashScreenFragment_to_firstStartStepOneFragment"
             app:destination="@id/firstStartStepOneFragment" />

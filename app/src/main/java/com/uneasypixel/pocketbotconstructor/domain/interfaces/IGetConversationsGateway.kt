@@ -6,5 +6,8 @@ interface IGetConversationsGateway {
 
     suspend fun getConversationsIds(token: String): MutableList<String>
 
-    suspend fun getConversationsById(peerIds: List<String>, token: String): MutableList<Conversation>
+    suspend fun getConversationsById(
+        peerIds: List<String>,
+        token: String
+    ): MutableList<Conversation>
 }

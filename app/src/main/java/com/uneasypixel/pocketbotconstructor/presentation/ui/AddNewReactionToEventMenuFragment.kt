@@ -46,7 +46,8 @@ class AddNewReactionToEventMenuFragment : Fragment() {
 
     // Инициализация компонентов макета фрагмента
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.addNewReactionToEventMenuNameEventSubtitle.text = viewModel.event!!.phrase.toString()
+        binding.addNewReactionToEventMenuNameEventSubtitle.text =
+            viewModel.event!!.phrase.toString()
         if (viewModel.event!!.response.isNotEmpty())
             binding.addNewReactionToEventMenuNameResponseValue.setText(viewModel.event!!.response)
 
@@ -56,8 +57,12 @@ class AddNewReactionToEventMenuFragment : Fragment() {
 
             val dialogScript = DialogScript(event)
             dialogScript.response = response
-            val bundle = bundleOf("EVENT_KEY" to dialogScript, "EVENT_POS_KEY" to viewModel.eventPos)
-            findNavController().navigate(R.id.action_addNewReactionToEventMenuFragment_to_reactionsToEventsMenuFragment, bundle)
+            val bundle =
+                bundleOf("EVENT_KEY" to dialogScript, "EVENT_POS_KEY" to viewModel.eventPos)
+            findNavController().navigate(
+                R.id.action_addNewReactionToEventMenuFragment_to_reactionsToEventsMenuFragment,
+                bundle
+            )
         }
     }
 
