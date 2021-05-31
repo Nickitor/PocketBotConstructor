@@ -121,35 +121,27 @@ class BotMenuFragment : Fragment(), IRecyclerViewClickListener {
 
         when (position) {
             0 -> findNavController().navigate(
-                R.id.action_botMenuFragment_to_createMenuMenuFragment,
-                bundle
-            )
-            1 -> findNavController().navigate(
                 R.id.action_botMenuFragment_to_setOfPhrasesMenuFragment,
                 bundle
             )
-            2 -> findNavController().navigate(
+            1 -> findNavController().navigate(
                 R.id.action_botMenuFragment_to_reactionsToPhrasesMenuFragment,
                 bundle
             )
-            3 -> findNavController().navigate(
+            2 -> findNavController().navigate(
                 R.id.action_botMenuFragment_to_reactionsToEventsMenuFragment,
                 bundle
             )
-            4 -> findNavController().navigate(
+            3 -> findNavController().navigate(
                 R.id.action_botMenuFragment_to_dialoguesMenuFragment,
                 bundle
             )
-            5 -> findNavController().navigate(
+            4 -> findNavController().navigate(
                 R.id.action_botMenuFragment_to_statisticsMenuFragment,
                 bundle
             )
-            6 -> findNavController().navigate(
+            5 -> findNavController().navigate(
                 R.id.action_botMenuFragment_to_sendingMenuFragment,
-                bundle
-            )
-            7 -> findNavController().navigate(
-                R.id.action_botMenuFragment_to_variablesMenuFragment,
                 bundle
             )
         }
